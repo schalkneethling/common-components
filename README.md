@@ -1,6 +1,8 @@
-# Qilin - Open Source project starter template
+# Common components aka Fiori
 
 A collection of commonly used components as either HTML or Web Components.
+
+- [Skip to nav](https://schalkneethling.github.io/common-components/components/skip-to-nav/)
 
 ## License
 
