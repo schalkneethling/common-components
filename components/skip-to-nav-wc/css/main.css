@@ -1,0 +1,28 @@
+:root {
+  --link-background-color: rgba(255, 255, 255, 0.5);
+  --link-color: #19162b;
+
+  --color-purple-10: #f6f5ff;
+
+  --typography-font-family: sans-serif;
+  --typography-primary-title: 5rem;
+
+  --skip-to-nav-box-shadow: 0 0.6rem 0.5rem rgb(255, 105, 180, 0.7);
+  --skip-to-nav-focus-outline: 1px solid #19162b;
+}
+
+body {
+  background-color: slateblue;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+}
+
+.primary-title {
+  color: var(--color-purple-10);
+  font-size: var(--typography-primary-title);
+}
