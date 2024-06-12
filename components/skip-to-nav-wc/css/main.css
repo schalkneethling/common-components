@@ -87,7 +87,7 @@ pre {
   border: 0.3rem solid var(--color-purple-80);
   font-size: var(--typography-size-default);
   max-width: 100%;
-  overflow: scroll;
+  overflow: auto;
   padding: 0 var(--layout-spacing-default);
 }
 
