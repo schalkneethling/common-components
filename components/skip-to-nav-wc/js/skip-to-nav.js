@@ -55,6 +55,7 @@ export default class SkipToNav extends HTMLElement {
   connectedCallback() {
     const shadow = this.attachShadow({ mode: "open" });
 
+    const nav = document.createElement("nav");
     const ul = document.createElement("ul");
     ul.setAttribute("id", "nav-access");
     ul.setAttribute("class", "skip-to-nav");
@@ -66,7 +67,7 @@ export default class SkipToNav extends HTMLElement {
     }
 
     shadow.appendChild(this._getCSS());
-    shadow.appendChild(ul);
+    shadow.appendChild(nav).appendChild(ul);
   }
 
   attributeChangedCallback(name, _oldValue, newValue) {
