@@ -3,6 +3,7 @@
 A collection of commonly used components as either HTML or Web Components.
 
 - [Skip to nav](https://schalkneethling.github.io/common-components/components/skip-to-nav/)
+- [Skip to nav (Web Component version)](https://schalkneethling.github.io/common-components/components/skip-to-nav-wc/)
 
 ## License
 
