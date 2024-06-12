@@ -5,6 +5,7 @@ export default class SkipToNav extends HTMLElement {
 
   constructor() {
     super();
+    this.skipToLinks = [];
   }
 
   _getCSS() {
@@ -20,10 +21,10 @@ export default class SkipToNav extends HTMLElement {
     }
 
     .skip-to-nav a {
-        background-color: var(--link-background-color, rgba(255, 255, 255, 0.9));
-        color: var(--link-color, #212121);
-        font-family: var(--typography-font-family, serif);
-        font-weight: var(--typography-weight, bold);
+        background-color: var(--skip-to-nav-link-background-color, rgba(255, 255, 255, 0.9));
+        color: var(--skip-to-nav-link-color, #212121);
+        font-family: var(--skip-to-nav-typography-font-family, serif);
+        font-weight: var(--skip-to-nav-typography-weight, bold);
         left: 0;
         padding: 1rem;
         position: absolute;
@@ -33,7 +34,7 @@ export default class SkipToNav extends HTMLElement {
 
     .skip-to-nav a:hover,
     .skip-to-nav a:focus {
-        box-shadow: var(--skip-to-nav-box-shadow, 3px 3px 5px #eee);
+        box-shadow: var(--skip-to-nav-box-shadow, 0.2rem 0.2rem 5px #eee);
         outline: var(--skip-to-nav-focus-outline, 1px solid #212121);
         text-decoration: none;
         top: 20rem;
@@ -58,31 +59,10 @@ export default class SkipToNav extends HTMLElement {
     ul.setAttribute("id", "nav-access");
     ul.setAttribute("class", "skip-to-nav");
 
-    if (this.content) {
-      ul.appendChild(
-        this._getListItem({
-          linkTarget: this.content,
-          linkText: "main content",
-        })
-      );
-    }
-
-    if (this.nav) {
-      ul.appendChild(
-        this._getListItem({
-          linkTarget: this.nav,
-          linkText: "main navigation",
-        })
-      );
-    }
-
-    if (this.search) {
-      ul.appendChild(
-        this._getListItem({
-          linkTarget: this.search,
-          linkText: "search",
-        })
-      );
+    if (this.skipToLinks) {
+      this.skipToLinks.forEach((item) => {
+        ul.appendChild(this._getListItem(item));
+      });
     }
 
     shadow.appendChild(this._getCSS());
@@ -92,13 +72,22 @@ export default class SkipToNav extends HTMLElement {
   attributeChangedCallback(name, _oldValue, newValue) {
     switch (name) {
       case "content":
-        this.content = newValue;
+        this.skipToLinks.push({
+          linkTarget: newValue,
+          linkText: "main content",
+        });
         break;
       case "nav":
-        this.nav = newValue;
+        this.skipToLinks.push({
+          linkTarget: newValue,
+          linkText: "main navigation",
+        });
         break;
       case "search":
-        this.search = newValue;
+        this.skipToLinks.push({
+          linkTarget: newValue,
+          linkText: "search",
+        });
         break;
     }
   }

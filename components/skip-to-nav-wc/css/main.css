@@ -1,28 +1,104 @@
 :root {
-  --link-background-color: rgba(255, 255, 255, 0.5);
-  --link-color: #19162b;
+  --color-main-background: rgba(255, 255, 255, 0.4);
 
+  --color-purple-80: #141035;
   --color-purple-10: #f6f5ff;
 
-  --typography-font-family: sans-serif;
-  --typography-primary-title: 5rem;
+  --typography-size-display: 5.61rem;
+  --typography-size-xxl: 4.209rem;
+  --typography-size-xl: 3.157rem;
+  --typography-size-large: 2.369rem;
+  --typography-size-medium: 1.777rem;
+  --typography-size-small-medium: 1.333rem;
+  --typography-size-default: 1rem;
+  --typography-size-small: 0.75rem;
+  --typography-size-tiny: 0.563rem;
 
+  --typography-line-height-heading: 1.2;
+
+  --layout-spacing-large: 3rem;
+  --layout-spacing-medium: 2rem;
+  --layout-spacing-small-medium: 1.5rem;
+  --layout-spacing-default: 1rem;
+
+  --skip-to-nav-link-background-color: rgba(255, 255, 255, 0.5);
+  --skip-to-nav-link-color: #19162b;
+  --skip-to-nav-typography-font-family: sans-serif;
   --skip-to-nav-box-shadow: 0 0.6rem 0.5rem rgb(255, 105, 180, 0.7);
   --skip-to-nav-focus-outline: 1px solid #19162b;
 }
 
 body {
-  background-color: slateblue;
+  background: slateblue url("../assets/love.svg") top right no-repeat;
+  font: 100% / 1.75 system-ui, sans-serif;
   margin: 0;
   padding: 0;
 }
 
+a {
+  color: var(--color-purple-80);
+}
+
 .main-content {
-  display: flex;
-  justify-content: center;
+  background-color: var(--color-main-background);
+  margin: var(--layout-spacing-large) auto;
+  max-width: 70vw;
+  padding: var(--layout-spacing-medium);
+}
+
+.primary-title,
+h2,
+h3 {
+  line-height: var(--typography-line-height-heading);
+  margin: 0;
 }
 
 .primary-title {
+  font-size: var(--typography-size-display);
+}
+
+h2 {
+  font-size: var(--typography-size-xl);
+}
+
+h3 {
+  font-size: var(--typography-size-large);
+}
+
+p,
+ul,
+dd {
+  font-size: var(--typography-size-small-medium);
+}
+
+pre {
+  background-color: var(--color-purple-10);
+  border: 0.3rem solid var(--color-purple-80);
+  font-size: var(--typography-size-default);
+  padding: 0 var(--layout-spacing-default);
+}
+
+dt {
+  font-size: var(--typography-size-small-medium);
+  font-weight: bold;
+}
+
+dd {
+  margin-block-end: var(--layout-spacing-small-medium);
+  max-width: 60ch;
+}
+
+.primary-lead {
+  font-size: var(--typography-size-medium);
+}
+
+.page-footer {
+  background-color: var(--color-purple-80);
   color: var(--color-purple-10);
-  font-size: var(--typography-primary-title);
+  padding: var(--layout-spacing-medium);
+  text-align: center;
+}
+
+.page-footer a {
+  color: var(--color-purple-10);
 }
