@@ -1,6 +1,7 @@
 :root {
   --color-main-background: rgba(255, 255, 255, 0.4);
 
+  --color-purple-90: #131021;
   --color-purple-80: #141035;
   --color-purple-10: #f6f5ff;
 
@@ -40,7 +41,8 @@
 }
 
 body {
-  background: slateblue url("../assets/love.svg") top right no-repeat;
+  background: var(--color-purple-90) url("../assets/love.svg") top right
+    no-repeat;
   font: 100% / 1.75 system-ui, sans-serif;
   margin: 0;
   padding: 0;
