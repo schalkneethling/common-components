@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disclosure Component - Custom</title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+
+<body>
+  <section class="filters">
+    <fiori-disclosure>
+      <button class="disclosure-toggle" type="button" aria-controls="language-refinement-list" aria-expanded="false"
+        aria-haspopup="listbox">
+        <span>Choose Language</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+        </svg>
+      </button>
+      <div class="disclosure-items-container" id="language-refinement-list">
+        <ul>
+          <li>
+            <input type="checkbox" name="language" id="english">
+            <label for="english">English</label>
+          </li>
+          <li>
+            <input type="checkbox" name="language" id="german">
+            <label for="german">German</label>
+          </li>
+          <li>
+            <input type="checkbox" name="language" id="french">
+            <label for="french">French</label>
+          </li>
+        </ul>
+      </div>
+    </fiori-disclosure>
+
+    <fiori-disclosure class="disclosure-container as-popover">
+      <button class="disclosure-toggle" type="button" aria-controls="fruit-refinement-list" aria-expanded="false"
+        aria-haspopup="listbox">
+        <span>Choose Fruit</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+        </svg>
+      </button>
+      <div class="disclosure-items-container" id="fruit-refinement-list">
+        <ul>
+          <li>
+            <input type="checkbox" name="fruit" id="amla">
+            <label for="amla">Amla</label>
+          </li>
+          <li>
+            <input type="checkbox" name="fruit" id="chayote">
+            <label for="chayote">Chayote</label>
+          </li>
+          <li>
+            <input type="checkbox" name="fruit" id="lucuma">
+            <label for="lucuma">Lucuma</label>
+          </li>
+        </ul>
+      </div>
+    </fiori-disclosure>
+  </section>
+
+  <h1>Five Healthiest Fruits You May Not Know About</h1>
+
+  <p>When we think of healthy fruits, apples, bananas, and oranges tend to steal the spotlight. But beyond these
+    familiar favorites lies a world of nutrient-packed superfruits, each offering unique health benefits. Here are five
+    lesser-known fruits that deserve a spot on your plate:</p>
+
+  <h2>1. <strong>Amla (Indian Gooseberry)</strong></h2>
+  <p>This small, green fruit is a powerhouse of antioxidants and vitamin C — boasting <strong>20 times more vitamin C
+      than an orange</strong>! Amla supports immune function, reduces inflammation, and may even improve digestion.</p>
+
+  <ul>
+    <li><strong>Health Perks:</strong> Enhances skin health, balances blood sugar, and strengthens hair.</li>
+    <li><strong>How to Enjoy:</strong> Eat it raw (if you're brave — it's sour!), mix it into smoothies, or sip on amla
+      juice.</li>
+  </ul>
+
+  <h2>2. <strong>Chayote (Vegetable Pear)</strong></h2>
+  <p>Technically a fruit, this mild, green, squash-like fruit is low in calories but high in fiber, folate, and vitamin
+    C. It's also packed with antioxidants that may help reduce inflammation.</p>
+
+  <ul>
+    <li><strong>Health Perks:</strong> Supports heart health, improves digestion, and may aid weight loss.</li>
+    <li><strong>How to Enjoy:</strong> Slice it into salads, add it to stir-fries, or enjoy it steamed with a dash of
+      olive oil.</li>
+  </ul>
+
+  <h2>3. <strong>Lucuma (Gold of the Incas)</strong></h2>
+  <p>Native to Peru, lucuma is often called "the gold of the Incas." It has a sweet, maple-like flavor and is rich in
+    fiber, antioxidants, and iron. Lucuma also has a low glycemic index, making it a natural sweetener that won't spike
+    your blood sugar.</p>
+
+  <ul>
+    <li><strong>Health Perks:</strong> Boosts energy, supports gut health, and may help regulate blood sugar.</li>
+    <li><strong>How to Enjoy:</strong> Use lucuma powder in smoothies, oatmeal, or healthy desserts.</li>
+  </ul>
+
+  <h2>4. <strong>Jabuticaba (Brazilian Grape Tree)</strong></h2>
+  <p>This fascinating fruit grows directly on the trunk of its tree, creating a stunning visual effect. It's loaded with
+    antioxidants, anthocyanins, and vitamin C, offering anti-aging and anti-inflammatory properties.</p>
+
+  <ul>
+    <li><strong>Health Perks:</strong> Supports skin health, fights free radicals, and aids in digestion.</li>
+    <li><strong>How to Enjoy:</strong> Eat fresh off the tree, make jams, or ferment into wine.</li>
+  </ul>
+
+  <h2>5. <strong>Salak (Snake Fruit)</strong></h2>
+  <p>Native to Indonesia, salak gets its nickname from its scaly, snake-like skin. Beneath the peel lies a crisp, mildly
+    sweet flesh packed with fiber, potassium, and antioxidants.</p>
+
+  <ul>
+    <li><strong>Health Perks:</strong> Improves digestion, enhances eye health, and boosts energy levels.</li>
+    <li><strong>How to Enjoy:</strong> Peel and eat it fresh, or add it to fruit salads for a tropical twist.</li>
+  </ul>
+
+  <h3>Final Thoughts</h3>
+  <p>Exploring these unique fruits not only broadens your culinary horizons but also adds diverse nutrients to your
+    diet. Whether you're looking for a vitamin C boost, better digestion, or just a new taste adventure, these hidden
+    gems have got you covered.</p>
+  <script type="module" src="js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+:root {
+  --border-default: 1px solid #ccc;
+
+  --disclosure-background-color: #fff;
+
+  --size-8: 0.5rem;
+  --size-16: 1rem;
+
+  --trigger-block-size: 2.5rem;
+
+  --top-layer: 900;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+}
+
+.filters {
+  display: flex;
+  gap: var(--size-16);
+}
+
+.disclosure-container {
+  max-inline-size: max-content;
+}
+
+.disclosure-toggle {
+  align-items: center;
+  background: none;
+  background-color: var(--disclosure-background-color);
+  block-size: var(--trigger-block-size);
+  border: var(--border-default);
+  cursor: pointer;
+  display: flex;
+  gap: var(--size-8);
+  padding-block: var(--size-8);
+  padding-inline: var(--size-16);
+
+  /* this is to ensure none of the child element trigger events */
+  * {
+    pointer-events: none;
+  }
+
+  &[aria-expanded="true"] {
+    border-block-end-color: transparent;
+
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.disclosure-items-container:not([hidden]) {
+  background-color: var(--disclosure-background-color);
+  border: var(--border-default);
+  border-block-start-color: transparent;
+  display: flex;
+  padding-block: var(--size-8);
+  padding-inline: var(--size-16);
+
+  ul {
+    display: grid;
+    gap: var(--size-8);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: flex;
+    gap: var(--size-8);
+  }
+}
+
+.disclosure-container.as-popover {
+  position: relative;
+
+  .disclosure-items-container:not([hidden]) {
+    inline-size: 100%;
+    inset-block-start: var(--trigger-block-size);
+    position: absolute;
+    z-index: var(--top-layer);
+  }
+}

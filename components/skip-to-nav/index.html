@@ -2,33 +2,114 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>a11y nav aka Skip To navigation component</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>a11y nav aka Skip To navigation component</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
 
 <body>
-    <nav>
-        <ul id="nav-access" class="skip-to-nav">
-            <li>
-                <a href="#main-nav">
-                    Skip to main navigation
-                </a>
-            </li>
-            <li>
-                <a href="#content">
-                    Skip to main content
-                </a>
-            </li>
-            <li>
-                <a href="#main-q">
-                    Skip to search
-                </a>
-            </li>
-        </ul>
+  <nav>
+    <ul id="nav-access" class="skip-to-nav">
+      <li>
+        <a href="#main-nav">
+          Skip to main navigation
+        </a>
+      </li>
+      <li>
+        <a href="#main-q">
+          Skip to search
+        </a>
+      </li>
+      <li>
+        <a href="#main-content">
+          Skip to main content
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <header>
+    <nav id="main-nav">
+      <ul>
+        <li><a href="/">The Classical Guitar</a></li>
+        <li><a href="/about">About the site</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
     </nav>
+
+    <search>
+      <form id="search-form" action="/search" method="get">
+        <label for="main-q">Search</label>
+        <input id="main-q" type="search" name="q" placeholder="Enter your search" />
+        <button type="submit">Search</button>
+      </form>
+    </search>
+  </header>
+
+  <main id="main-content">
+    <h1> An Abbreviated History of the Classical Guitar </h1>
+
+    <h2>Origins: Ancient Roots</h2>
+
+    <p>The classical guitar's story begins long before it took its modern form. Early stringed instruments, like the oud
+      and lute, trace back thousands of years to Mesopotamia and Egypt. As these instruments traveled through cultures
+      and continents, they gradually evolved into forms that would become the ancestors of the modern guitar.</p>
+
+    <h2>The Renaissance and Baroque Evolution</h2>
+
+    <p>By the Renaissance, the vihuela emerged in Spain &mdash; a close relative to the modern guitar, featuring paired
+      strings and intricate compositions. Meanwhile, in Italy, the Baroque guitar gained popularity, often decorated
+      with elaborate rosettes and used for court music. Composers began writing pieces specifically for these
+      instruments, marking the guitar's growing importance in classical music.</p>
+
+    <p><strong>🎵 Fun Trivia:</strong> The term "guitar" likely derives from the Greek word kithara, though the
+      instrument's journey to its modern name involved centuries of linguistic evolution through Arabic, Spanish, and
+      other languages.</p>
+
+    <h2>The Birth of the Modern Classical Guitar</h2>
+
+    <h3>🧑‍🎨 Player Spotlight: Antonio de Torres</h3>
+
+    <p>Torres wasn't a musician, but his contributions shaped the sound of every classical guitar built after him. His
+      innovations made the guitar capable of filling concert halls without amplification.</p>
+
+    <h2>The Rise of the Virtuoso</h2>
+
+    <p>With the instrument's development came a new wave of virtuoso performers. Fernando Sor, often called "The
+      Beethoven of the Guitar," expanded the instrument's possibilities with complex compositions and techniques. Later,
+      Francisco Tárrega refined playing styles and wrote iconic pieces like Recuerdos de la Alhambra, known for its
+      delicate, cascading tremolo.</p>
+
+    <h3>🎼 Technique Evolution:</h3>
+    <ul>
+      <li><strong>Rest Stroke (Apoyando):</strong> Players strike the string and rest their finger on the next string,
+        producing a rich, full tone.</li>
+      <li><strong>Free Stroke (Tirando):</strong> The finger plucks the string and moves freely, ideal for faster
+        passages and arpeggios. </li>
+    </ul>
+
+    <h2>The Modern Era and Global Reach</h2>
+
+    <p>In the 20th century, Andrés Segovia elevated the guitar to concert status, performing in the world's most
+      prestigious venues and commissioning works from major composers. His recordings remain benchmarks for classical
+      guitarists today. Julian Bream expanded the instrument's repertoire, reviving early music and collaborating with
+      contemporary composers.</p>
+
+    <h3>🌍🌍 Player Spotlight: Andrés Segovia</h3>
+    <p>Segovia's relentless pursuit of legitimacy for the classical guitar transformed it from a parlor instrument into
+      a concert stage centerpiece. His techniques and interpretations continue to influence guitarists worldwide.</p>
+
+    <h2>The Classical Guitar Today</h2>
+    <p>Today, the classical guitar holds a unique place in music. It's celebrated for its intimacy and warmth, capable
+      of conveying both quiet introspection and fiery passion. From conservatories to casual players, its appeal is as
+      timeless as its history.</p>
+
+    <p>The journey of the classical guitar is one of constant evolution &mdash; a testament to human creativity and
+      passion. Its voice, both ancient and timeless, continues to resonate with players and listeners alike.</p>
+  </main>
+
 </body>
 
 </html>
