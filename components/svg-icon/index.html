@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVGIcon Web Component</title>
+  <style>
+    @font-face {
+      font-family: Honk;
+      src: url("./typography/Honk-Regular-VariableFont.woff2");
+    }
+
+    body {
+      background-color: #000;
+      margin-block: 0;
+      margin-inline: 1rem;
+    }
+
+    h1 {
+      font-family: Honk;
+      font-size: 7vw;
+      margin: 0;
+    }
+
+    .icon-rocket {
+      fill: hotpink;
+      rotate: 90deg;
+    }
+
+    .icon-info {
+      fill: white;
+      height: 4rem;
+      width: 4rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>SVGIcon Web Component</h1>
+  <svg-icon name="rocket" height="100" width="100"></svg-icon>
+
+  <script src="./svg-icon.js" type="module"></script>
+  <script>
+    const svgIcon = document.createElement('svg-icon');
+    svgIcon.setAttribute('name', 'info');
+
+    document.body.append(svgIcon);
+  </script>
+</body>
+
+</html>

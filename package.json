@@ -6,6 +6,7 @@
   "scripts": {
     "prettier:lint": "prettier .",
     "prettier:format": "prettier --write .",
+    "svg:sprite": "svg-symbol-sprite -i ./components/svg-icon/icons/ -o ./components/svg-icon/sprite.svg",
     "lint:js": "eslint .",
     "lint:css": "stylelint **/*.css"
   },
@@ -17,6 +18,7 @@
     "prettier": "^3.5.3",
     "stylelint": "^16.16.0",
     "stylelint-config-standard": "^37.0.0",
-    "stylelint-order": "^6.0.4"
+    "stylelint-order": "^6.0.4",
+    "svg-symbol-sprite": "^1.5.2"
   }
 }
