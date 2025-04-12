@@ -2,26 +2,53 @@
 Keyboard & screen reader skip link menu
 ********************************************************************** */
 
+.skip-to-nav * {
+  box-sizing: border-box;
+}
+
 .skip-to-nav {
+  --skip-to-nav-link-background-color: rgba(255 255 255 / 90%);
+  --skip-to-nav-inline-size: 100%;
+  --skip-to-nav-link-color: #212121;
+  --skip-to-nav-outline: 0.0625rem solid #622aff;
+  --skip-to-nav-padding: 1rem;
+  --skip-to-nav-text-align: center;
+  --skip-to-nav-z-index: 300;
+
+  inline-size: var(--skip-to-nav-inline-size);
+  inset-block-start: -20rem;
+  inset-inline-start: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   position: absolute;
-  top: -20em;
-  width: 100%;
-  z-index: 300;
 }
 
 .skip-to-nav a {
-  background-color: rgba(255, 255, 255, 0.9);
-  font-weight: bold;
-  left: 0;
-  padding: 1rem;
+  background-color: var(--skip-to-nav-link-background-color);
+  color: var(--skip-to-nav-link-color);
+  display: block;
+  inline-size: var(--skip-to-nav-inline-size);
+  inset-block-start: 0;
+  opacity: 0;
+  outline: var(--skip-to-nav-outline);
+  padding-block: var(--skip-to-nav-padding);
   position: absolute;
-  right: 0;
-  text-align: center;
+  text-align: var(--skip-to-nav-text-align);
+  transition:
+    inset-block-start 0.3s ease-in-out,
+    opacity 0.5s ease-in-out;
 }
 
-.skip-to-nav a:hover,
 .skip-to-nav a:focus {
-  box-shadow: 3px 3px 5px #eee;
+  inset-block-start: 20rem;
+  opacity: 1;
   text-decoration: none;
-  top: 20em;
+  z-index: var(--skip-to-nav-z-index);
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .skip-to-nav a {
+    transition: none;
+  }
 }
