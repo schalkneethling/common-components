@@ -6,7 +6,7 @@ Feel free to edit the HTML as needed. To use the component add the HTML as the f
 
 ## How does it work?
 
-When you [open the demo page](https://schalkneethling.github.io/common-components/components/skip-to-nav/), you will see a blank page. Pressing the tab key on your keyboard will move focus to the first focusable element. Because anchor (`<a>`) elements are interactive and thus focusable elements, the first link in the list will receive focus and trigger the CSS to show the currently focused link visually.
+When you [open the demo page](https://schalkneethling.github.io/common-components/components/skip-to-nav/), you will see a page with come links and content. You will _not_ see the skip-to navigation. Pressing the tab key on your keyboard will move focus to the first focusable element. Because anchor (`<a>`) elements are interactive and thus focusable elements, the first link in the list will receive focus and trigger the CSS to show the currently focused link visually.
 
 Because of the way the HTML elements are hidden, these links are also available to screen reader users.
 
@@ -14,23 +14,17 @@ Because of the way the HTML elements are hidden, these links are also available 
 
 ```html
 <body>
-    <ul id="nav-access" class="skip-to-nav">
-        <li>
-            <a href="#main-nav">
-                Skip to main navigation
-            </a>
-        </li>
-        <li>
-            <a href="#content">
-                Skip to main content
-            </a>
-        </li>
-        <li>
-            <a href="#main-q">
-                Skip to search
-            </a>
-        </li>
-    </ul>
+  <ul id="nav-access" class="skip-to-nav">
+    <li>
+      <a href="#main-nav"> Skip to main navigation </a>
+    </li>
+    <li>
+      <a href="#content"> Skip to main content </a>
+    </li>
+    <li>
+      <a href="#main-q"> Skip to search </a>
+    </li>
+  </ul>
 </body>
 ```
 
