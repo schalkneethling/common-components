@@ -31,7 +31,21 @@ Because of the way the HTML elements are hidden, these links are also available 
 ## CSS
 
 ```css
-<link rel="stylesheet" type="text/css" href="css/main.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
+```
+
+### Custom properties
+
+The following custom properties are available for you to override:
+
+```css
+--skip-to-nav-link-background-color: rgba(255 255 255 / 90%);
+--skip-to-nav-inline-size: 100%;
+--skip-to-nav-link-color: #212121;
+--skip-to-nav-outline: 0.0625rem solid #622aff;
+--skip-to-nav-padding: 1rem;
+--skip-to-nav-text-align: center;
+--skip-to-nav-z-index: 300;
 ```
 
 Questions, comments, suggestions? [Please raise an issue here on GitHub](https://github.com/schalkneethling/common-components/issues).
