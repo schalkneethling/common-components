@@ -5,33 +5,29 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>a11y nav aka Skip To navigation component</title>
-  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <title>a11y nav aka Skip Links navigation component</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
 </head>
 
 <body>
-  <nav>
+  <nav aria-labelledby="skip-to-nav-label">
+    <span class="visually-hidden" id="skip-to-nav-label">Skip links</span>
     <ul id="nav-access" class="skip-to-nav">
       <li>
-        <a href="#main-nav">
-          Skip to main navigation
-        </a>
+        <a href="#main-nav">Skip to main navigation</a>
       </li>
       <li>
-        <a href="#main-q">
-          Skip to search
-        </a>
+        <a href="#content">Skip to main content</a>
       </li>
       <li>
-        <a href="#main-content">
-          Skip to main content
-        </a>
+        <a href="#main-q">Skip to search</a>
       </li>
     </ul>
   </nav>
 
   <header>
-    <nav id="main-nav">
+    <nav id="main-nav" aria-labelledby="main-navigation-label">
+      <span class="visually-hidden" id="main-navigation-label">Main</span>
       <ul>
         <li><a href="/">The Curb-Cut Effect</a></li>
         <li><a href="/#">About the site</a></li>
@@ -40,7 +36,8 @@
     </nav>
 
     <search>
-      <form id="search-form" action="/search" method="get">
+      <span class="visually-hidden" id="site-search-form-label">Site search</span>
+      <form id="search-form" action="/search" method="get" aria-labelledby="site-search-form-label">
         <label for="main-q">Search</label>
         <input id="main-q" type="search" name="q" placeholder="Enter your search" />
         <button type="submit">Search</button>
@@ -59,37 +56,48 @@
 
     <p>In the 1970s, disability rights activists in Berkeley, California, advocated for the installation of curb
       cuts—sloped sections of sidewalks—to facilitate wheelchair mobility. These modifications not only aided
-      individuals with disabilities but also proved beneficial for parents with strollers, travelers with luggage, and
-      workers with carts. This phenomenon highlighted how accessibility features could serve multiple segments of the
+      individuals with disabilities but also proved beneficial for parents with strollers, travelers with luggage,
+      and
+      workers with carts. This phenomenon highlighted how accessibility features could serve multiple segments of
+      the
       population beyond their initial target group.</p>
 
     <h2>Broader Applications and Benefits</h2>
 
-    <p>The curb-cut effect extends beyond physical infrastructure. For instance, closed captioning, initially developed
+    <p>The curb-cut effect extends beyond physical infrastructure. For instance, closed captioning, initially
+      developed
       for the hearing impaired, is now widely used in noisy environments or by individuals learning new languages.
-      Similarly, text-to-speech technology benefits not only those with visual impairments but also people multitasking
+      Similarly, text-to-speech technology benefits not only those with visual impairments but also people
+      multitasking
       or seeking convenience.</p>
 
-    <p>Public policy programs like the GI Bill, designed to assist World War II veterans, inadvertently contributed to
+    <p>Public policy programs like the GI Bill, designed to assist World War II veterans, inadvertently contributed
+      to
       the expansion of the American middle class by providing education and housing benefits that had far-reaching
       economic impacts.</p>
 
     <h2>Implications for Equity and Design</h2>
 
-    <p>The curb-cut effect underscores the importance of inclusive design and equitable policymaking. By focusing on the
-      needs of marginalized groups, society can create solutions that enhance the quality of life for all. This approach
+    <p>The curb-cut effect underscores the importance of inclusive design and equitable policymaking. By focusing on
+      the
+      needs of marginalized groups, society can create solutions that enhance the quality of life for all. This
+      approach
       advocates for proactive measures that anticipate diverse needs, leading to more resilient and adaptable
       communities.</p>
 
-    <p>In healthcare, for example, implementing features like wider doorways and accessible examination tables not only
-      assists patients with disabilities but also accommodates elderly individuals and those with temporary injuries.
-      Such inclusive practices demonstrate how equity-driven initiatives can lead to comprehensive improvements across
+    <p>In healthcare, for example, implementing features like wider doorways and accessible examination tables not
+      only
+      assists patients with disabilities but also accommodates elderly individuals and those with temporary
+      injuries.
+      Such inclusive practices demonstrate how equity-driven initiatives can lead to comprehensive improvements
+      across
       various sectors.</p>
 
     <h3>Conclusion</h3>
 
     <p>Embracing the principles highlighted by the curb-cut effect encourages the development of environments and
-      policies that are not only inclusive but also beneficial to a wide range of individuals. By prioritizing equity
+      policies that are not only inclusive but also beneficial to a wide range of individuals. By prioritizing
+      equity
       and accessibility, society can foster innovation and create systems that serve the collective good.</p>
 
     <footer>
@@ -100,7 +108,8 @@
             href="https://www.learningforjustice.org/magazine/fall-2021/the-curbcut-effect-and-championing-equity">The
             Curb-Cut Effect and Championing Equity</a></li>
         <li><a href="https://en.wikipedia.org/wiki/Curb_cut_effect">Curb cut effect - Wikipedia</a></li>
-        <li><a href="https://www.uclahealth.org/news/article/how-the-curb-cut-effect-boosts-equity-for-everyone">How the
+        <li><a href="https://www.uclahealth.org/news/article/how-the-curb-cut-effect-boosts-equity-for-everyone">How
+            the
             Curb-Cut Effect Boosts Equity for Everyone</a></li>
       </ul>
     </footer>

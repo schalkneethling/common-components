@@ -47,6 +47,16 @@ Keyboard & screen reader skip link menu
   z-index: var(--skip-to-nav-z-index);
 }
 
+/* https://www.tpgi.com/the-anatomy-of-visually-hidden/ */
+.visually-hidden:not(:focus, :active) {
+  block-size: 1px;
+  clip-path: inset(50%);
+  inline-size: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
 @media screen and (prefers-reduced-motion: reduce) {
   .skip-to-nav a {
     transition: none;
