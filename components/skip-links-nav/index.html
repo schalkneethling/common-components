@@ -5,14 +5,14 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>a11y nav aka Skip Links navigation component</title>
+  <title>Skip Links navigation component</title>
   <link rel="stylesheet" type="text/css" href="main.css" />
 </head>
 
 <body>
-  <nav aria-labelledby="skip-to-nav-label">
-    <span class="visually-hidden" id="skip-to-nav-label">Skip links</span>
-    <ul id="nav-access" class="skip-to-nav">
+  <nav id="nav-access" aria-labelledby="skip-links-nav-label">
+    <span class="visually-hidden" id="skip-links-nav-label">Skip links</span>
+    <ul class="skip-links-nav">
       <li>
         <a href="#main-nav">Skip to main navigation</a>
       </li>
@@ -26,7 +26,7 @@
   </nav>
 
   <header>
-    <nav id="main-nav" aria-labelledby="main-navigation-label">
+    <nav id="main-nav" aria-labelledby="main-navigation-label" tabindex="-1">
       <span class="visually-hidden" id="main-navigation-label">Main</span>
       <ul>
         <li><a href="/">The Curb-Cut Effect</a></li>
@@ -45,7 +45,7 @@
     </search>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
     <h1>The Curb-Cut Effect: Accessibility and Inclusivity in Design</h1>
     <p>The "curb-cut effect" illustrates how initiatives aimed at assisting specific groups often yield widespread
       benefits. Originating from the physical curb cuts designed for wheelchair users, this concept has evolved to

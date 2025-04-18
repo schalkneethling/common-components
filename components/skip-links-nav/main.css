@@ -2,20 +2,20 @@
 Keyboard & screen reader skip link menu
 ********************************************************************** */
 
-.skip-to-nav * {
+.skip-links-nav * {
   box-sizing: border-box;
 }
 
-.skip-to-nav {
-  --skip-to-nav-link-background-color: rgba(255 255 255 / 90%);
-  --skip-to-nav-inline-size: 100%;
-  --skip-to-nav-link-color: #212121;
-  --skip-to-nav-outline: 0.0625rem solid #622aff;
-  --skip-to-nav-padding: 1rem;
-  --skip-to-nav-text-align: center;
-  --skip-to-nav-z-index: 300;
+.skip-links-nav {
+  --skip-links-nav-link-background-color: rgba(255 255 255 / 90%);
+  --skip-links-nav-inline-size: 100%;
+  --skip-links-nav-link-color: #212121;
+  --skip-links-nav-outline: 0.0625rem solid #622aff;
+  --skip-links-nav-padding: 1rem;
+  --skip-links-nav-text-align: center;
+  --skip-links-nav-z-index: 999;
 
-  inline-size: var(--skip-to-nav-inline-size);
+  inline-size: var(--skip-links-nav-inline-size);
   inset-block-start: -20rem;
   inset-inline-start: 0;
   list-style: none;
@@ -24,27 +24,27 @@ Keyboard & screen reader skip link menu
   position: absolute;
 }
 
-.skip-to-nav a {
-  background-color: var(--skip-to-nav-link-background-color);
-  color: var(--skip-to-nav-link-color);
+.skip-links-nav a {
+  background-color: var(--skip-links-nav-link-background-color);
+  color: var(--skip-links-nav-link-color);
   display: block;
-  inline-size: var(--skip-to-nav-inline-size);
+  inline-size: var(--skip-links-nav-inline-size);
   inset-block-start: 0;
   opacity: 0;
-  outline: var(--skip-to-nav-outline);
-  padding-block: var(--skip-to-nav-padding);
+  outline: var(--skip-links-nav-outline);
+  padding-block: var(--skip-links-nav-padding);
   position: absolute;
-  text-align: var(--skip-to-nav-text-align);
+  text-align: var(--skip-links-nav-text-align);
   transition:
     inset-block-start 0.3s ease-in-out,
     opacity 0.5s ease-in-out;
 }
 
-.skip-to-nav a:focus {
+.skip-links-nav a:focus {
   inset-block-start: 20rem;
   opacity: 1;
   text-decoration: none;
-  z-index: var(--skip-to-nav-z-index);
+  z-index: var(--skip-links-nav-z-index);
 }
 
 /* https://www.tpgi.com/the-anatomy-of-visually-hidden/ */
@@ -58,7 +58,7 @@ Keyboard & screen reader skip link menu
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
-  .skip-to-nav a {
+  .skip-links-nav a {
     transition: none;
   }
 }
