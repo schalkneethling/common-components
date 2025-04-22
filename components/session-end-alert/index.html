@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Session End Alert Component</title>
+</head>
+
+<body>
+  <h1>Session End Alert Component</h1>
+  <session-end-alert>
+    <dialog id="session-end-alert-dialog">
+      <p>
+        Your session is about to expire. Please click the "Extend Session"
+        button to continue.
+      </p>
+      <button class="button primary">Extend Session</button>
+    </dialog>
+  </session-end-alert>
+
+  <script src="./js/session-end-alert.js" type="module"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sessionEndAlert = document.querySelector("session-end-alert");
+      sessionEndAlert.configure(5000, () => {
+        console.log("Session extended");
+      }).startTimer();
+    });
+  </script>
+</body>
+
+</html>
