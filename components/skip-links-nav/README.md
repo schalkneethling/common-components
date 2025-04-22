@@ -16,10 +16,10 @@ Then add the following HTML as the first element after the opening `body` tag:
     <span class="visually-hidden" id="skip-links-nav-label">Skip links</span>
     <ul class="skip-links-nav">
       <li>
-        <a href="#main-nav">Skip to main navigation</a>
+        <a href="#content">Skip to main content</a>
       </li>
       <li>
-        <a href="#content">Skip to main content</a>
+        <a href="#main-nav">Skip to main navigation</a>
       </li>
       <li>
         <a href="#main-q">Skip to search</a>
