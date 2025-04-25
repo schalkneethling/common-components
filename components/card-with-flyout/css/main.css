@@ -1,0 +1,28 @@
+.episodes-container {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card-container {
+  position: relative;
+}
+
+.card-media-container {
+  background-color: rebeccapurple;
+  block-size: 15.875rem;
+}
+
+.card-options-trigger {
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  position: absolute;
+}
+
+.card-options {
+  margin: 0;
+  position-area: inline-end span-block-end;
+  position-try: flip-inline;
+}
