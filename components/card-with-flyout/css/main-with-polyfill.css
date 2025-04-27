@@ -12,10 +12,13 @@ body {
 .episodes-container {
   display: flex;
   gap: var(--default-spacing);
+  list-style: none;
+  margin: 0;
   padding: 0;
 }
 
 .card-container {
+  anchor-scope: all;
   border: 0.2rem solid rebeccapurple;
   position: relative;
 
@@ -46,6 +49,7 @@ body {
 }
 
 .card-options-trigger {
+  anchor-name: --trigger;
   background: none;
   border: 0;
   color: white;
@@ -63,9 +67,14 @@ body {
 .card-options {
   border-color: rebeccapurple;
   inline-size: var(--options-inline-size);
+  left: anchor(--trigger right);
+  list-style: none;
+  margin: 0;
   padding: var(--default-spacing);
-  position-area: inline-end span-block-end;
-  position-try-fallbacks: flip-inline;
+  position: absolute;
+  position-anchor: --trigger;
+  position-try-fallbacks: --flip-inline;
+  top: anchor(--trigger top);
 
   &:popover-open {
     display: flex;
@@ -74,13 +83,12 @@ body {
   }
 }
 
-.card-content-container {
-  padding: var(--default-spacing);
+@position-try --flip-inline {
+  left: calc(anchor(--trigger left) - var(--options-inline-size));
 }
 
-.reset-list {
-  list-style: none;
-  margin: 0;
+.card-content-container {
+  padding: var(--default-spacing);
 }
 
 /* https://www.tpgi.com/the-anatomy-of-visually-hidden/ */
