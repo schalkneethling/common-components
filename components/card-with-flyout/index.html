@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card with Flyout</title>
+  <script type="module">
+    if (!("anchorName" in document.documentElement.style)) {
+      import("https://unpkg.com/@oddbird/css-anchor-positioning");
+    }
+  </script>
+  <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen">
+  <!--
+  For browser supporting CSS Anchor Positioning
+  <link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
+  -->
+  <link rel="stylesheet" type="text/css" href="css/main-with-polyfill.css" media="screen">
+</head>
+
+<body>
+  <ul class="reset-list episodes-container">
+    <li class="card-container">
+      <div class="card-media-container">
+        <img src="./assets/header.webp" height="500" width="750"
+          alt="Snow-covered trees and rugged cliffs under a dramatic, cloudy sky in Yosemite Valley, with El Capitan and distant snowy peaks visible." />
+      </div>
+      <div class="card-content-container">
+        <a href="/">
+          <h2>Imposter Syndrome And Coping When Your World Is Turned Upside Down - Gideon</h2>
+        </a>
+        <p>In the debut episode of the mental health in tech podcast hosted by Schalk Neethling and Schalk Venter, the
+          guest is Gideon, who shares his struggles…</p>
+      </div>
+      <button class="card-options-trigger" type="button" popovertarget="card-options-001">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path
+            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+        </svg>
+        <span class="visually-hidden">Open options</span>
+      </button>
+      <ul class="reset-list card-options" id="card-options-001" popover>
+        <li><a href="/episode">View episode</a></li>
+        <li><a href="/download">Download episode</a></li>
+        <li><a href="/share">Share episode</a></li>
+      </ul>
+    </li>
+    <li class="card-container">
+      <div class="card-media-container">
+        <img src="./assets/header.webp" height="500" width="750"
+          alt="Snow-covered trees and rugged cliffs under a dramatic, cloudy sky in Yosemite Valley, with El Capitan and distant snowy peaks visible." />
+      </div>
+      <div class="card-content-container">
+        <a href="/">
+          <h2>Tech's Hidden Challenge: Balancing Innovation with Mental Well-being - Liesel</h2>
+        </a>
+        <p>In this episode of the Mental Health in Tech podcast guest Liesel Bester, COO at IO Digital, discusses the
+          complexities of managing mental health in the…</p>
+      </div>
+      <button class="card-options-trigger" type="button" popovertarget="card-options-002">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path
+            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+        </svg>
+        <span class="visually-hidden">Open options</span>
+      </button>
+      <ul class="reset-list card-options" id="card-options-002" popover>
+        <li><a href="/episode">View episode</a></li>
+        <li><a href="/download">Download episode</a></li>
+        <li><a href="/share">Share episode</a></li>
+      </ul>
+    </li>
+    <li class="card-container">
+      <div class="card-media-container">
+        <img src="./assets/header.webp" height="500" width="750"
+          alt="Snow-covered trees and rugged cliffs under a dramatic, cloudy sky in Yosemite Valley, with El Capitan and distant snowy peaks visible." />
+      </div>
+      <div class="card-content-container">
+        <a href="/">
+          <h2>Navigating Tech with a Mental Health Map - Candice</h2>
+        </a>
+        <p>This episode of the Mental Health in Tech podcast features an in-depth conversation with Candice Grobler, who
+          shares her journey through various mental…</p>
+      </div>
+      <button class="card-options-trigger" type="button" popovertarget="card-options-003">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path
+            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+        </svg>
+        <span class="visually-hidden">Open options</span>
+      </button>
+      <ul class="reset-list card-options" id="card-options-003" popover>
+        <li><a href="/episode">View episode</a></li>
+        <li><a href="/download">Download episode</a></li>
+        <li><a href="/share">Share episode</a></li>
+      </ul>
+    </li>
+  </ul>
+</body>
+
+</html>

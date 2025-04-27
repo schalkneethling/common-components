@@ -1,0 +1,94 @@
+:root {
+  --default-spacing: 1rem;
+  --options-inline-size: 13rem;
+}
+
+body {
+  font:
+    100% / 1.5 system-ui,
+    sans-serif;
+}
+
+.episodes-container {
+  display: flex;
+  gap: var(--default-spacing);
+  padding: 0;
+}
+
+.card-container {
+  border: 0.2rem solid rebeccapurple;
+  position: relative;
+
+  a {
+    color: rgb(164 34 251);
+
+    &:hover,
+    &:focus {
+      color: #212121;
+    }
+  }
+
+  h2 {
+    color: #212121;
+    font-weight: normal;
+    margin: 0;
+  }
+}
+
+.card-media-container {
+  background-color: rebeccapurple;
+  block-size: 15.675rem;
+  overflow: clip;
+
+  img {
+    filter: saturate(0.5);
+  }
+}
+
+.card-options-trigger {
+  background: none;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.2rem;
+  position: absolute;
+
+  svg {
+    block-size: 1.2rem;
+    inline-size: 1.2rem;
+  }
+}
+
+.card-options {
+  border-color: rebeccapurple;
+  inline-size: var(--options-inline-size);
+  padding: var(--default-spacing);
+  position-area: inline-end span-block-end;
+  position-try-fallbacks: flip-inline;
+
+  &:popover-open {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.card-content-container {
+  padding: var(--default-spacing);
+}
+
+.reset-list {
+  list-style: none;
+  margin: 0;
+}
+
+/* https://www.tpgi.com/the-anatomy-of-visually-hidden/ */
+.visually-hidden:not(:focus, :active) {
+  block-size: 1px;
+  clip-path: inset(50%);
+  inline-size: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
