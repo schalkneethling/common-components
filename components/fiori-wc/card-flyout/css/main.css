@@ -1,0 +1,137 @@
+:root {
+  --border-primary: 0.2rem solid var(--color-primary);
+
+  --color-neutral-invert: #fff;
+  --color-primary: rebeccapurple;
+  --color-primary-light: #d9b8e8;
+
+  --default-spacing: 1rem;
+  --options-inline-size: 13rem;
+
+  --z-index-ftw: 999;
+}
+
+body {
+  font:
+    100% / 1.5 system-ui,
+    sans-serif;
+}
+
+card-flyout {
+  display: block;
+}
+
+.episodes-container {
+  display: flex;
+  gap: var(--default-spacing);
+  padding: 0;
+}
+
+.card-container {
+  border: var(--border-primary);
+  position: relative;
+
+  a {
+    color: rgb(164 34 251);
+
+    &:hover,
+    &:focus {
+      color: #212121;
+    }
+  }
+
+  h2 {
+    color: #212121;
+    font-weight: normal;
+    margin: 0;
+  }
+}
+
+.card-media-container {
+  background-color: var(--color-primary);
+  block-size: 15.675rem;
+  overflow: clip;
+
+  img {
+    filter: saturate(0.5);
+  }
+}
+
+.card-options-trigger {
+  background: none;
+  block-size: 1.5rem;
+  border: 0;
+  color: var(--color-neutral-invert);
+  cursor: pointer;
+  inline-size: 1.5rem;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.2rem;
+  position: absolute;
+
+  &:focus,
+  &:focus-visible {
+    border-radius: 50%;
+    outline: 0.2rem solid var(--color-neutral-invert);
+  }
+
+  * {
+    pointer-events: none;
+  }
+
+  svg {
+    block-size: 100%;
+    inline-size: 100%;
+  }
+}
+
+.card-options {
+  background-color: #fff;
+  border: var(--border-primary);
+  display: none;
+  inline-size: var(--options-inline-size);
+  inset-block-start: 0.5rem;
+  padding: var(--default-spacing);
+  position: absolute;
+  z-index: var(--z-index-ftw);
+
+  &.open {
+    inset-inline-end: calc((var(--options-inline-size) - 0.25rem) * -1);
+  }
+
+  &.flip-inline {
+    inset-inline-end: 2rem;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 0.2rem solid var(--color-primary-light);
+  }
+}
+
+.card-options-trigger[aria-expanded="true"] + .card-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-content-container {
+  padding: var(--default-spacing);
+}
+
+.reset-list {
+  list-style: none;
+  margin: 0;
+}
+
+/* https://www.tpgi.com/the-anatomy-of-visually-hidden/ */
+.visually-hidden:not(:focus, :active) {
+  block-size: 1px;
+  clip-path: inset(50%);
+  inline-size: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
