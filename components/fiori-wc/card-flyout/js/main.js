@@ -23,7 +23,7 @@ class CardFlyout extends HTMLElement {
     this.addEventListener("click", (event) => {
       const target = event.target;
       if (target.matches(".card-options-trigger")) {
-        this.#toggleFlyout(target);
+        this.#toggleFlyout();
       }
     });
 
@@ -67,16 +67,16 @@ class CardFlyout extends HTMLElement {
   /**
    * Toggles the flyout menu's visibility and position.
    * Ensures that the flyout does not overflow the viewport.
-   * @param {HTMLElement} trigger - The button element that triggered the flyout.
    * @private
    */
-  #toggleFlyout(trigger) {
-    const flyout = trigger.nextElementSibling;
+  #toggleFlyout() {
+    const { cardOptionsTrigger } = this.#elements;
+    const flyout = cardOptionsTrigger.nextElementSibling;
     const flyoutComputedInlineSize = parseInt(
       getComputedStyle(flyout).inlineSize,
       10,
     );
-    const triggerLeft = trigger.getBoundingClientRect().left;
+    const triggerLeft = cardOptionsTrigger.getBoundingClientRect().left;
     const windowWidth = window.innerWidth;
 
     if (windowWidth - flyoutComputedInlineSize < triggerLeft) {
@@ -85,7 +85,7 @@ class CardFlyout extends HTMLElement {
       flyout.classList.toggle("open");
     }
 
-    this.#setIsExpandedState(trigger);
+    this.#setIsExpandedState(cardOptionsTrigger);
     flyout.focus();
   }
 }
