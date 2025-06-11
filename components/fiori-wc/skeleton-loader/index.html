@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skeleton Loader</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <h1>Skeleton Loader</h1>
+    <p>
+      Control the style by overriding one or more of the following CSS variables
+    </p>
+
+    <pre>
+      <code>
+skeleton-loader {
+  --animation-speed: 1.5s;
+
+  --initial-color-stop: #f0f0f0 25%;
+  --mid-color-stop: #e0e0e0 50%;
+  --final-color-stop: #f0f0f0 75%;
+
+  --min-grid-item-size: 250px;
+  --max-grid-item-size: 1fr;
+
+  --box-default-block-size: 10rem;
+  --box-thin-block-size: 2rem;
+  --box-inline-size: 100%;
+}
+      </code>
+    </pre>
+
+    <div class="app">
+      <skeleton-loader skeleton-count="10"></skeleton-loader>
+    </div>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+skeleton-loader {
+  --animation-speed: 1.5s;
+
+  --initial-color-stop: #f0f0f0 25%;
+  --mid-color-stop: #e0e0e0 50%;
+  --final-color-stop: #f0f0f0 75%;
+
+  --min-grid-item-size: 250px;
+  --max-grid-item-size: 1fr;
+
+  --box-default-block-size: 10rem;
+  --box-thin-block-size: 2rem;
+  --box-inline-size: 100%;
+
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--min-grid-item-size), var(--max-grid-item-size))
+  );
+  inline-size: 100%;
+}
+
+.box-default,
+.box-thin {
+  block-size: var(--box-default-block-size);
+  inline-size: var(--box-inline-size);
+}
+
+.box-thin {
+  block-size: var(--box-thin-block-size);
+  margin-block-start: 1rem;
+}
+
+.shimmer-loading-placeholder {
+  animation: shimmer var(--animation-speed) infinite;
+  background: linear-gradient(
+    90deg,
+    var(--initial-color-stop),
+    var(--mid-color-stop),
+    var(--final-color-stop)
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
