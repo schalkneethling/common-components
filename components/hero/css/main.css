@@ -1,0 +1,97 @@
+:root {
+  --color-brand-primary: #c80100;
+  --color-brand-primary-hover: #3d0000;
+
+  --color-neutral-900: #131811;
+  --color-neutral-inverted: #fff;
+}
+
+body {
+  margin: 0;
+}
+
+.site-header {
+  padding: 2rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-areas: "hero";
+  max-block-size: 40rem;
+  min-block-size: 30rem;
+  overflow: clip;
+
+  .hero-image,
+  .hero-overlay {
+    grid-area: hero;
+  }
+
+  .hero-image {
+    max-block-size: inherit;
+    min-block-size: inherit;
+
+    img {
+      inline-size: 100%;
+      max-block-size: inherit;
+      min-block-size: inherit;
+      object-fit: cover;
+    }
+  }
+
+  .hero-overlay {
+    align-self: end;
+    background-color: var(--color-neutral-inverted);
+    block-size: max-content;
+    color: var(--color-neutral-900);
+    inline-size: var(--overlay-inline-size);
+    margin-block-end: 2rem;
+    margin-inline: var(--overlay-offset-inline) 0;
+    min-block-size: 12.5rem;
+    padding: 1.5rem;
+
+    .hero-overlay-title {
+      margin-block-start: 0;
+    }
+  }
+}
+
+@media screen and (width < 48rem) {
+  .hero-overlay {
+    --overlay-inline-size: 70vw;
+    --overlay-offset-inline: 0;
+
+    &.inline-end {
+      justify-self: end;
+      margin-inline: 0 var(--overlay-offset-inline);
+    }
+  }
+}
+
+@media screen and (width >= 48rem) {
+  .hero-overlay {
+    --overlay-inline-size: 28rem;
+    --overlay-offset-inline: 2rem;
+
+    &.inline-end {
+      justify-self: end;
+      margin-inline: 0 var(--overlay-offset-inline);
+    }
+  }
+}
+
+.button-primary {
+  background-color: var(--color-brand-primary);
+  border-radius: 1.3rem;
+  color: var(--color-neutral-inverted);
+  display: inline-block;
+  min-inline-size: 10rem;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-brand-primary-hover);
+  }
+}

@@ -1,0 +1,41 @@
+:root {
+  --form-option-primary-color: #212121;
+  --form-option-secondary-color: #757575;
+}
+
+.form-option {
+  --form-element-stacked-spacing: 0.5rem;
+
+  color: var(--form-option-primary-color);
+  display: inline-block;
+}
+
+.form-option-stacked {
+  display: grid;
+  gap: var(--form-element-stacked-spacing);
+  grid-template-areas:
+    "input"
+    "label";
+  inline-size: max-content;
+
+  &.reversed {
+    grid-template-areas:
+      "label"
+      "input";
+  }
+
+  input {
+    grid-area: input;
+    justify-self: center;
+    margin: 0;
+  }
+
+  label {
+    grid-area: label;
+  }
+}
+
+.form-option-group-stacked {
+  display: grid;
+  gap: var(--form-element-stacked-spacing);
+}

@@ -1,0 +1,100 @@
+.theme-tea-green {
+  background-color: #e2f1af;
+  color: #272a1c;
+
+  a {
+    color: #272a1c;
+  }
+}
+
+.theme-flax {
+  background-color: #e3d888;
+  color: #20201b;
+
+  a {
+    color: #20201b;
+  }
+}
+
+.theme-coyote,
+.theme-rose-ebony,
+.theme-bistro {
+  background-color: #84714f;
+  color: #fff;
+
+  a {
+    color: #fff;
+  }
+}
+
+.theme-rose-ebony {
+  background-color: #5a3a31;
+}
+
+.theme-bistro {
+  background-color: #31231e;
+}
+
+.theme-steel-blue {
+  background-color: #4f7cac;
+  color: #101011;
+
+  a {
+    color: #101011;
+  }
+}
+
+.theme-mint {
+  background-color: #c0e0de;
+  color: #212727;
+
+  a {
+    color: #212727;
+  }
+}
+
+.theme-gunmetal {
+  background-color: #162521;
+  color: #e6fbf5;
+
+  a {
+    color: #e6fbf5;
+  }
+}
+
+.theme-outer-space {
+  background-color: #3c474b;
+  color: #eef8fc;
+
+  a {
+    color: #eef8fc;
+  }
+}
+
+.theme-ice-blue {
+  background-color: #9eefe5;
+  color: #1a1f1e;
+
+  a {
+    color: #1a1f1e;
+  }
+}
+
+.theme-blue {
+  --theme-base: #00a9e0;
+}
+
+.theme-beige {
+  --theme-base: #dad4be;
+  --theme-border-color: hsl(from var(--theme-base) h s 15%);
+}
+
+.theme-darkslategrey {
+  --theme-base: darkslategrey;
+  --theme-foreground-color: hsl(from var(--theme-base) h s 85%);
+  --theme-link-color: hsl(from var(--theme-base) h s 85%);
+}
+
+.theme-lightgreen {
+  --theme-base: #addd91;
+}

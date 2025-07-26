@@ -1,0 +1,46 @@
+@import url("./themes.css");
+@import url("./typography.css");
+
+:root {
+  --color-dark: #212121;
+  --color-neutral-inverted: #fff;
+
+  --size-4: 0.25rem; /* 4 / 16 = 0.25rem */
+  --size-8: 0.5rem; /* 8 / 16 = 0.5rem */
+  --size-12: 0.75rem; /* 12 / 16 = 0.75rem */
+  --size-16: 1rem; /* 16 / 16 = 1rem */
+  --size-18: 1.125rem; /* 18 / 16 = 1.125rem */
+  --size-24: 1.5rem; /* 24 / 16 = 1.5rem */
+  --size-32: 2rem; /* 32 / 16 = 2rem */
+  --size-48: 3rem; /* 48 / 16 = 3rem */
+  --size-64: 4rem; /* 64 / 16 = 4rem */
+  --size-80: 5rem; /* 80 / 16 = 5rem */
+
+  --spacing-content-block: clamp(10cqi, 2cqi, 20cqi);
+
+  --typography-xl: 1.802rem;
+  --typography-large: 1.602rem;
+  --typography-medium: 1.424rem;
+  --typography-small-medium: 1.266rem;
+  --typography-default: 1rem;
+  --typography-small: 0.875rem;
+  --typography-tiny: 0.75rem;
+
+  --default-typo-size: clamp(0.889rem, 5cqi, 1.125rem);
+  --medium-typo-size: clamp(1rem, 5.2cqi, 1.266rem);
+  --large-typo-size: clamp(1.125rem, 7cqi, 1.602rem);
+}
+
+/* https://www.tpgi.com/the-anatomy-of-visually-hidden/ */
+.visually-hidden {
+  block-size: 1px;
+  clip-path: inset(50%);
+  inline-size: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,32 @@
+.slide-container.no-js {
+  display: flex;
+  gap: var(--size-16);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  .slide-track {
+    display: flex;
+    gap: var(--size-16);
+  }
+}
+
+.slide {
+  --theme-background-color: var(--theme-base);
+  --theme-border-color: hsl(from var(--theme-base) h s 85%);
+  --theme-foreground-color: hsl(from var(--theme-base) h s 5%);
+  --theme-link-color: hsl(from var(--theme-base) h s 5%);
+
+  aspect-ratio: 9 / 16;
+  block-size: clamp(30rem, 56.25vw, 45rem);
+  container-type: inline-size;
+  inline-size: auto;
+  line-height: 1.2;
+
+  .slide-list {
+    display: grid;
+    gap: clamp(var(--size-8), 4.5cqi, var(--size-16));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option - Basic checkbox/radio elements</title>
+  <link rel="stylesheet" type="text/css" href="./css/reset.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="./css/option.css" media="screen">
+</head>
+
+<body>
+  <h1>Option - Basic checkbox/radio elements</h1>
+
+  <h2>Standard layout</h2>
+  <label class="form-option" for="grande">
+    <input type="radio" id="grande" name="size" value="grande" class="form-option-input">
+    <span class="form-option-label">Grande</span>
+  </label>
+
+  <label class="form-option" for="milk">
+    <input type="checkbox" id="milk" name="size" value="milk" class="form-option-input">
+    <span class="form-option-label">Milk</span>
+  </label>
+
+  <h2>Stacked layout</h2>
+  <label class="form-option form-option-stacked" for="milk002">
+    <input type="checkbox" id="milk002" name="size" value="milk002" class="form-option-input">
+    <span class="form-option-label">Milk</span>
+  </label>
+
+  <h2>Stacked and reversed layout</h2>
+  <label class="form-option form-option-stacked reversed" for="milk003">
+    <input type="checkbox" id="milk003" name="size" value="milk003" class="form-option-input">
+    <span class="form-option-label">Milk</span>
+  </label>
+
+  <h2>Standard option group layout</h2>
+  <fieldset class="form-option-group">
+    <legend>Select your coffee extras</legend>
+    <label class="form-option" for="brown-sugar">
+      <input type="checkbox" id="brown-sugar" name="extras" value="brown-sugar" class="form-option-input">
+      <span class="form-option-label">Brown Sugar</span>
+    </label>
+    <label class="form-option" for="white-sugar">
+      <input type="checkbox" id="white-sugar" name="extras" value="white-sugar" class="form-option-input">
+      <span class="form-option-label">White Sugar</span>
+    </label>
+    <label class="form-option" for="cinnamon">
+      <input type="checkbox" id="cinnamon" name="extras" value="cinnamon" class="form-option-input">
+      <span class="form-option-label">Cinnamon</span>
+    </label>
+  </fieldset>
+
+  <h2>Stacked option group layout</h2>
+  <fieldset class="form-option-group form-option-group-stacked">
+    <legend>Select your milk of choice</legend>
+    <label class="form-option" for="cows-milk">
+      <input type="checkbox" id="cows-milk" name="milk" value="cows-milk" class="form-option-input">
+      <span class="form-option-label">Cow's Milk</span>
+    </label>
+    <label class="form-option" for="almond-milk">
+      <input type="checkbox" id="almond-milk" name="milk" value="almond-milk" class="form-option-input">
+      <span class="form-option-label">Almond Milk</span>
+    </label>
+    <label class="form-option" for="oat-milk">
+      <input type="checkbox" id="oat-milk" name="milk" value="oat-milk" class="form-option-input">
+      <span class="form-option-label">Oat Milk</span>
+    </label>
+    <label class="form-option" for="soy-milk">
+      <input type="checkbox" id="soy-milk" name="milk" value="soy-milk" class="form-option-input">
+      <span class="form-option-label">Soy Milk</span>
+    </label>
+  </fieldset>
+</body>
+
+</html>

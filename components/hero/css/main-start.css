@@ -1,0 +1,15 @@
+:root {
+  --color-brand-primary: #c80100;
+  --color-brand-primary-hover: #3d0000;
+
+  --color-neutral-900: #131811;
+  --color-neutral-inverted: #fff;
+}
+
+body {
+  margin: 0;
+}
+
+.site-header {
+  padding: 2rem;
+}

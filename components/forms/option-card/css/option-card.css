@@ -1,0 +1,70 @@
+.form-element-group {
+  --form-option-card-background: #fff;
+  --form-option-card-border: 0.0625rem solid #bfbfbf;
+  --form-option-card-border-radius: 0.5rem;
+  --form-option-card-border-color-active: #2c2c2c;
+  --form-option-card-outline: 0.0625rem solid #2c2c2c;
+  --form-option-card-outline-offset: 0.125rem;
+  --form-option-card-padding: 1rem;
+
+  border: 0.0625rem solid #515151;
+  border-radius: 0.25rem;
+  margin-block-end: 2rem;
+  max-inline-size: max-content;
+
+  .form-element-group-icon {
+    block-size: 2.5rem;
+    inline-size: 2.5rem;
+  }
+}
+
+.form-element-label {
+  display: flex;
+  gap: 0.5rem;
+  max-inline-size: inherit;
+  padding: 1rem;
+
+  &.reversed {
+    flex-direction: row-reverse;
+  }
+
+  &.stacked {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &.stacked.reversed {
+    flex-direction: column-reverse;
+  }
+
+  input {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.form-element-group:has(:checked) {
+  border-color: #000;
+  outline: 0.0625rem solid #000;
+}
+
+.form-element-group:has(.form-element-group-help-text) {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+
+  .form-element-group-help-text {
+    font-size: 0.75rem;
+    margin: 0;
+  }
+
+  .form-element-label {
+    padding: 0;
+  }
+}
+
+.form-element-group:has(.stacked) {
+  display: grid;
+  place-items: center;
+}

@@ -1,0 +1,33 @@
+.typo-slide-overline,
+.typo-slide-main-heading,
+.typo-slide-secondary-heading,
+.typo-slide-list-item,
+.typo-slide-list-item-small {
+  margin: 0;
+  text-wrap: balance;
+}
+
+.typo-slide-main-heading,
+.typo-slide-secondary-heading {
+  line-height: 1.2;
+}
+
+.typo-slide-overline {
+  font-size: clamp(1rem, 4.5cqi, 1.3125rem);
+}
+
+.typo-slide-list-item {
+  font-size: var(--medium-typo-size);
+}
+
+.typo-slide-list-item-small {
+  font-size: var(--default-typo-size);
+}
+
+.typo-slide-main-heading {
+  font-size: clamp(1.625rem, 9.25cqi, 2.25rem);
+}
+
+.typo-slide-secondary-heading {
+  font-size: clamp(1.3125rem, 7.5cqi, 1.802rem);
+}

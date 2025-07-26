@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel</title>
+</head>
+
+<body>
+  <!-- Uses a generic container to group the carousel controls -->
+  <div class="carousel-controls">
+    <!-- Uses an HTML button element for each control -->
+    <button class="carousel-control carousel-control-prev" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
+      </svg>
+      <!-- Provides an accessible name for each control using text wrapped in a span element -->
+      <!-- The text is visually hidden, but only for non-screen reader users -->
+      <span class="visually-hidden">Previous slide</span>
+    </button>
+    <button class="carousel-control carousel-control-next" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1" />
+      </svg>
+      <span class="visually-hidden">Next slide</span>
+    </button>
+  </div>
+
+  <!-- uses aria-roledescription to identify the type of container -->
+  <!-- specification at: https://w3c.github.io/aria/#aria-roledescription -->
+  <!-- uses aria-label to provide an accessible name for the carousel -->
+  <!-- specification at: https://w3c.github.io/aria/#aria-label -->
+  <fiori-carousel aria-roledescription="carousel" aria-label="Dogs, past and present">
+    <!-- Sets aria-atomic to false to ensure assistive technology will only announce
+    the relevant changes instead of all changes -->
+    <!-- specification at: https://w3c.github.io/aria/#aria-atomic -->
+    <!-- Sets aria-live to polite to ensure assistive technology will announce
+    changes without unnecessary interruptions -->
+    <!-- specification at: https://w3c.github.io/aria/#aria-live -->
+    <div aria-atomic="false" aria-live="polite" class="carousel-track">
+      <!-- Sets aria-roledescription to slide -->
+      <!-- specification at: https://w3c.github.io/aria/#aria-roledescription -->
+      <!-- Sets aria-label to indicate the current slide position.
+            NOTE: This is not common and is an exception for this use case. -->
+      <!-- specification at: https://w3c.github.io/aria/#aria-label -->
+      <div role="group" aria-roledescription="slide" aria-label="1 of 10" class="carousel-slide">
+        <!-- Use <picture> to provide multiple image sources as AVIF is better for
+             performance but has less browser support than the WebP fallback -->
+        <picture>
+          <source srcset="./assets/gran-paradiso.avif" type="image/avif">
+          <img src="./assets/gran-paradiso.webp"
+            alt="A breathtaking mountain landscape with two turquoise lakes nestled in the valleys. Snow-capped peaks rise majestically under a partly cloudy sky, with winding paths and lush green vegetation dotting the terrain."
+            width="1722" height="1250">
+        </picture>
+      </div>
+    </div>
+  </fiori-carousel>
+</body>
+
+</html>
