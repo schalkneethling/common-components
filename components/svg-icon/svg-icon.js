@@ -1,7 +1,9 @@
 import { getIcon } from "./svg-icon-util.js";
 
 export class SVGIcon extends HTMLElement {
-  static observedAttributes = ["height", "name", "width"];
+  static observedAttributes = ["height", "name", "sprite-src", "width"];
+
+  #spriteSrc = null;
 
   #svgAttrs = {
     xmlns: "http://www.w3.org/2000/svg",
@@ -11,6 +13,8 @@ export class SVGIcon extends HTMLElement {
 
   constructor() {
     super();
+
+    this.#spriteSrc = this.getAttribute("sprite-src");
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -28,7 +32,7 @@ export class SVGIcon extends HTMLElement {
   }
 
   #renderIcon = async (iconName) => {
-    const icon = await getIcon(iconName);
+    const icon = await getIcon(iconName, this.#spriteSrc);
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.append(...icon.childNodes);
 

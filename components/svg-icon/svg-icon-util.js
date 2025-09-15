@@ -1,8 +1,8 @@
 let svgSprite = null;
 
-export const getIcon = async (name) => {
+export const getIcon = async (name, spriteSrc) => {
   if (!svgSprite) {
-    const response = await fetch("sprite.svg");
+    const response = await fetch(spriteSrc || "sprite.svg");
     const text = await response.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, "image/svg+xml");

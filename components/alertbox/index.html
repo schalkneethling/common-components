@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alertbox</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./css/reset.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./css/alertbox.css"
+      media="screen"
+    />
+  </head>
+  <body>
+    <alertbox-manager
+      aria-labelledby="alertbox-heading"
+      role="group"
+      config="alertbox-config"
+    >
+      <h2 class="visually-hidden" id="alertbox-heading">Site notifications</h2>
+    </alertbox-manager>
+
+    <script id="alertbox-config" type="application/json">
+      [
+        {
+          "dismissable": true,
+          "id": "basic",
+          "message": "This is a basic alertbox"
+        },
+        {
+          "id": "success",
+          "message": "This is a success alertbox",
+          "theme": "success"
+        },
+        {
+          "dismissable": true,
+          "id": "warning",
+          "message": "This is a warning alertbox",
+          "theme": "warning"
+        },
+        {
+          "id": "critical",
+          "message": "This is a critical alertbox",
+          "theme": "critical"
+        }
+      ]
+    </script>
+
+    <script src="./js/alertbox-manager.js" type="module"></script>
+    <script src="../svg-icon/svg-icon.js" type="module"></script>
+  </body>
+</html>

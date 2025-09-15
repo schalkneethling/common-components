@@ -1,0 +1,104 @@
+:root {
+  --border-radius-base: 0.5rem;
+
+  --banner-color-default-background: #e0e7f2;
+  --banner-color-default-color: #0f1928;
+
+  --banner-color-success-background: #cae9cb;
+  --banner-color-success-color: #10280f;
+
+  --banner-color-warning-background: #f8e1c4;
+  --banner-color-warning-color: #28190f;
+
+  --banner-color-critical-background: #f4d7d7;
+  --banner-color-critical-color: #280f0f;
+
+  --banner-color-border: #dadada;
+  --banner-border: var(--size-1) solid var(--banner-color-border);
+
+  --banner-font-family: system-ui, sans-serif;
+  --banner-font-size-message: var(--size-24);
+  --banner-icon-size: var(--size-24);
+  --banner-padding-block: var(--size-8);
+  --banner-padding-inline: var(--size-16);
+
+  --button-border: var(--size-1) solid var(--color-neutral-900);
+
+  --color-neutral-900: #212121;
+  --color-inverted: #fff;
+
+  --size-1: 0.0625rem;
+  --size-4: 0.25rem;
+  --size-8: 0.5rem;
+  --size-16: 1rem;
+  --size-24: 1.5rem;
+  --size-32: 2rem;
+  --size-48: 3rem;
+  --size-64: 4rem;
+  --size-80: 5rem;
+  --size-96: 6rem;
+}
+
+.alertbox-banner {
+  display: flex;
+  justify-content: space-between;
+  padding-block: var(--banner-padding-block);
+  padding-inline: var(--banner-padding-inline);
+
+  &.alertbox-banner-default {
+    background-color: var(--banner-color-default-background);
+    border: var(--banner-border);
+    color: var(--banner-color-default-color);
+  }
+
+  &.alertbox-banner-success {
+    background-color: var(--banner-color-success-background);
+    color: var(--banner-color-success-color);
+  }
+
+  &.alertbox-banner-warning {
+    background-color: var(--banner-color-warning-background);
+    color: var(--banner-color-warning-color);
+  }
+
+  &.alertbox-banner-critical {
+    background-color: var(--banner-color-critical-background);
+    color: var(--banner-color-critical-color);
+  }
+
+  .alertbox-banner-content {
+    align-items: center;
+    display: flex;
+    gap: var(--size-8);
+  }
+
+  svg-icon {
+    block-size: var(--banner-icon-size);
+    display: block;
+    inline-size: var(--banner-icon-size);
+  }
+
+  .alertbox-banner-dismiss {
+    align-self: center;
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--size-4);
+
+    &:hover,
+    &:focus-visible {
+      outline: var(--button-border);
+      outline-offset: var(--size-1);
+    }
+  }
+}
+
+.visually-hidden {
+  block-size: 1px;
+  clip-path: inset(50%);
+  inline-size: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
