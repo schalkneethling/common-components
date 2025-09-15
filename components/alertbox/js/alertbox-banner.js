@@ -10,10 +10,9 @@ export class AlertBoxBanner extends HTMLElement {
     return icon;
   }
 
-  #getDismissButton(bannerId) {
+  #getDismissButton() {
     const button = document.createElement("button");
     button.setAttribute("class", "alertbox-banner-dismiss");
-    button.setAttribute("data-banner-id", bannerId);
 
     const icon = this.#getIcon("close");
     button.append(icon);
@@ -27,32 +26,37 @@ export class AlertBoxBanner extends HTMLElement {
   }
 
   getBanner(banner) {
-    const alertboxBanner = document.createElement("alertbox-banner");
+    const { dismissable, dismissType, id, message, role, theme } = banner;
     const bannerContent = document.createElement("div");
-    const bannerIcon = this.#getIcon(banner.theme || "default");
+    const bannerIcon = this.#getIcon(theme || "default");
     const bannerMessage = document.createElement("p");
-    const bannerTheme = banner.theme || "default";
+    const bannerTheme = theme || "default";
 
-    alertboxBanner.setAttribute("id", banner.id);
-    alertboxBanner.setAttribute("role", banner.role || "status");
-    alertboxBanner.setAttribute(
+    this.setAttribute("id", id);
+    this.setAttribute("role", role || "status");
+    this.setAttribute(
       "class",
       `alertbox-banner alertbox-banner-${bannerTheme}`,
     );
 
-    bannerMessage.textContent = banner.message;
+    bannerMessage.textContent = message;
 
     bannerContent.append(bannerIcon, bannerMessage);
     bannerContent.setAttribute("class", "alertbox-banner-content");
 
-    alertboxBanner.append(bannerContent);
+    this.append(bannerContent);
 
-    if (banner.dismissable) {
-      const dismissButton = this.#getDismissButton(banner.id);
-      alertboxBanner.append(dismissButton);
+    if (dismissType) {
+      this.setAttribute("data-dismiss-type", dismissType);
     }
 
-    return alertboxBanner;
+    if (dismissable) {
+      const dismissButton = this.#getDismissButton();
+      this.setAttribute("data-banner-id", id);
+      this.append(dismissButton);
+    }
+
+    return this;
   }
 }
 

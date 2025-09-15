@@ -4,6 +4,7 @@ import { validateBanner } from "./validator/schema.js";
 export class AlertBoxManager extends HTMLElement {
   #banners = new Map();
   #configId;
+  #storageKey = "alertbox-banners";
 
   constructor() {
     super();
@@ -15,13 +16,69 @@ export class AlertBoxManager extends HTMLElement {
     return this.#banners.has(bannerId);
   }
 
+  #loadConfig() {
+    if (!this.#configId) {
+      return;
+    }
+
+    const config = document.getElementById(this.#configId);
+    if (!config) {
+      return;
+    }
+
+    try {
+      const configArray = JSON.parse(config.textContent);
+      this.addBanners(configArray);
+    } catch (error) {
+      throw new Error("Error parsing config", { cause: error });
+    }
+  }
+
+  #containsBannerIdInStorage(bannerId) {
+    return (
+      this.#containsBannerIdForStorageType(bannerId, "session") ||
+      this.#containsBannerIdForStorageType(bannerId, "local")
+    );
+  }
+
+  #containsBannerIdForStorageType(bannerId, storageType) {
+    const storage = storageType === "session" ? sessionStorage : localStorage;
+
+    try {
+      const storedBannerIds = storage.getItem(this.#storageKey);
+      const storedBannerIdsArray = storedBannerIds
+        ? JSON.parse(storedBannerIds)
+        : [];
+      return storedBannerIdsArray.some(
+        (storedBannerId) => storedBannerId === bannerId,
+      );
+    } catch (error) {
+      throw new Error("Error reading stored banners", { cause: error });
+    }
+  }
+
+  #storeBannerId(bannerId, storageType) {
+    const storage = storageType === "session" ? sessionStorage : localStorage;
+
+    try {
+      const storedBanners = storage.getItem(this.#storageKey);
+      const storedBannersArray = storedBanners ? JSON.parse(storedBanners) : [];
+      storedBannersArray.push(bannerId);
+      storage.setItem(this.#storageKey, JSON.stringify(storedBannersArray));
+    } catch (error) {
+      throw new Error("Error storing banner", { cause: error });
+    }
+  }
+
   addBanners(banners) {
     if (!Array.isArray(banners)) {
       throw new Error("Banners must be an array");
     }
 
     banners.forEach((banner, index) => {
-      if (this.#hasBanner(banner.id)) {
+      const bannerId = banner.id;
+
+      if (this.#hasBanner(bannerId)) {
         console.info(`Banner with id ${banner.id} already exists`);
         return;
       }
@@ -29,9 +86,9 @@ export class AlertBoxManager extends HTMLElement {
       try {
         validateBanner(banner, index);
 
-        this.#banners.set(banner.id, banner);
+        this.#banners.set(bannerId, banner);
 
-        if (this.isConnected) {
+        if (this.isConnected && !this.#containsBannerIdInStorage(bannerId)) {
           const alertboxBanner = new AlertBoxBanner().getBanner(banner);
           this.append(alertboxBanner);
         }
@@ -55,24 +112,6 @@ export class AlertBoxManager extends HTMLElement {
     return Array.from(this.#banners.values());
   }
 
-  #loadConfig() {
-    if (!this.#configId) {
-      return;
-    }
-
-    const config = document.getElementById(this.#configId);
-    if (!config) {
-      return;
-    }
-
-    try {
-      const configArray = JSON.parse(config.textContent);
-      this.addBanners(configArray);
-    } catch (error) {
-      throw new Error("Error parsing config", { cause: error });
-    }
-  }
-
   connectedCallback() {
     this.#loadConfig();
     this.#addEventListeners();
@@ -90,11 +129,19 @@ export class AlertBoxManager extends HTMLElement {
       return;
     }
 
-    const bannerId = dismissButton.dataset.bannerId;
-    const banner = document.getElementById(bannerId);
+    const banner = dismissButton.closest(".alertbox-banner");
 
     if (banner) {
+      const { bannerId, dismissType } = banner.dataset;
+
       banner.remove();
+
+      if (
+        dismissType &&
+        !this.#containsBannerIdForStorageType(bannerId, dismissType)
+      ) {
+        this.#storeBannerId(bannerId, dismissType);
+      }
     }
   }
 }
