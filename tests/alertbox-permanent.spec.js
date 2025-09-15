@@ -4,10 +4,10 @@ import { test, expect } from "@playwright/test";
 test("has manager and five banners", async ({ page }) => {
   await page.goto("/components/alertbox/permanent.html");
 
-  const manager = await page.getByRole("group", { name: "Site notifications" });
+  const manager = page.getByRole("group", { name: "Site notifications" });
   await expect(manager).toBeVisible();
 
-  const banners = await page.getByRole("status");
+  const banners = page.getByRole("status");
   await expect(banners).toHaveCount(5);
 });
 
@@ -16,13 +16,14 @@ test("permanent success banner has dismissible close button", async ({
 }) => {
   await page.goto("/components/alertbox/permanent.html");
 
-  const successBanner = await page
+  const successBanner = page
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" });
-  const successBannerCloseButton = await page
+  const successBannerCloseButton = page
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" })
     .getByRole("button");
+
   await expect(successBanner).toBeAttached();
   await expect(successBannerCloseButton).toBeAttached();
 });
@@ -32,13 +33,14 @@ test("dismissed permanent success banner is not shown again after reload", async
 }) => {
   await page.goto("/components/alertbox/permanent.html");
 
-  const successBanner = await page
+  const successBanner = page
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" });
-  const successBannerCloseButton = await page
+  const successBannerCloseButton = page
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" })
     .getByRole("button");
+
   await expect(successBanner).toBeAttached();
   await expect(successBannerCloseButton).toBeAttached();
 
@@ -56,13 +58,14 @@ test("dismissed permanent success banner is not shown in new page", async ({
 }) => {
   await page.goto("/components/alertbox/permanent.html");
 
-  const successBanner = await page
+  const successBanner = page
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" });
-  const successBannerCloseButton = await page
+  const successBannerCloseButton = page
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" })
     .getByRole("button");
+
   await expect(successBanner).toBeAttached();
   await expect(successBannerCloseButton).toBeAttached();
 
@@ -75,10 +78,10 @@ test("dismissed permanent success banner is not shown in new page", async ({
   const newPage = await context.newPage();
   await newPage.goto("/components/alertbox/permanent.html");
 
-  const newSuccessBanner = await newPage
+  const newSuccessBanner = newPage
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" });
-  const newSuccessBannerCloseButton = await newPage
+  const newSuccessBannerCloseButton = newPage
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" })
     .getByRole("button");
@@ -93,7 +96,7 @@ test("dismissed permanent success banner is not shown in new page", async ({
   const finalPage = await context.newPage();
   await finalPage.goto("/components/alertbox/permanent.html");
 
-  const finalSuccessBanner = await finalPage
+  const finalSuccessBanner = finalPage
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" });
 
@@ -101,5 +104,4 @@ test("dismissed permanent success banner is not shown in new page", async ({
 
   await finalPage.close();
   await context.close();
-  await browser.close();
 });
