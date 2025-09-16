@@ -25,9 +25,39 @@ export class AlertBoxBanner extends HTMLElement {
     return button;
   }
 
+  #getActionElement(action) {
+    const { type, label, target, url } = action;
+
+    if (type === "button") {
+      const button = document.createElement("button");
+      button.setAttribute("class", "alertbox-banner-action-button");
+      button.textContent = label;
+      return button;
+    }
+
+    if (type === "link") {
+      const link = document.createElement("a");
+      link.setAttribute("class", "alertbox-banner-action");
+      link.textContent = label;
+      link.setAttribute("href", url);
+
+      if (target) {
+        link.setAttribute("target", target);
+      }
+
+      if (target === "_blank") {
+        link.setAttribute("rel", "external noopener noreferrer");
+      }
+
+      return link;
+    }
+  }
+
   getBanner(banner) {
-    const { dismissable, dismissType, id, message, role, theme } = banner;
+    const { action, dismissable, dismissType, id, message, role, theme } =
+      banner;
     const bannerContent = document.createElement("div");
+    const bannerActions = document.createElement("div");
     const bannerIcon = this.#getIcon(theme || "default");
     const bannerMessage = document.createElement("p");
     const bannerTheme = theme || "default";
@@ -44,16 +74,22 @@ export class AlertBoxBanner extends HTMLElement {
     bannerContent.append(bannerIcon, bannerMessage);
     bannerContent.setAttribute("class", "alertbox-banner-content");
 
-    this.append(bannerContent);
+    this.append(bannerContent, bannerActions);
 
     if (dismissType) {
       this.setAttribute("data-dismiss-type", dismissType);
     }
 
+    bannerActions.setAttribute("class", "alertbox-banner-actions");
+    if (action) {
+      const actionElement = this.#getActionElement(action);
+      bannerActions.append(actionElement);
+    }
+
     if (dismissable) {
       const dismissButton = this.#getDismissButton();
       this.setAttribute("data-banner-id", id);
-      this.append(dismissButton);
+      bannerActions.append(dismissButton);
     }
 
     return this;

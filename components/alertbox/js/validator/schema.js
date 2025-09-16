@@ -1,6 +1,14 @@
 import { z } from "zod";
 
 export const BannerSchema = z.object({
+  action: z.optional(
+    z.object({
+      type: z.enum(["button", "link"]),
+      label: z.string().min(1, "Action label is required"),
+      target: z.optional(z.enum(["_self", "_blank", "_parent", "_top"])),
+      url: z.optional(z.url("Action URL must be a valid URL")),
+    }),
+  ),
   dismissable: z.optional(z.boolean().default(false)),
   dismissType: z.optional(
     z.enum(["permanent", "session", "page"]).default("page"),

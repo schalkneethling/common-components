@@ -22,12 +22,23 @@
   --banner-padding-block: var(--size-8);
   --banner-padding-inline: var(--size-16);
 
+  --button-action-spacing-block: var(--size-4);
+  --button-action-spacing-inline: var(--size-8);
   --button-border: var(--size-1) solid var(--color-neutral-900);
+  --button-active-background: var(--color-neutral-900);
+  --button-active-color: var(--color-inverted);
+
+  --link-active-decoration: none;
+  --link-active-color: inherit;
+
+  --outline-focus: var(--size-1) solid var(--color-neutral-900);
+  --outline-focus-offset: var(--size-2);
 
   --color-neutral-900: #212121;
   --color-inverted: #fff;
 
   --size-1: 0.0625rem;
+  --size-2: 0.125rem;
   --size-4: 0.25rem;
   --size-8: 0.5rem;
   --size-16: 1rem;
@@ -78,19 +89,55 @@
     inline-size: var(--banner-icon-size);
   }
 
-  .alertbox-banner-dismiss {
-    align-self: center;
+  button {
     appearance: none;
     background: none;
     border: none;
     cursor: pointer;
-    padding: var(--size-4);
+  }
 
-    &:hover,
+  a,
+  button {
     &:focus-visible {
-      outline: var(--button-border);
-      outline-offset: var(--size-1);
+      outline: var(--outline-focus);
+      outline-offset: var(--outline-focus-offset);
     }
+  }
+
+  a:link,
+  a:visited {
+    color: var(--link-active-color);
+  }
+
+  a:hover,
+  a:focus,
+  a:focus-visible {
+    text-decoration: var(--link-active-decoration);
+  }
+
+  .alertbox-banner-actions {
+    align-items: center;
+    display: flex;
+    gap: var(--size-8);
+    justify-content: flex-end;
+
+    .alertbox-banner-action-button {
+      border: var(--button-border);
+      padding-block: var(--button-action-spacing-block);
+      padding-inline: var(--button-action-spacing-inline);
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        background-color: var(--button-active-background);
+        color: var(--button-active-color);
+      }
+    }
+  }
+
+  .alertbox-banner-dismiss {
+    align-self: center;
+    padding: var(--size-4);
   }
 }
 

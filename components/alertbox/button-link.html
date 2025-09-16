@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button and Link Alertbox</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./css/reset.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./css/alertbox.css"
+      media="screen"
+    />
+  </head>
+  <body>
+    <alertbox-manager
+      aria-labelledby="alertbox-heading"
+      role="group"
+      config="alertbox-config"
+    >
+      <h2 class="visually-hidden" id="alertbox-heading">Site notifications</h2>
+    </alertbox-manager>
+
+    <script id="alertbox-config" type="application/json">
+      [
+        {
+          "dismissable": true,
+          "id": "basic",
+          "message": "This is a basic alertbox"
+        },
+        {
+          "action": {
+            "type": "button",
+            "label": "Change preferences"
+          },
+          "id": "success",
+          "message": "This is a success alertbox",
+          "theme": "success"
+        },
+        {
+          "action": {
+            "type": "button",
+            "label": "Change theme"
+          },
+          "dismissable": true,
+          "id": "success-theme",
+          "message": "Theme changed successfully",
+          "theme": "success"
+        },
+        {
+          "action": {
+            "type": "link",
+            "label": "Search using DuckDuckGo",
+            "target": "_blank",
+            "url": "https://www.duckduckgo.com"
+          },
+          "dismissable": true,
+          "id": "warning",
+          "message": "No results for your search",
+          "theme": "warning"
+        },
+        {
+          "action": {
+            "type": "link",
+            "label": "Search using Google",
+            "url": "https://www.google.com"
+          },
+          "dismissable": true,
+          "id": "warning-link",
+          "message": "Search using Google",
+          "theme": "warning"
+        },
+        {
+          "id": "critical",
+          "message": "This is a critical alertbox",
+          "theme": "critical"
+        }
+      ]
+    </script>
+
+    <script src="./js/alertbox-manager.js" type="module"></script>
+    <script src="../svg-icon/svg-icon.js" type="module"></script>
+  </body>
+</html>

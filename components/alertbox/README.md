@@ -8,6 +8,8 @@ A flexible, accessible web component system for displaying dismissible alert ban
 - **Accessible**: Proper ARIA attributes, semantic markup, and keyboard navigation
 - **Themable**: Multiple built-in themes (default, success, warning, critical)
 - **Dismissible**: Optional dismiss functionality with customizable behavior
+- **Interactive Actions**: Support for buttons and links within banners
+- **Permanent Dismissal**: Banners can be permanently dismissed across sessions
 - **Configurable**: JSON-based configuration for easy setup
 - **Validated**: Built-in schema validation using Zod
 - **Icon Integration**: Seamless integration with the SVG Icon component
@@ -69,6 +71,16 @@ alertbox/
       "message": "Scheduled maintenance tonight at 2 AM",
       "theme": "warning",
       "dismissable": true
+    },
+    {
+      "id": "upgrade",
+      "message": "New features available!",
+      "theme": "success",
+      "action": {
+        "type": "button",
+        "label": "Learn More"
+      },
+      "dismissable": true
     }
   ]
 </script>
@@ -87,6 +99,32 @@ alertbox/
     id: "error-1",
     message: "Something went wrong. Please try again.",
     theme: "critical",
+    dismissable: true,
+  });
+
+  // Add a banner with an action button
+  alertbox.addBanner({
+    id: "action-1",
+    message: "Your session will expire soon",
+    theme: "warning",
+    action: {
+      type: "button",
+      label: "Extend Session",
+    },
+    dismissable: true,
+  });
+
+  // Add a banner with a link action
+  alertbox.addBanner({
+    id: "link-1",
+    message: "Check out our new features",
+    theme: "success",
+    action: {
+      type: "link",
+      label: "View Features",
+      url: "https://example.com/features",
+      target: "_blank",
+    },
     dismissable: true,
   });
 
@@ -128,6 +166,18 @@ Each banner is configured using a JavaScript object with the following propertie
 | `dismissable` | boolean | No       | `false`   | Whether the banner can be dismissed                |
 | `dismissType` | string  | No       | `page`    | Dismiss behavior (permanent, session, page)        |
 | `role`        | string  | No       | `status`  | ARIA role (status, alert)                          |
+| `action`      | object  | No       | -         | Interactive action (button or link)                |
+
+### Action Configuration
+
+The `action` property allows you to add interactive elements to banners:
+
+| Property | Type   | Required | Description                                        |
+| -------- | ------ | -------- | -------------------------------------------------- |
+| `type`   | string | Yes      | Action type: `button` or `link`                    |
+| `label`  | string | Yes      | Text displayed on the action element               |
+| `url`    | string | No       | URL for link actions (required for links)          |
+| `target` | string | No       | Link target (`_self`, `_blank`, `_parent`, `_top`) |
 
 ### Example Configurations
 
@@ -161,6 +211,41 @@ Each banner is configured using a JavaScript object with the following propertie
   "theme": "warning",
   "dismissable": true,
   "dismissType": "session"
+}
+
+// Banner with action button
+{
+  "id": "action-1",
+  "message": "New features are available!",
+  "theme": "success",
+  "action": {
+    "type": "button",
+    "label": "Learn More"
+  },
+  "dismissable": true
+}
+
+// Banner with external link action
+{
+  "id": "link-1",
+  "message": "Visit our documentation",
+  "theme": "default",
+  "action": {
+    "type": "link",
+    "label": "Open Docs",
+    "url": "https://docs.example.com",
+    "target": "_blank"
+  },
+  "dismissable": true
+}
+
+// Banner with permanent dismissal
+{
+  "id": "permanent-1",
+  "message": "This banner will be permanently dismissed",
+  "theme": "info",
+  "dismissable": true,
+  "dismissType": "permanent"
 }
 ```
 
