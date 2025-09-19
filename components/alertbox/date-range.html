@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date Range Alertbox</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./css/reset.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./css/alertbox.css"
+      media="screen"
+    />
+  </head>
+  <body>
+    <alertbox-manager
+      aria-labelledby="alertbox-heading"
+      role="group"
+      config="alertbox-config"
+    >
+      <h2 class="visually-hidden" id="alertbox-heading">Site notifications</h2>
+    </alertbox-manager>
+
+    <script id="alertbox-config" type="application/json">
+      [
+        {
+          "dateRange": {
+            "start": "2025-09-18",
+            "end": "2025-09-19"
+          },
+          "dismissable": true,
+          "id": "basic",
+          "message": "This is a basic alertbox that runs for 2 days and is page dismissable"
+        },
+        {
+          "action": {
+            "type": "button",
+            "label": "Change preferences"
+          },
+          "dateRange": {
+            "start": "2025-09-10",
+            "end": "2025-09-17"
+          },
+          "dismissable": true,
+          "dismissType": "permanent",
+          "id": "success",
+          "message": "A success alertbox that runs for 7 days and can be dismissed permanently",
+          "theme": "success"
+        },
+        {
+          "action": {
+            "type": "button",
+            "label": "Change theme"
+          },
+          "dateRange": {
+            "start": "2025-09-15",
+            "end": "2025-09-19"
+          },
+          "dismissable": true,
+          "dismissType": "session",
+          "id": "success-theme",
+          "message": "A success alertbox that runs for 4 days and can be dismissed for the current session",
+          "theme": "success"
+        }
+      ]
+    </script>
+
+    <script src="./js/alertbox-manager.js" type="module"></script>
+    <script src="../svg-icon/svg-icon.js" type="module"></script>
+  </body>
+</html>

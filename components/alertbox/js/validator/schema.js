@@ -9,6 +9,16 @@ export const BannerSchema = z.object({
       url: z.optional(z.url("Action URL must be a valid URL")),
     }),
   ),
+  dateRange: z.optional(
+    z
+      .object({
+        start: z.iso.date("Invalid start date format. Use YYYY-MM-DD"),
+        end: z.iso.date("Invalid start date format. Use YYYY-MM-DD"),
+      })
+      .refine((data) => data.start < data.end, {
+        message: "Start date must be before end date",
+      }),
+  ),
   dismissable: z.optional(z.boolean().default(false)),
   dismissType: z.optional(
     z.enum(["permanent", "session", "page"]).default("page"),

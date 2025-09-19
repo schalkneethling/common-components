@@ -70,6 +70,18 @@ export class AlertBoxManager extends HTMLElement {
     }
   }
 
+  #isWithinDateRange(banner) {
+    if (!banner.dateRange) {
+      return true;
+    }
+
+    const today = new Date().toLocaleDateString();
+    const startDate = new Date(banner.dateRange.start).toLocaleDateString();
+    const endDate = new Date(banner.dateRange.end).toLocaleDateString();
+
+    return today >= startDate && today <= endDate;
+  }
+
   addBanners(banners) {
     if (!Array.isArray(banners)) {
       throw new Error("Banners must be an array");
@@ -88,7 +100,11 @@ export class AlertBoxManager extends HTMLElement {
 
         this.#banners.set(bannerId, banner);
 
-        if (this.isConnected && !this.#containsBannerIdInStorage(bannerId)) {
+        if (
+          this.isConnected &&
+          !this.#containsBannerIdInStorage(bannerId) &&
+          this.#isWithinDateRange(banner)
+        ) {
           const alertboxBanner = new AlertBoxBanner().getBanner(banner);
           this.append(alertboxBanner);
         }
