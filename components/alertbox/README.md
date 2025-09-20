@@ -10,6 +10,8 @@ A flexible, accessible web component system for displaying dismissible alert ban
 - **Dismissible**: Optional dismiss functionality with customizable behavior
 - **Interactive Actions**: Support for buttons and links within banners
 - **Permanent Dismissal**: Banners can be permanently dismissed across sessions
+- **Date Range Support**: Banners can be configured to show only within specific date ranges
+- **Event System**: Comprehensive event system for tracking banner interactions
 - **Configurable**: JSON-based configuration for easy setup
 - **Validated**: Built-in schema validation using Zod
 - **Icon Integration**: Seamless integration with the SVG Icon component
@@ -25,7 +27,10 @@ alertbox/
 ├── js/
 │   ├── alertbox-manager.js # Main manager component
 │   ├── alertbox-banner.js  # Individual banner component
+│   ├── alertbox-events.js  # Event system
+│   ├── alertbox-constants.js # Constants and selectors
 │   ├── alertbox-manager.test.js # Unit tests
+│   ├── alertbox-events.test.js # Event tests
 │   └── validator/
 │       └── schema.js       # Zod validation schema
 └── README.md               # This documentation
@@ -43,6 +48,18 @@ alertbox/
 <!-- Include the SVG icon component (required for icons) -->
 <script src="../svg-icon/svg-icon.js" type="module"></script>
 ```
+
+## Examples
+
+The component includes several example HTML files demonstrating different features:
+
+- `index.html` - Basic usage examples
+- `button-link.html` - Examples with action buttons and links
+- `date-range.html` - Examples with date range functionality
+- `date-range-invalid.html` - Examples of invalid date ranges
+- `mixed.html` - Mixed examples showing various configurations
+- `permanent.html` - Examples with permanent dismissal
+- `session.html` - Examples with session-based dismissal
 
 ## Usage
 
@@ -167,6 +184,7 @@ Each banner is configured using a JavaScript object with the following propertie
 | `dismissType` | string  | No       | `page`    | Dismiss behavior (permanent, session, page)        |
 | `role`        | string  | No       | `status`  | ARIA role (status, alert)                          |
 | `action`      | object  | No       | -         | Interactive action (button or link)                |
+| `dateRange`   | object  | No       | -         | Date range for when banner should be displayed     |
 
 ### Action Configuration
 
@@ -178,6 +196,15 @@ The `action` property allows you to add interactive elements to banners:
 | `label`  | string | Yes      | Text displayed on the action element               |
 | `url`    | string | No       | URL for link actions (required for links)          |
 | `target` | string | No       | Link target (`_self`, `_blank`, `_parent`, `_top`) |
+
+### Date Range Configuration
+
+The `dateRange` property allows you to control when banners are displayed:
+
+| Property | Type   | Required | Description                     |
+| -------- | ------ | -------- | ------------------------------- |
+| `start`  | string | Yes      | Start date in YYYY-MM-DD format |
+| `end`    | string | Yes      | End date in YYYY-MM-DD format   |
 
 ### Example Configurations
 
@@ -243,9 +270,21 @@ The `action` property allows you to add interactive elements to banners:
 {
   "id": "permanent-1",
   "message": "This banner will be permanently dismissed",
-  "theme": "info",
+  "theme": "default",
   "dismissable": true,
   "dismissType": "permanent"
+}
+
+// Banner with date range
+{
+  "id": "date-range-1",
+  "message": "This banner only shows during the specified date range",
+  "theme": "warning",
+  "dismissable": true,
+  "dateRange": {
+    "start": "2025-01-01",
+    "end": "2025-01-31"
+  }
 }
 ```
 
@@ -329,6 +368,7 @@ The main component that manages all alert banners.
 #### Events
 
 - `click` - Handles dismiss button clicks
+- `alertbox-event` - Custom event dispatched for banner interactions
 
 ### AlertBoxBanner
 
@@ -339,6 +379,63 @@ Individual banner component (created automatically by the manager).
 - `id` - Unique identifier
 - `role` - ARIA role (status or alert)
 - `class` - CSS classes including theme class
+
+## Event System
+
+The alertbox component includes a comprehensive event system for tracking banner interactions. All events are dispatched on the `document` object with the event name `alertbox-event`.
+
+### Event Types
+
+The component dispatches the following event types:
+
+- `shown` - When a banner is displayed
+- `dismissed` - When a banner is dismissed
+- `actioned` - When an action button or link is clicked
+- `error` - When validation or other errors occur
+
+### Event Details
+
+All events include the following properties in their `detail` object:
+
+| Property       | Type   | Description                                   |
+| -------------- | ------ | --------------------------------------------- |
+| `bannerConfig` | object | The complete banner configuration object      |
+| `bannerId`     | string | The unique identifier of the banner           |
+| `eventType`    | string | The type of event (shown, dismissed, etc.)    |
+| `timestamp`    | string | ISO 8601 timestamp of when the event occurred |
+
+Additional properties for specific event types:
+
+- **dismissed**: `dismissType` - The type of dismissal (permanent, session, page)
+- **actioned**: `actionType` - The type of action (button, link)
+- **error**: `error` - The error object or validation issues
+
+### Event Handling Example
+
+```javascript
+document.addEventListener("alertbox-event", (event) => {
+  const { bannerConfig, bannerId, eventType, timestamp } = event.detail;
+
+  switch (eventType) {
+    case "shown":
+      console.log(`Banner ${bannerId} was shown at ${timestamp}`);
+      break;
+    case "dismissed":
+      console.log(
+        `Banner ${bannerId} was dismissed (${event.detail.dismissType})`,
+      );
+      break;
+    case "actioned":
+      console.log(
+        `Action ${event.detail.actionType} clicked on banner ${bannerId}`,
+      );
+      break;
+    case "error":
+      console.error("Alertbox error:", event.detail.error);
+      break;
+  }
+});
+```
 
 ## Accessibility
 
@@ -420,6 +517,13 @@ The component includes comprehensive unit tests covering:
 - Duplicate ID prevention
 - DOM integration
 - Configuration loading
+- Event system functionality
+- Date range validation
+
+### Test Files
+
+- `alertbox-manager.test.js` - Tests for the main manager component
+- `alertbox-events.test.js` - Tests for the event system
 
 Run tests with your preferred test runner:
 
@@ -429,6 +533,7 @@ npm test
 
 # Or with Node.js
 node alertbox-manager.test.js
+node alertbox-events.test.js
 ```
 
 ## License
