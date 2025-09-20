@@ -54,5 +54,10 @@
 
     <script src="./js/alertbox-manager.js" type="module"></script>
     <script src="../svg-icon/svg-icon.js" type="module"></script>
+    <script>
+      document.addEventListener("alertbox-event", (event) => {
+        console.log(event.detail.eventType, event.detail);
+      });
+    </script>
   </body>
 </html>

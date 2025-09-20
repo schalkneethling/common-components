@@ -1,5 +1,15 @@
 import { AlertBoxBanner } from "./alertbox-banner.js";
 import { validateBanner } from "./validator/schema.js";
+import {
+  emitBannerActionEvent,
+  emitBannerDismissedEvent,
+  emitBannerErrorEvent,
+  emitBannerShownEvent,
+} from "./alertbox-events.js";
+import {
+  ALERTBOX_BANNER_DISMISS,
+  ALERTBOX_BANNER_ACTION_BUTTON,
+} from "./alertbox-constants.js";
 
 export class AlertBoxManager extends HTMLElement {
   #banners = new Map();
@@ -16,7 +26,7 @@ export class AlertBoxManager extends HTMLElement {
     return this.#banners.has(bannerId);
   }
 
-  #loadConfig() {
+  #render() {
     if (!this.#configId) {
       return;
     }
@@ -30,7 +40,7 @@ export class AlertBoxManager extends HTMLElement {
       const configArray = JSON.parse(config.textContent);
       this.addBanners(configArray);
     } catch (error) {
-      throw new Error("Error parsing config", { cause: error });
+      emitBannerErrorEvent(error);
     }
   }
 
@@ -107,11 +117,11 @@ export class AlertBoxManager extends HTMLElement {
         ) {
           const alertboxBanner = new AlertBoxBanner().getBanner(banner);
           this.append(alertboxBanner);
+          emitBannerShownEvent(banner);
         }
       } catch (error) {
         if (error.cause && error.cause.name === "ZodError") {
-          // eslint-disable-next-line no-console
-          console.error(error.message, error.cause.issues);
+          emitBannerErrorEvent(error.cause.issues, banner);
           return;
         }
 
@@ -129,7 +139,7 @@ export class AlertBoxManager extends HTMLElement {
   }
 
   connectedCallback() {
-    this.#loadConfig();
+    this.#render();
     this.#addEventListeners();
   }
 
@@ -139,7 +149,20 @@ export class AlertBoxManager extends HTMLElement {
 
   #handleClick(event) {
     const target = event.target;
-    const dismissButton = target.closest(".alertbox-banner-dismiss");
+    const dismissButton = target.closest(ALERTBOX_BANNER_DISMISS);
+    const actionButton = target.classList.contains(
+      ALERTBOX_BANNER_ACTION_BUTTON,
+    )
+      ? target
+      : target.closest(ALERTBOX_BANNER_ACTION_BUTTON);
+
+    if (actionButton) {
+      emitBannerActionEvent(
+        this.#banners.get(actionButton.dataset.bannerId),
+        "button",
+      );
+      return;
+    }
 
     if (!dismissButton) {
       return;
@@ -158,6 +181,8 @@ export class AlertBoxManager extends HTMLElement {
       ) {
         this.#storeBannerId(bannerId, dismissType);
       }
+
+      emitBannerDismissedEvent(this.#banners.get(bannerId));
     }
   }
 }

@@ -1,3 +1,9 @@
+import {
+  ALERTBOX_BANNER_ACTION_BUTTON,
+  ALERTBOX_BANNER_ACTION_LINK,
+  ALERTBOX_BANNER_DISMISS,
+} from "./alertbox-constants.js";
+
 export class AlertBoxBanner extends HTMLElement {
   constructor() {
     super();
@@ -12,7 +18,7 @@ export class AlertBoxBanner extends HTMLElement {
 
   #getDismissButton() {
     const button = document.createElement("button");
-    button.setAttribute("class", "alertbox-banner-dismiss");
+    button.setAttribute("class", ALERTBOX_BANNER_DISMISS);
 
     const icon = this.#getIcon("close");
     button.append(icon);
@@ -25,19 +31,20 @@ export class AlertBoxBanner extends HTMLElement {
     return button;
   }
 
-  #getActionElement(action) {
+  #getActionElement(action, id) {
     const { type, label, target, url } = action;
 
     if (type === "button") {
       const button = document.createElement("button");
-      button.setAttribute("class", "alertbox-banner-action-button");
+      button.setAttribute("class", ALERTBOX_BANNER_ACTION_BUTTON);
+      button.dataset.bannerId = id;
       button.textContent = label;
       return button;
     }
 
     if (type === "link") {
       const link = document.createElement("a");
-      link.setAttribute("class", "alertbox-banner-action");
+      link.setAttribute("class", ALERTBOX_BANNER_ACTION_LINK);
       link.textContent = label;
       link.setAttribute("href", url);
 
@@ -82,7 +89,7 @@ export class AlertBoxBanner extends HTMLElement {
 
     bannerActions.setAttribute("class", "alertbox-banner-actions");
     if (action) {
-      const actionElement = this.#getActionElement(action);
+      const actionElement = this.#getActionElement(action, id);
       bannerActions.append(actionElement);
     }
 

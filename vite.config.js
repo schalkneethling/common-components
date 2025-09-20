@@ -3,13 +3,7 @@ import { configDefaults } from "vitest/config";
 
 export default defineConfig({
   test: {
-    exclude: [
-      ...configDefaults.exclude,
-      "**/*.spec.ts",
-      "**/playwright-report/**",
-      "**/test-results/**",
-      "**/tests/**/*.spec.ts",
-    ],
+    exclude: [...configDefaults.exclude, "tests/**/*.spec.js"],
     globals: true,
     environment: "happy-dom",
   },

@@ -15,7 +15,7 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   outputDir: "./test-results",
   testDir: "./tests",
-  testIgnore: ["**/*.test.ts", "**/utils/**/*.test.ts"],
+  testIgnore: ["**/*.test.js", "/components/**/*.*"],
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
