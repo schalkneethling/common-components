@@ -3,6 +3,7 @@ import { getIcon } from "./svg-icon-util.js";
 export class SVGIcon extends HTMLElement {
   static observedAttributes = ["height", "name", "sprite-src", "width"];
 
+  #accessibleName = null;
   #spriteSrc = null;
 
   #svgAttrs = {
@@ -14,6 +15,7 @@ export class SVGIcon extends HTMLElement {
   constructor() {
     super();
 
+    this.#accessibleName = this.getAttribute("accessible-name");
     this.#spriteSrc = this.getAttribute("sprite-src");
   }
 
@@ -34,6 +36,18 @@ export class SVGIcon extends HTMLElement {
   #renderIcon = async (iconName) => {
     const icon = await getIcon(iconName, this.#spriteSrc);
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+    if (this.#accessibleName) {
+      const title = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "title",
+      );
+      title.textContent = this.#accessibleName;
+      svg.append(title);
+    } else {
+      svg.setAttribute("aria-hidden", "true");
+    }
+
     svg.append(...icon.childNodes);
 
     Object.keys(this.#svgAttrs).forEach((attr) => {
