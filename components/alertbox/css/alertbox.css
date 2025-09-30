@@ -1,0 +1,151 @@
+:root {
+  --border-radius-base: 0.5rem;
+
+  --banner-color-info-background: #e0e7f2;
+  --banner-color-info-color: #0f1928;
+
+  --banner-color-success-background: #cae9cb;
+  --banner-color-success-color: #10280f;
+
+  --banner-color-warning-background: #f8e1c4;
+  --banner-color-warning-color: #28190f;
+
+  --banner-color-critical-background: #f4d7d7;
+  --banner-color-critical-color: #280f0f;
+
+  --banner-color-border: #dadada;
+  --banner-border: var(--size-1) solid var(--banner-color-border);
+
+  --banner-font-family: system-ui, sans-serif;
+  --banner-font-size-message: var(--size-24);
+  --banner-icon-size: var(--size-24);
+  --banner-padding-block: var(--size-8);
+  --banner-padding-inline: var(--size-16);
+
+  --button-action-spacing-block: var(--size-4);
+  --button-action-spacing-inline: var(--size-8);
+  --button-border: var(--size-1) solid var(--color-neutral-900);
+  --button-active-background: var(--color-neutral-900);
+  --button-active-color: var(--color-inverted);
+
+  --link-active-decoration: none;
+  --link-active-color: inherit;
+
+  --outline-focus: var(--size-1) solid var(--color-neutral-900);
+  --outline-focus-offset: var(--size-2);
+
+  --color-neutral-900: #212121;
+  --color-inverted: #fff;
+
+  --size-1: 0.0625rem;
+  --size-2: 0.125rem;
+  --size-4: 0.25rem;
+  --size-8: 0.5rem;
+  --size-16: 1rem;
+  --size-24: 1.5rem;
+  --size-32: 2rem;
+  --size-48: 3rem;
+  --size-64: 4rem;
+  --size-80: 5rem;
+  --size-96: 6rem;
+}
+
+.alertbox-banner {
+  display: flex;
+  justify-content: space-between;
+  padding-block: var(--banner-padding-block);
+  padding-inline: var(--banner-padding-inline);
+
+  &.alertbox-banner-info {
+    background-color: var(--banner-color-info-background);
+    border: var(--banner-border);
+    color: var(--banner-color-info-color);
+  }
+
+  &.alertbox-banner-success {
+    background-color: var(--banner-color-success-background);
+    color: var(--banner-color-success-color);
+  }
+
+  &.alertbox-banner-warning {
+    background-color: var(--banner-color-warning-background);
+    color: var(--banner-color-warning-color);
+  }
+
+  &.alertbox-banner-critical {
+    background-color: var(--banner-color-critical-background);
+    color: var(--banner-color-critical-color);
+  }
+
+  .alertbox-banner-content {
+    align-items: center;
+    display: flex;
+    gap: var(--size-8);
+  }
+
+  svg-icon {
+    block-size: var(--banner-icon-size);
+    display: block;
+    inline-size: var(--banner-icon-size);
+  }
+
+  button {
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  a,
+  button {
+    &:focus-visible {
+      outline: var(--outline-focus);
+      outline-offset: var(--outline-focus-offset);
+    }
+  }
+
+  a:link,
+  a:visited {
+    color: var(--link-active-color);
+  }
+
+  a:hover,
+  a:focus,
+  a:focus-visible {
+    text-decoration: var(--link-active-decoration);
+  }
+
+  .alertbox-banner-actions {
+    align-items: center;
+    display: flex;
+    gap: var(--size-8);
+    justify-content: flex-end;
+
+    .alertbox-banner-action-button {
+      border: var(--button-border);
+      padding-block: var(--button-action-spacing-block);
+      padding-inline: var(--button-action-spacing-inline);
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        background-color: var(--button-active-background);
+        color: var(--button-active-color);
+      }
+    }
+  }
+
+  .alertbox-banner-dismiss {
+    align-self: center;
+    padding: var(--size-4);
+  }
+}
+
+.visually-hidden {
+  block-size: 1px;
+  clip-path: inset(50%);
+  inline-size: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}

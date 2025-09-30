@@ -1,0 +1,66 @@
+---
+alwaysApply: true
+---
+
+# Project Structure Guide
+
+This is a **Fiori Common Components** library - a collection of reusable web components with no external dependencies.
+
+## Project Overview
+
+- **Main Package**: [package.json](mdc:package.json) - Vanilla JS components with Vite build system
+- **React Package**: [fiori-react/package.json](mdc:fiori-react/package.json) - React wrapper components
+- **Entry Point**: [index.html](mdc:index.html) - Main demo page showcasing all components
+
+## Component Architecture
+
+### Component Structure Pattern
+
+Each component follows this consistent structure:
+
+```
+components/{component-name}/
+├── index.html              # Demo page with usage examples
+├── css/                    # Component styles
+│   ├── main.css           # Main component styles
+│   └── reset.css          # CSS reset (when needed)
+├── js/                     # JavaScript implementation
+│   ├── {component}-manager.js    # Main manager component
+│   ├── {component}-banner.js     # Individual component instances
+│   ├── {component}-events.js     # Event system
+│   ├── {component}-constants.js  # Constants and selectors
+│   └── validator/                # Schema validation (when needed)
+└── README.md               # Comprehensive documentation
+```
+
+### Key Components
+
+- **Alertbox**: [components/alertbox/](mdc:components/alertbox/) - Dismissible alert banners with themes
+- **Carousel**: [components/carousel/](mdc:components/carousel/) - Accessible image/video carousel
+- **SVG Icon**: [components/svg-icon/](mdc:components/svg-icon/) - Sprite-based icon system
+- **Card with Flyout**: [components/card-with-flyout/](mdc:components/card-with-flyout/) - Interactive card components
+- **Forms**: [components/forms/](mdc:components/forms/) - Form input components
+
+## Technology Stack
+
+### Vanilla JS Components
+
+- **Build Tool**: Vite ([vite.config.js](mdc:vite.config.js))
+- **Testing**: Vitest + Playwright ([playwright.config.js](mdc:playwright.config.js))
+- **Linting**: ESLint ([eslint.config.js](mdc:eslint.config.js))
+- **Validation**: Zod for schema validation
+- **Icons**: SVG sprite system with automated generation
+
+### React Components
+
+- **Framework**: React 19 with TypeScript
+- **Build**: Vite with React plugin ([fiori-react/vite.config.ts](mdc:fiori-react/vite.config.ts))
+- **Linting**: ESLint with React-specific rules
+
+## File Organization Rules
+
+1. **Components**: All reusable components go in `components/{name}/`
+2. **Tests**: E2E tests in `tests/`, unit tests alongside components
+3. **Assets**: Component-specific assets in `components/{name}/assets/`
+4. **Documentation**: Each component must have a comprehensive README.md
+5. **Examples**: Each component must have an `index.html` demo page

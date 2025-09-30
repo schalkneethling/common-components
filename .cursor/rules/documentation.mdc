@@ -1,0 +1,470 @@
+---
+alwaysApply: true
+---
+
+# Documentation Guidelines
+
+## Documentation Standards
+
+This project requires comprehensive documentation for all components and features.
+
+## README Structure
+
+### Component README Template
+
+Follow the pattern from [components/alertbox/README.md](mdc:components/alertbox/README.md):
+
+```markdown
+# Component Name
+
+Brief description of the component and its purpose.
+
+## Features
+
+- **Feature 1**: Description of key capability
+- **Feature 2**: Description of key capability
+- **Feature 3**: Description of key capability
+
+## Files Structure
+```
+
+component-name/
+├── index.html # Demo page with usage examples
+├── css/
+│ ├── main.css # Main component styles
+│ └── reset.css # CSS reset (when needed)
+├── js/
+│ ├── component-manager.js # Main manager component
+│ ├── component-banner.js # Individual component instances
+│ ├── component-events.js # Event system
+│ ├── component-constants.js # Constants and selectors
+│ └── validator/
+│ └── schema.js # Zod validation schema
+└── README.md # This documentation
+
+````
+
+## Installation
+
+1. Copy the `component-name` folder to your project
+2. Include the required scripts in your HTML:
+
+```html
+<!-- Include the component manager -->
+<script src="./js/component-manager.js" type="module"></script>
+
+<!-- Include dependencies -->
+<script src="../dependency/dependency.js" type="module"></script>
+````
+
+## Examples
+
+The component includes several example HTML files demonstrating different features:
+
+- `index.html` - Basic usage examples
+- `advanced.html` - Advanced configuration examples
+- `themes.html` - Theme customization examples
+
+## Usage
+
+### Basic Usage
+
+```html
+<!-- Basic component usage -->
+<component-manager
+  aria-labelledby="component-heading"
+  role="group"
+  config="component-config"
+>
+  <h2 class="visually-hidden" id="component-heading">Component description</h2>
+</component-manager>
+
+<!-- Configuration -->
+<script id="component-config" type="application/json">
+  [
+    {
+      "id": "example",
+      "message": "Example component",
+      "theme": "default"
+    }
+  ]
+</script>
+```
+
+### Programmatic Usage
+
+```html
+<component-manager id="my-component"></component-manager>
+
+<script>
+  const component = document.getElementById("my-component");
+
+  // Add component
+  component.addItem({
+    id: "example",
+    message: "Example component",
+    theme: "success",
+  });
+</script>
+```
+
+## API Reference
+
+### ComponentManager
+
+The main component that manages all items.
+
+#### Methods
+
+- `addItem(item)` - Add a single item
+- `addItems(items)` - Add multiple items
+- `getItems()` - Get all current items
+
+#### Attributes
+
+- `config` - ID of the JSON script element containing configuration
+
+#### Events
+
+- `click` - Handles button clicks
+- `component-event` - Custom event dispatched for interactions
+
+## Styling
+
+### CSS Custom Properties
+
+```css
+:root {
+  --component-color-background: #ffffff;
+  --component-color-text: #000000;
+  --component-border-radius: 0.5rem;
+  --component-padding: 1rem;
+}
+```
+
+### Custom Styling Examples
+
+```css
+/* Custom theme colors */
+:root {
+  --component-color-success-background: #d4edda;
+  --component-color-success-color: #155724;
+}
+
+/* Custom component styling */
+.component {
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+```
+
+## Accessibility
+
+The component is built with accessibility in mind:
+
+- **ARIA Roles**: Proper `role` attributes for screen readers
+- **Semantic HTML**: Uses appropriate HTML elements
+- **Keyboard Navigation**: All interactive elements are keyboard accessible
+- **Screen Reader Support**: Includes proper ARIA labels and descriptions
+
+### ARIA Implementation
+
+```html
+<!-- Manager with proper grouping -->
+<component-manager role="group" aria-labelledby="component-heading">
+  <h2 id="component-heading" class="visually-hidden">Component description</h2>
+</component-manager>
+
+<!-- Individual item -->
+<component-item role="status" class="component-item component-item-success">
+  <!-- Item content -->
+</component-item>
+```
+
+## Browser Support
+
+This component uses modern web standards and requires:
+
+- ES6 modules support
+- Custom Elements v1
+- CSS Custom Properties
+- Fetch API (for external configurations)
+
+**Minimum browser versions:**
+
+- Chrome 54+
+- Firefox 63+
+- Safari 10.1+
+- Edge 79+
+
+## Dependencies
+
+- **Dependency Name**: Description of dependency and why it's needed
+- **Another Dependency**: Description of another dependency
+
+## Error Handling
+
+The component includes comprehensive error handling:
+
+- **Validation Errors**: Invalid configurations are logged and skipped
+- **Duplicate IDs**: Duplicate IDs are ignored with a console warning
+- **Missing Configuration**: Graceful handling of missing or invalid JSON config
+
+## Performance
+
+- **Lazy Rendering**: Items are only rendered when the manager is connected to the DOM
+- **Efficient Updates**: Uses Map for O(1) item lookups
+- **Minimal DOM Manipulation**: Only updates necessary elements
+- **Validation Caching**: Schema validation is optimized for performance
+
+## Testing
+
+The component includes comprehensive unit tests covering:
+
+- Item addition and management
+- Validation error handling
+- Duplicate ID prevention
+- DOM integration
+- Configuration loading
+- Event system functionality
+
+### Test Files
+
+- `component-manager.test.js` - Tests for the main manager component
+- `component-events.test.js` - Tests for the event system
+
+Run tests with your preferred test runner:
+
+```bash
+# Using Vitest (as configured)
+npm test
+
+# Or with Node.js
+node component-manager.test.js
+```
+
+## License
+
+This component is part of the common-components library. Please refer to the main project license for usage terms.
+
+````
+
+## Code Documentation
+
+### JSDoc Comments
+```javascript
+/**
+ * Manages alert banners and notifications
+ * @class AlertBoxManager
+ * @extends HTMLElement
+ */
+export class AlertBoxManager extends HTMLElement {
+  /**
+   * Adds a single banner to the manager
+   * @param {Object} banner - Banner configuration object
+   * @param {string} banner.id - Unique identifier for the banner
+   * @param {string} banner.message - Banner message content
+   * @param {string} [banner.theme='default'] - Visual theme
+   * @param {boolean} [banner.dismissable=false] - Whether banner can be dismissed
+   * @throws {Error} When banner configuration is invalid
+   * @example
+   * // Add a success banner
+   * manager.addBanner({
+   *   id: 'success-1',
+   *   message: 'Operation completed successfully',
+   *   theme: 'success',
+   *   dismissable: true
+   * });
+   */
+  addBanner(banner) {
+    // Implementation
+  }
+}
+````
+
+### TypeScript Documentation
+
+```typescript
+/**
+ * Configuration object for alert banners
+ */
+interface BannerConfig {
+  /** Unique identifier for the banner */
+  id: string;
+  /** Banner message content (minimum 5 characters) */
+  message: string;
+  /** Visual theme for the banner */
+  theme?: "default" | "success" | "warning" | "critical";
+  /** Whether the banner can be dismissed */
+  dismissable?: boolean;
+  /** Dismissal behavior type */
+  dismissType?: "permanent" | "session" | "page";
+  /** ARIA role for the banner */
+  role?: "status" | "alert";
+  /** Interactive action configuration */
+  action?: ActionConfig;
+  /** Date range for banner display */
+  dateRange?: DateRangeConfig;
+}
+
+/**
+ * Action configuration for interactive elements
+ */
+interface ActionConfig {
+  /** Type of action */
+  type: "button" | "link";
+  /** Text displayed on the action element */
+  label: string;
+  /** URL for link actions */
+  url?: string;
+  /** Link target attribute */
+  target?: "_self" | "_blank" | "_parent" | "_top";
+}
+```
+
+## API Documentation
+
+### Method Documentation
+
+```javascript
+/**
+ * Adds multiple banners to the manager
+ * @param {Array<Object>} banners - Array of banner configuration objects
+ * @throws {Error} When banners parameter is not an array
+ * @fires component-event When banners are added successfully
+ * @fires component-event When validation errors occur
+ * @example
+ * // Add multiple banners
+ * manager.addBanners([
+ *   { id: 'info-1', message: 'Information message' },
+ *   { id: 'warning-1', message: 'Warning message', theme: 'warning' }
+ * ]);
+ */
+addBanners(banners) {
+  // Implementation
+}
+```
+
+### Event Documentation
+
+```javascript
+/**
+ * Custom event dispatched for component interactions
+ * @event component-event
+ * @type {CustomEvent}
+ * @property {Object} detail - Event details
+ * @property {Object} detail.componentConfig - Complete component configuration
+ * @property {string} detail.componentId - Unique identifier of the component
+ * @property {string} detail.eventType - Type of event (shown, dismissed, actioned, error)
+ * @property {string} detail.timestamp - ISO 8601 timestamp of when the event occurred
+ * @property {string} [detail.dismissType] - Type of dismissal (for dismissed events)
+ * @property {string} [detail.actionType] - Type of action (for actioned events)
+ * @property {Object} [detail.error] - Error object (for error events)
+ * @example
+ * // Listen for component events
+ * document.addEventListener('component-event', (event) => {
+ *   const { componentConfig, componentId, eventType } = event.detail;
+ *   console.log(`Component ${componentId} ${eventType}`);
+ * });
+ */
+```
+
+## Example Documentation
+
+### HTML Examples
+
+```html
+<!-- Basic usage example -->
+<component-manager
+  aria-labelledby="component-heading"
+  role="group"
+  config="component-config"
+>
+  <h2 class="visually-hidden" id="component-heading">Component description</h2>
+</component-manager>
+
+<script id="component-config" type="application/json">
+  [
+    {
+      "id": "example",
+      "message": "This is an example component",
+      "theme": "default"
+    }
+  ]
+</script>
+```
+
+### JavaScript Examples
+
+```javascript
+// Programmatic usage example
+const component = document.getElementById("my-component");
+
+// Add a single item
+component.addItem({
+  id: "example-1",
+  message: "Example message",
+  theme: "success",
+  dismissable: true,
+});
+
+// Add multiple items
+component.addItems([
+  { id: "info-1", message: "Information message" },
+  { id: "warning-1", message: "Warning message", theme: "warning" },
+]);
+
+// Listen for events
+document.addEventListener("component-event", (event) => {
+  const { componentId, eventType } = event.detail;
+  console.log(`Component ${componentId} ${eventType}`);
+});
+```
+
+### CSS Examples
+
+```css
+/* Custom styling example */
+:root {
+  --component-color-success-background: #d4edda;
+  --component-color-success-color: #155724;
+}
+
+.component {
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.component__button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+```
+
+## Documentation Maintenance
+
+### Keeping Documentation Updated
+
+1. Update documentation when adding new features
+2. Update examples when changing APIs
+3. Update browser support when using new features
+4. Update dependencies when adding new ones
+5. Update performance notes when optimizing
+
+### Documentation Review Checklist
+
+- [ ] All public APIs are documented
+- [ ] Examples are working and up-to-date
+- [ ] Browser support is accurate
+- [ ] Dependencies are listed
+- [ ] Performance notes are current
+- [ ] Accessibility features are documented
+- [ ] Error handling is explained
+- [ ] Testing instructions are provided
+
+### Documentation Tools
+
+- **Markdown**: For README files and documentation
+- **JSDoc**: For JavaScript/TypeScript code documentation
+- **TypeScript**: For type definitions and interfaces
+- **HTML Comments**: For inline documentation
+- **CSS Comments**: For styling documentation

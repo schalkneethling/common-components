@@ -1,0 +1,200 @@
+---
+globs: components/**/*.js,components/**/*.html
+---
+
+# Web Components Development Guidelines
+
+## Component Architecture
+
+### Web Component Pattern
+
+All components follow this pattern based on [components/alertbox/js/alertbox-manager.js](mdc:components/alertbox/js/alertbox-manager.js):
+
+```javascript
+export class ComponentManager extends HTMLElement {
+  #privateFields = new Map(); // Use private fields for internal state
+
+  constructor() {
+    super();
+    // Initialize component
+  }
+
+  connectedCallback() {
+    this.#render();
+    this.#addEventListeners();
+  }
+
+  #render() {
+    // Render component content
+  }
+
+  #addEventListeners() {
+    // Add event listeners
+  }
+}
+
+customElements.define("component-name", ComponentManager);
+```
+
+### File Organization
+
+- **Manager**: `{component}-manager.js` - Main component class
+- **Individual**: `{component}-banner.js` - Individual instances (when needed)
+- **Events**: `{component}-events.js` - Event system and dispatching
+- **Constants**: `{component}-constants.js` - Selectors and constants
+- **Validation**: `validator/schema.js` - Zod validation schemas
+
+## Accessibility Requirements
+
+### ARIA Implementation
+
+Follow the pattern from [components/alertbox/index.html](mdc:components/alertbox/index.html):
+
+```html
+<component-manager
+  aria-labelledby="component-heading"
+  role="group"
+  config="component-config"
+>
+  <h2 class="visually-hidden" id="component-heading">Component description</h2>
+</component-manager>
+```
+
+### Required ARIA Attributes
+
+- Use semantic HTML elements
+- Provide proper `role` attributes
+- Include `aria-labelledby` for grouped components
+- Add `aria-hidden="true"` for decorative elements
+- Use `aria-live` regions for dynamic content
+
+## Event System
+
+### Event Dispatching Pattern
+
+Follow [components/alertbox/js/alertbox-events.js](mdc:components/alertbox/js/alertbox-events.js):
+
+```javascript
+export function emitComponentEvent(config, eventType, additionalData = {}) {
+  const event = new CustomEvent("component-event", {
+    detail: {
+      componentConfig: config,
+      componentId: config.id,
+      eventType,
+      timestamp: new Date().toISOString(),
+      ...additionalData,
+    },
+  });
+
+  document.dispatchEvent(event);
+}
+```
+
+### Event Types
+
+- `shown` - When component is displayed
+- `dismissed` - When component is dismissed
+- `actioned` - When action buttons/links are clicked
+- `error` - When validation or other errors occur
+
+## Validation
+
+### Zod Schema Pattern
+
+Use Zod for validation as shown in [components/alertbox/js/validator/schema.js](mdc:components/alertbox/js/validator/schema.js):
+
+```javascript
+import { z } from "zod";
+
+export const componentSchema = z.object({
+  id: z.string().min(1, "Component ID is required"),
+  message: z.string().min(5, "Message must be at least 5 characters"),
+  theme: z.enum(["default", "success", "warning", "critical"]).optional(),
+  // ... other fields
+});
+
+export function validateComponent(component, index) {
+  const result = componentSchema.safeParse(component);
+  if (!result.success) {
+    throw new Error("Validation failed", { cause: result.error });
+  }
+  return result.data;
+}
+```
+
+## CSS Guidelines
+
+### CSS Custom Properties
+
+Use CSS custom properties for theming as in [components/alertbox/css/alertbox.css](mdc:components/alertbox/css/alertbox.css):
+
+```css
+:root {
+  --component-color-default-background: #e0e7f2;
+  --component-color-default-color: #0f1928;
+  --component-border-radius-base: 0.5rem;
+  --component-font-family: system-ui, sans-serif;
+}
+```
+
+### Class Naming Convention
+
+- `.component-name` - Main component class
+- `.component-name-{variant}` - Component variants
+- `.component-name-{element}` - Sub-elements
+- `.visually-hidden` - Screen reader only content
+
+## Testing Requirements
+
+### Unit Tests
+
+Follow [components/alertbox/js/alertbox-manager.test.js](mdc:components/alertbox/js/alertbox-manager.test.js):
+
+```javascript
+import { describe, test, expect, beforeEach } from "vitest";
+import { ComponentManager } from "./component-manager";
+
+describe("ComponentManager", () => {
+  beforeEach(() => {
+    // Setup before each test
+  });
+
+  test("should add component correctly", () => {
+    const manager = new ComponentManager();
+    manager.addComponent({ id: "test", message: "Test message" });
+    expect(manager.getComponents()).toHaveLength(1);
+  });
+});
+```
+
+### E2E Tests
+
+Follow [tests/alertbox.spec.js](mdc:tests/alertbox.spec.js):
+
+```javascript
+import { test, expect } from "@playwright/test";
+
+test("component should be accessible", async ({ page }) => {
+  await page.goto("/components/component/index.html");
+
+  const component = page.getByRole("group", { name: "Component description" });
+  await expect(component).toBeVisible();
+});
+```
+
+## Documentation Requirements
+
+### README Structure
+
+Each component must have a comprehensive README.md following [components/alertbox/README.md](mdc:components/alertbox/README.md):
+
+1. **Features** - Key capabilities
+2. **Files Structure** - Directory layout
+3. **Installation** - Setup instructions
+4. **Usage** - Basic and advanced examples
+5. **API Reference** - Methods and attributes
+6. **Styling** - CSS customization
+7. **Accessibility** - ARIA implementation
+8. **Browser Support** - Compatibility requirements
+9. **Testing** - How to run tests
+10. **Performance** - Optimization notes

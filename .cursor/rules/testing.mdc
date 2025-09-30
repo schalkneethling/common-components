@@ -1,0 +1,308 @@
+---
+globs: **/*.test.js,**/*.spec.js,tests/**/*
+---
+
+# Testing Guidelines
+
+## Testing Strategy
+
+This project uses a comprehensive testing approach with multiple testing frameworks:
+
+### Test Types
+
+- **Unit Tests**: Vitest for JavaScript unit tests
+- **E2E Tests**: Playwright for end-to-end testing
+- **Component Tests**: Vitest for web component testing
+
+## Unit Testing with Vitest
+
+### Configuration
+
+Follow [vite.config.js](mdc:vite.config.js) configuration:
+
+```javascript
+export default defineConfig({
+  test: {
+    exclude: [...configDefaults.exclude, "tests/**/*.spec.js"],
+    globals: true,
+    environment: "happy-dom",
+  },
+});
+```
+
+### Test File Organization
+
+- Unit tests: `{component}/js/{component}.test.js`
+- E2E tests: `tests/{component}.spec.js`
+- Test utilities: `tests/utils/` (if needed)
+
+### Unit Test Pattern
+
+Follow [components/alertbox/js/alertbox-manager.test.js](mdc:components/alertbox/js/alertbox-manager.test.js):
+
+```javascript
+import { beforeEach, describe, expect, test } from "vitest";
+import { ComponentManager } from "./component-manager";
+
+describe("ComponentManager", () => {
+  let capturedEvent;
+
+  beforeEach(() => {
+    capturedEvent = null;
+    document.addEventListener("component-event", (event) => {
+      capturedEvent = event;
+    });
+  });
+
+  test("should add component correctly", () => {
+    const manager = new ComponentManager();
+    manager.addComponent({ id: "test", message: "Test message" });
+    expect(manager.getComponents()).toHaveLength(1);
+  });
+
+  test("should handle validation errors", () => {
+    const manager = new ComponentManager();
+    manager.addComponent({ message: "Too short" }); // Invalid
+
+    expect(capturedEvent.detail.error).toBeDefined();
+    expect(capturedEvent.detail.error[0].message).toEqual(
+      "Message must be at least 5 characters",
+    );
+  });
+});
+```
+
+### Testing Web Components
+
+- Test component instantiation and DOM integration
+- Test event dispatching and handling
+- Test validation and error handling
+- Test state management and persistence
+- Mock DOM APIs when necessary
+
+## E2E Testing with Playwright
+
+### Configuration
+
+Follow [playwright.config.js](mdc:playwright.config.js):
+
+```javascript
+export default defineConfig({
+  testDir: "./tests",
+  testIgnore: ["**/*.test.js", "/components/**/*.*"],
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: "html",
+  use: {
+    baseURL: "http://localhost:5173",
+    trace: "on-first-retry",
+  },
+  projects: [
+    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    { name: "firefox", use: { ...devices["Desktop Firefox"] } },
+    { name: "webkit", use: { ...devices["Desktop Safari"] } },
+  ],
+  webServer: {
+    command: "npm run dev",
+    url: "http://localhost:5173",
+    reuseExistingServer: !process.env.CI,
+  },
+});
+```
+
+### E2E Test Pattern
+
+Follow [tests/alertbox.spec.js](mdc:tests/alertbox.spec.js):
+
+```javascript
+import { test, expect } from "@playwright/test";
+
+test("component should be accessible", async ({ page }) => {
+  await page.goto("/components/component/index.html");
+
+  const component = page.getByRole("group", { name: "Component description" });
+  await expect(component).toBeVisible();
+});
+
+test("should handle user interactions", async ({ page }) => {
+  await page.goto("/components/component/index.html");
+
+  const button = page.getByRole("button", { name: "Dismiss" });
+  await expect(button).toBeVisible();
+
+  await button.click();
+  await expect(button).not.toBeVisible();
+});
+
+test("should persist state across page reloads", async ({ page }) => {
+  await page.goto("/components/component/index.html");
+
+  const component = page.getByRole("group");
+  await expect(component).toBeVisible();
+
+  // Perform action that should persist
+  await page.getByRole("button").click();
+
+  await page.reload();
+
+  // Verify state persistence
+  await expect(component).not.toBeVisible();
+});
+```
+
+### E2E Testing Best Practices
+
+- Test user workflows, not implementation details
+- Use semantic selectors (roles, labels, text content)
+- Test accessibility features
+- Test cross-browser compatibility
+- Test responsive behavior
+- Test error states and edge cases
+
+## Accessibility Testing
+
+### ARIA Testing
+
+```javascript
+test("should have proper ARIA attributes", async ({ page }) => {
+  await page.goto("/components/component/index.html");
+
+  const component = page.getByRole("group", { name: "Component description" });
+  await expect(component).toHaveAttribute(
+    "aria-labelledby",
+    "component-heading",
+  );
+
+  const heading = page.getByRole("heading", { name: "Component description" });
+  await expect(heading).toHaveAttribute("id", "component-heading");
+});
+```
+
+### Keyboard Navigation Testing
+
+```javascript
+test("should be navigable with keyboard", async ({ page }) => {
+  await page.goto("/components/component/index.html");
+
+  // Tab to component
+  await page.keyboard.press("Tab");
+  const focusedElement = page.locator(":focus");
+  await expect(focusedElement).toHaveClass("component");
+
+  // Test keyboard interactions
+  await page.keyboard.press("Enter");
+  // Verify expected behavior
+});
+```
+
+## Test Data Management
+
+### Test Fixtures
+
+Create reusable test data:
+
+```javascript
+const testComponents = [
+  { id: "basic", message: "Basic component" },
+  { id: "success", message: "Success component", theme: "success" },
+  { id: "warning", message: "Warning component", theme: "warning" },
+  { id: "critical", message: "Critical component", theme: "critical" },
+];
+```
+
+### Mock Data
+
+```javascript
+const mockConfig = {
+  components: testComponents,
+  settings: {
+    theme: "default",
+    dismissable: true,
+  },
+};
+```
+
+## Performance Testing
+
+### Component Performance
+
+```javascript
+test("should render efficiently", async ({ page }) => {
+  const startTime = Date.now();
+
+  await page.goto("/components/component/index.html");
+
+  const renderTime = Date.now() - startTime;
+  expect(renderTime).toBeLessThan(1000); // Should render in under 1 second
+});
+```
+
+### Memory Leak Testing
+
+```javascript
+test("should not leak memory", async ({ page }) => {
+  await page.goto("/components/component/index.html");
+
+  // Perform actions that might cause memory leaks
+  for (let i = 0; i < 100; i++) {
+    await page.getByRole("button").click();
+    await page.waitForTimeout(10);
+  }
+
+  // Check memory usage or component cleanup
+  const components = await page.locator("component-banner").count();
+  expect(components).toBeLessThan(100); // Should clean up properly
+});
+```
+
+## Test Commands
+
+### Running Tests
+
+```bash
+# Unit tests
+npm test
+
+# E2E tests
+npm run test:playwright
+
+# E2E tests with UI
+npm run test:playwright:ui
+
+# E2E tests on specific browser
+npm run test:playwright:chromium
+```
+
+### CI/CD Testing
+
+- Tests run on all supported browsers
+- Parallel execution for faster feedback
+- Retry failed tests on CI
+- Generate HTML reports for test results
+
+## Test Coverage
+
+### Coverage Requirements
+
+- Aim for 90%+ code coverage on critical components
+- Test all public APIs and methods
+- Test error conditions and edge cases
+- Test accessibility features
+- Test cross-browser compatibility
+
+### Coverage Reporting
+
+```javascript
+// Add to vite.config.js
+export default defineConfig({
+  test: {
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html"],
+      exclude: ["node_modules/", "tests/"],
+    },
+  },
+});
+```

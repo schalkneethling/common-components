@@ -1,0 +1,457 @@
+---
+globs: **/*.css
+---
+
+# CSS and Styling Guidelines
+
+## CSS Architecture
+
+### File Organization
+
+Follow the pattern established in [components/alertbox/css/](mdc:components/alertbox/css/):
+
+```
+css/
+├── main.css           # Main component styles
+├── reset.css          # CSS reset (when needed)
+└── themes.css         # Theme-specific styles (when needed)
+```
+
+### CSS Reset
+
+Use [components/alertbox/css/reset.css](mdc:components/alertbox/css/reset.css) as the base reset:
+
+```css
+/* CSS Reset for component isolation */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure consistent font rendering */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+```
+
+## CSS Custom Properties
+
+### Design System Variables
+
+Follow the pattern from [components/alertbox/css/alertbox.css](mdc:components/alertbox/css/alertbox.css):
+
+```css
+:root {
+  /* Base styling */
+  --border-radius-base: 0.5rem;
+  --component-font-family: system-ui, sans-serif;
+  --component-font-size-message: 1.5rem;
+  --component-icon-size: 1.5rem;
+  --component-padding-block: 0.5rem;
+  --component-padding-inline: 1rem;
+
+  /* Theme colors */
+  --component-color-default-background: #e0e7f2;
+  --component-color-default-color: #0f1928;
+  --component-color-success-background: #cae9cb;
+  --component-color-success-color: #10280f;
+  --component-color-warning-background: #f8e1c4;
+  --component-color-warning-color: #28190f;
+  --component-color-critical-background: #f4d7d7;
+  --component-color-critical-color: #280f0f;
+}
+```
+
+### Component-Specific Variables
+
+```css
+.component {
+  /* Use semantic variable names */
+  --component-background: var(--component-color-default-background);
+  --component-color: var(--component-color-default-color);
+  --component-border-radius: var(--border-radius-base);
+  --component-padding: var(--component-padding-block)
+    var(--component-padding-inline);
+
+  /* Component-specific variables */
+  --component-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --component-transition: all 0.2s ease;
+}
+```
+
+## Component Styling
+
+### BEM Methodology
+
+Use BEM (Block Element Modifier) naming convention:
+
+```css
+/* Block */
+.component {
+}
+
+/* Element */
+.component__header {
+}
+.component__content {
+}
+.component__footer {
+}
+
+/* Modifier */
+.component--success {
+}
+.component--warning {
+}
+.component--critical {
+}
+.component--dismissable {
+}
+
+/* Element with modifier */
+.component__button--primary {
+}
+.component__button--secondary {
+}
+```
+
+### Component Structure
+
+```css
+.component {
+  /* Base styles */
+  display: flex;
+  align-items: center;
+  padding: var(--component-padding);
+  border-radius: var(--component-border-radius);
+  background: var(--component-background);
+  color: var(--component-color);
+  font-family: var(--component-font-family);
+  font-size: var(--component-font-size-message);
+
+  /* Layout */
+  gap: 0.5rem;
+  min-height: 3rem;
+
+  /* Visual */
+  box-shadow: var(--component-shadow);
+  transition: var(--component-transition);
+}
+
+.component__content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.component__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+```
+
+## Theme System
+
+### Theme Classes
+
+```css
+/* Default theme */
+.component--default {
+  --component-background: var(--component-color-default-background);
+  --component-color: var(--component-color-default-color);
+}
+
+/* Success theme */
+.component--success {
+  --component-background: var(--component-color-success-background);
+  --component-color: var(--component-color-success-color);
+}
+
+/* Warning theme */
+.component--warning {
+  --component-background: var(--component-color-warning-background);
+  --component-color: var(--component-color-warning-color);
+}
+
+/* Critical theme */
+.component--critical {
+  --component-background: var(--component-color-critical-background);
+  --component-color: var(--component-color-critical-color);
+}
+```
+
+### Dark Mode Support
+
+```css
+@media (prefers-color-scheme: dark) {
+  :root {
+    --component-color-default-background: #2d3748;
+    --component-color-default-color: #e2e8f0;
+    --component-color-success-background: #22543d;
+    --component-color-success-color: #c6f6d5;
+    /* ... other dark mode colors */
+  }
+}
+
+/* Manual dark mode class */
+.dark-mode {
+  --component-color-default-background: #2d3748;
+  --component-color-default-color: #e2e8f0;
+  /* ... other dark mode colors */
+}
+```
+
+## Responsive Design
+
+### Mobile-First Approach
+
+```css
+/* Base styles (mobile) */
+.component {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .component {
+    padding: 0.75rem;
+    font-size: 1.125rem;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .component {
+    padding: 1rem;
+    font-size: 1.25rem;
+  }
+}
+```
+
+### Container Queries (when supported)
+
+```css
+@container (min-width: 300px) {
+  .component {
+    flex-direction: row;
+  }
+}
+
+@container (max-width: 299px) {
+  .component {
+    flex-direction: column;
+  }
+}
+```
+
+## Accessibility
+
+### Focus Management
+
+```css
+.component:focus-within {
+  outline: 2px solid var(--component-focus-color, #0066cc);
+  outline-offset: 2px;
+}
+
+.component__button:focus {
+  outline: 2px solid var(--component-focus-color, #0066cc);
+  outline-offset: 2px;
+}
+
+/* Remove default focus outline and add custom */
+.component__button:focus:not(:focus-visible) {
+  outline: none;
+}
+```
+
+### Screen Reader Support
+
+```css
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+```
+
+### High Contrast Support
+
+```css
+@media (prefers-contrast: high) {
+  .component {
+    border: 2px solid currentColor;
+  }
+
+  .component__button {
+    border: 2px solid currentColor;
+  }
+}
+```
+
+## Animation and Transitions
+
+### Smooth Transitions
+
+```css
+.component {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.component:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.component:active {
+  transform: translateY(0);
+}
+```
+
+### Reduced Motion Support
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .component {
+    transition: none;
+  }
+
+  .component:hover {
+    transform: none;
+  }
+}
+```
+
+## Performance
+
+### Efficient Selectors
+
+```css
+/* Good: Specific and efficient */
+.component__button {
+}
+
+/* Avoid: Overly specific */
+.component .component__content .component__button {
+}
+
+/* Avoid: Universal selectors */
+.component * {
+}
+```
+
+### CSS Optimization
+
+- Use `transform` and `opacity` for animations
+- Avoid triggering layout and paint
+- Use `will-change` sparingly
+- Minimize CSS specificity conflicts
+
+## Browser Support
+
+### Progressive Enhancement
+
+```css
+/* Base styles for all browsers */
+.component {
+  display: flex;
+  padding: 1rem;
+}
+
+/* Enhanced styles for modern browsers */
+@supports (display: grid) {
+  .component {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+}
+
+/* Fallback for older browsers */
+@supports not (display: flex) {
+  .component {
+    display: block;
+  }
+}
+```
+
+### Vendor Prefixes
+
+```css
+.component {
+  /* Use autoprefixer or similar tool */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  -webkit-border-radius: var(--component-border-radius);
+  -moz-border-radius: var(--component-border-radius);
+  border-radius: var(--component-border-radius);
+}
+```
+
+## Code Quality
+
+### CSS Linting
+
+Follow [package.json](mdc:package.json) stylelint configuration:
+
+```bash
+# Lint CSS files
+npm run lint:css
+
+# Format CSS files
+npm run prettier:format
+```
+
+### CSS Organization
+
+```css
+/* 1. CSS Custom Properties */
+:root {
+}
+
+/* 2. Reset/Normalize */
+* {
+}
+
+/* 3. Base styles */
+.component {
+}
+
+/* 4. Layout */
+.component__content {
+}
+
+/* 5. Components */
+.component__button {
+}
+
+/* 6. Utilities */
+.visually-hidden {
+}
+
+/* 7. Media queries */
+@media (min-width: 768px) {
+}
+```

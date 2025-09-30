@@ -1,0 +1,266 @@
+---
+globs: fiori-react/**/*.tsx,fiori-react/**/*.ts
+---
+
+# React Components Development Guidelines
+
+## React Component Architecture
+
+### Component Structure
+
+Follow the pattern established in [fiori-react/src/App.tsx](mdc:fiori-react/src/App.tsx):
+
+```typescript
+import { useState } from 'react'
+import './Component.css'
+
+interface ComponentProps {
+  // Define props interface
+}
+
+function Component({ prop1, prop2 }: ComponentProps) {
+  const [state, setState] = useState(initialValue)
+
+  return (
+    <div className="component">
+      {/* Component JSX */}
+    </div>
+  )
+}
+
+export default Component
+```
+
+### TypeScript Configuration
+
+- Use TypeScript for all React components
+- Define interfaces for all props
+- Use proper typing for state and effects
+- Follow [fiori-react/tsconfig.json](mdc:fiori-react/tsconfig.json) configuration
+
+## Build System
+
+### Vite Configuration
+
+Use [fiori-react/vite.config.ts](mdc:fiori-react/vite.config.ts) as the base:
+
+```typescript
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+});
+```
+
+### Package Management
+
+Follow [fiori-react/package.json](mdc:fiori-react/package.json) structure:
+
+- Use React 19+ with latest features
+- Include proper TypeScript types
+- Use Vite for build tooling
+- Include ESLint with React-specific rules
+
+## Component Guidelines
+
+### Props Interface
+
+Always define TypeScript interfaces for component props:
+
+```typescript
+interface AlertBoxProps {
+  id: string;
+  message: string;
+  theme?: "default" | "success" | "warning" | "critical";
+  dismissable?: boolean;
+  onDismiss?: (id: string) => void;
+  onAction?: (id: string, actionType: string) => void;
+}
+```
+
+### State Management
+
+- Use `useState` for local component state
+- Use `useEffect` for side effects
+- Prefer controlled components over uncontrolled
+- Use proper dependency arrays in useEffect
+
+### Event Handling
+
+```typescript
+const handleDismiss = (id: string) => {
+  onDismiss?.(id);
+  // Additional dismiss logic
+};
+
+const handleAction = (id: string, actionType: string) => {
+  onAction?.(id, actionType);
+  // Additional action logic
+};
+```
+
+## Styling
+
+### CSS Modules or Styled Components
+
+- Use CSS modules for component-specific styles
+- Follow the naming convention: `Component.module.css`
+- Import styles: `import styles from './Component.module.css'`
+- Use className: `className={styles.component}`
+
+### CSS Custom Properties
+
+Leverage CSS custom properties for theming:
+
+```css
+.component {
+  --component-color-background: var(--color-background, #ffffff);
+  --component-color-text: var(--color-text, #000000);
+  --component-border-radius: var(--border-radius, 0.5rem);
+}
+```
+
+## Testing
+
+### Component Testing
+
+- Write unit tests for component logic
+- Test user interactions and state changes
+- Mock external dependencies
+- Test accessibility features
+
+### Testing Pattern
+
+```typescript
+import { render, screen, fireEvent } from '@testing-library/react'
+import Component from './Component'
+
+describe('Component', () => {
+  test('renders with correct props', () => {
+    render(<Component id="test" message="Test message" />)
+    expect(screen.getByText('Test message')).toBeInTheDocument()
+  })
+
+  test('handles dismiss action', () => {
+    const onDismiss = jest.fn()
+    render(<Component id="test" message="Test" onDismiss={onDismiss} />)
+
+    fireEvent.click(screen.getByRole('button'))
+    expect(onDismiss).toHaveBeenCalledWith('test')
+  })
+})
+```
+
+## Accessibility
+
+### ARIA Implementation
+
+- Use proper ARIA attributes
+- Ensure keyboard navigation works
+- Provide screen reader support
+- Test with accessibility tools
+
+### Accessible Component Pattern
+
+```typescript
+<div
+  role="group"
+  aria-labelledby="component-heading"
+  className="component"
+>
+  <h2 id="component-heading" className="visually-hidden">
+    Component description
+  </h2>
+  {/* Component content */}
+</div>
+```
+
+## Performance
+
+### Optimization Guidelines
+
+- Use `React.memo` for expensive components
+- Use `useMemo` and `useCallback` for expensive calculations
+- Lazy load components when appropriate
+- Minimize re-renders with proper dependency arrays
+
+### Memoization Pattern
+
+```typescript
+const Component = React.memo(({ data, onAction }: ComponentProps) => {
+  const processedData = useMemo(() => {
+    return data.map(item => processItem(item))
+  }, [data])
+
+  const handleAction = useCallback((id: string) => {
+    onAction(id)
+  }, [onAction])
+
+  return (
+    <div>
+      {/* Component content */}
+    </div>
+  )
+})
+```
+
+## Integration with Vanilla Components
+
+### Web Component Integration
+
+When wrapping vanilla web components:
+
+```typescript
+import { useEffect, useRef } from 'react'
+
+function AlertBoxWrapper({ config, onEvent }: AlertBoxWrapperProps) {
+  const managerRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const manager = managerRef.current
+    if (!manager) return
+
+    const handleEvent = (event: CustomEvent) => {
+      onEvent?.(event.detail)
+    }
+
+    document.addEventListener('alertbox-event', handleEvent)
+    return () => {
+      document.removeEventListener('alertbox-event', handleEvent)
+    }
+  }, [onEvent])
+
+  return (
+    <alertbox-manager
+      ref={managerRef}
+      config={config}
+      aria-labelledby="alertbox-heading"
+      role="group"
+    >
+      <h2 id="alertbox-heading" className="visually-hidden">
+        Site notifications
+      </h2>
+    </alertbox-manager>
+  )
+}
+```
+
+## Code Quality
+
+### ESLint Configuration
+
+Follow [fiori-react/eslint.config.js](mdc:fiori-react/eslint.config.js):
+
+- Use React Hooks rules
+- Enable React Refresh plugin
+- Follow TypeScript best practices
+- Use Prettier for formatting
+
+### Code Organization
+
+- One component per file
+- Export default for main component
+- Export named exports for utilities
+- Group imports: React, third-party, local
+- Use absolute imports when configured
