@@ -1,0 +1,490 @@
+---
+alwaysApply: true
+---
+
+# Performance Guidelines
+
+## Performance Optimization Principles
+
+This project prioritizes performance and follows modern web performance best practices.
+
+## JavaScript Performance
+
+### Lazy Loading
+
+Follow the pattern from [components/alertbox/js/alertbox-manager.js](mdc:components/alertbox/js/alertbox-manager.js):
+
+```javascript
+export class ComponentManager extends HTMLElement {
+  #banners = new Map(); // Use Map for O(1) lookups
+
+  connectedCallback() {
+    // Only render when connected to DOM
+    if (this.isConnected) {
+      this.#render();
+    }
+  }
+
+  #render() {
+    // Lazy render only when needed
+    if (!this.#configId) return;
+
+    const config = document.getElementById(this.#configId);
+    if (!config) return;
+
+    // Process and render
+  }
+}
+```
+
+### Efficient Data Structures
+
+```javascript
+// Use Map for O(1) lookups instead of Array.find()
+const items = new Map();
+items.set(id, item); // O(1)
+const item = items.get(id); // O(1)
+
+// Use Set for unique values
+const uniqueIds = new Set();
+uniqueIds.add(id); // O(1)
+const hasId = uniqueIds.has(id); // O(1)
+```
+
+### Event Delegation
+
+```javascript
+// Use event delegation for better performance
+class ComponentManager extends HTMLElement {
+  #addEventListeners() {
+    // Single event listener on parent instead of multiple on children
+    this.addEventListener("click", this.#handleClick);
+  }
+
+  #handleClick(event) {
+    const target = event.target;
+    const button = target.closest(".component-button");
+
+    if (button) {
+      this.#handleButtonClick(button);
+    }
+  }
+}
+```
+
+### Debouncing and Throttling
+
+```javascript
+// Debounce expensive operations
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Throttle scroll events
+function throttle(func, limit) {
+  let inThrottle;
+  return function () {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+}
+```
+
+## CSS Performance
+
+### Efficient Selectors
+
+```css
+/* Good: Specific and efficient */
+.component__button {
+}
+
+/* Avoid: Overly specific selectors */
+.component .component__content .component__button {
+}
+
+/* Avoid: Universal selectors */
+.component * {
+}
+
+/* Avoid: Attribute selectors with complex patterns */
+[class*="component-"] {
+}
+```
+
+### CSS Custom Properties
+
+```css
+/* Use CSS custom properties for theming */
+:root {
+  --component-color-background: #ffffff;
+  --component-color-text: #000000;
+}
+
+.component {
+  background: var(--component-color-background);
+  color: var(--component-color-text);
+}
+
+/* Avoid recalculating values */
+.component {
+  /* Good: Use pre-calculated values */
+  transform: translateX(100px);
+
+  /* Avoid: Complex calculations */
+  transform: translateX(calc(100% - 20px));
+}
+```
+
+### Animation Performance
+
+```css
+/* Use transform and opacity for animations */
+.component {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.component:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Avoid animating layout properties */
+.component {
+  /* Bad: Animating layout properties */
+  transition:
+    width 0.3s ease,
+    height 0.3s ease;
+
+  /* Good: Animating transform and opacity */
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+```
+
+## Asset Optimization
+
+### Image Optimization
+
+Follow the pattern from [components/carousel/index.html](mdc:components/carousel/index.html):
+
+```html
+<!-- Use modern image formats with fallbacks -->
+<picture>
+  <source srcset="./assets/image.avif" type="image/avif" />
+  <source srcset="./assets/image.webp" type="image/webp" />
+  <img
+    src="./assets/image.png"
+    alt="Descriptive alt text"
+    width="800"
+    height="600"
+    loading="lazy"
+  />
+</picture>
+```
+
+### SVG Optimization
+
+```html
+<!-- Inline SVGs for small icons -->
+<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+  <path
+    d="M8 0l2.5 5.5L16 6l-4.5 4.5L13 16l-5-2.5L3 16l1.5-5.5L0 6l5.5-.5L8 0z"
+  />
+</svg>
+
+<!-- Use sprite sheets for multiple icons -->
+<svg class="icon">
+  <use href="#icon-name"></use>
+</svg>
+```
+
+### Font Loading
+
+```css
+/* Optimize font loading */
+@font-face {
+  font-family: "CustomFont";
+  src: url("./fonts/custom-font.woff2") format("woff2");
+  font-display: swap; /* Show fallback font while loading */
+  font-weight: 400;
+  font-style: normal;
+}
+```
+
+## Bundle Optimization
+
+### Code Splitting
+
+```javascript
+// Dynamic imports for code splitting
+async function loadComponent() {
+  const { ComponentManager } = await import("./component-manager.js");
+  return ComponentManager;
+}
+
+// Lazy load components
+const LazyComponent = React.lazy(() => import("./LazyComponent"));
+```
+
+### Tree Shaking
+
+```javascript
+// Use named imports for better tree shaking
+import { validateBanner } from "./validator/schema.js";
+import { emitEvent } from "./events.js";
+
+// Avoid default imports when possible
+import * as utils from "./utils.js"; // Bad
+import { specificUtil } from "./utils.js"; // Good
+```
+
+### Minification
+
+```javascript
+// Use build tools for minification
+// Vite automatically minifies in production
+// Ensure dead code elimination
+if (process.env.NODE_ENV === "development") {
+  console.log("Debug information");
+}
+```
+
+## Network Performance
+
+### HTTP/2 Optimization
+
+```html
+<!-- Use HTTP/2 server push for critical resources -->
+<link rel="preload" href="/css/critical.css" as="style" />
+<link rel="preload" href="/js/critical.js" as="script" />
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://cdn.example.com" />
+```
+
+### Caching Strategy
+
+```html
+<!-- Set appropriate cache headers -->
+<meta http-equiv="Cache-Control" content="public, max-age=31536000" />
+
+<!-- Use versioned assets -->
+<link rel="stylesheet" href="/css/main.css?v=1.0.0" />
+<script src="/js/main.js?v=1.0.0"></script>
+```
+
+### Compression
+
+```javascript
+// Enable gzip/brotli compression
+// Configure server to compress text assets
+// Use appropriate compression levels
+```
+
+## Memory Management
+
+### Event Listener Cleanup
+
+```javascript
+class ComponentManager extends HTMLElement {
+  connectedCallback() {
+    this.#addEventListeners();
+  }
+
+  disconnectedCallback() {
+    this.#removeEventListeners();
+  }
+
+  #addEventListeners() {
+    this.#handleClick = this.#handleClick.bind(this);
+    document.addEventListener("click", this.#handleClick);
+  }
+
+  #removeEventListeners() {
+    document.removeEventListener("click", this.#handleClick);
+  }
+}
+```
+
+### DOM Cleanup
+
+```javascript
+// Clean up DOM references
+class ComponentManager extends HTMLElement {
+  #banners = new Map();
+
+  removeBanner(id) {
+    const banner = this.#banners.get(id);
+    if (banner) {
+      banner.remove(); // Remove from DOM
+      this.#banners.delete(id); // Remove from Map
+    }
+  }
+
+  disconnectedCallback() {
+    // Clean up all banners
+    this.#banners.clear();
+  }
+}
+```
+
+### Weak References
+
+```javascript
+// Use WeakMap for object associations
+const privateData = new WeakMap();
+
+class Component {
+  constructor() {
+    privateData.set(this, {
+      internalState: "value",
+    });
+  }
+
+  getInternalState() {
+    return privateData.get(this).internalState;
+  }
+}
+```
+
+## Performance Monitoring
+
+### Core Web Vitals
+
+Monitor these key metrics:
+
+- **LCP (Largest Contentful Paint)**: < 2.5s
+- **FID (First Input Delay)**: < 100ms
+- **CLS (Cumulative Layout Shift)**: < 0.1
+
+### Performance Measurement
+
+```javascript
+// Measure component performance
+function measureComponentPerformance(componentName, operation) {
+  const start = performance.now();
+  operation();
+  const end = performance.now();
+
+  console.log(`${componentName} took ${end - start} milliseconds`);
+}
+
+// Use Performance Observer
+const observer = new PerformanceObserver((list) => {
+  for (const entry of list.getEntries()) {
+    console.log(entry.name, entry.duration);
+  }
+});
+
+observer.observe({ entryTypes: ["measure", "navigation"] });
+```
+
+### Bundle Analysis
+
+```bash
+# Analyze bundle size
+npm run build
+npx vite-bundle-analyzer dist
+
+# Check for duplicate dependencies
+npx duplicate-package-checker
+```
+
+## Testing Performance
+
+### Performance Tests
+
+```javascript
+// Test component rendering performance
+test("component should render efficiently", async ({ page }) => {
+  const startTime = Date.now();
+
+  await page.goto("/components/component/index.html");
+
+  const renderTime = Date.now() - startTime;
+  expect(renderTime).toBeLessThan(1000); // Should render in under 1 second
+});
+
+// Test memory usage
+test("component should not leak memory", async ({ page }) => {
+  await page.goto("/components/component/index.html");
+
+  // Perform actions that might cause memory leaks
+  for (let i = 0; i < 100; i++) {
+    await page.getByRole("button").click();
+  }
+
+  // Check memory usage
+  const memoryUsage = await page.evaluate(() => {
+    return performance.memory.usedJSHeapSize;
+  });
+
+  expect(memoryUsage).toBeLessThan(50 * 1024 * 1024); // Less than 50MB
+});
+```
+
+### Lighthouse Testing
+
+```bash
+# Run Lighthouse audits
+npx lighthouse http://localhost:5173 --output html --output-path ./lighthouse-report.html
+
+# Run Lighthouse CI
+npx lhci autorun
+```
+
+## Performance Budget
+
+### Asset Size Limits
+
+- **JavaScript**: < 100KB gzipped per component
+- **CSS**: < 10KB gzipped per component
+- **Images**: < 100KB per image
+- **Total page weight**: < 500KB gzipped
+
+### Performance Targets
+
+- **First Contentful Paint**: < 1.5s
+- **Time to Interactive**: < 3s
+- **Largest Contentful Paint**: < 2.5s
+- **Cumulative Layout Shift**: < 0.1
+
+### Monitoring
+
+```javascript
+// Set up performance monitoring
+if (typeof window !== "undefined" && "performance" in window) {
+  window.addEventListener("load", () => {
+    // Report Core Web Vitals
+    const vitals = {
+      lcp: performance.getEntriesByType("largest-contentful-paint")[0]
+        ?.startTime,
+      fid: performance.getEntriesByType("first-input")[0]?.processingStart,
+      cls: performance
+        .getEntriesByType("layout-shift")
+        .reduce((sum, entry) => sum + entry.value, 0),
+    };
+
+    // Send to analytics
+    console.log("Performance metrics:", vitals);
+  });
+}
+```

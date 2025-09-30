@@ -166,7 +166,7 @@ The component includes several example HTML files demonstrating different featur
 
 The component supports four built-in themes:
 
-- `default` - Neutral gray theme for general information
+- `info` - Neutral blue theme for general information
 - `success` - Green theme for positive feedback
 - `warning` - Orange theme for cautionary messages
 - `critical` - Red theme for errors and urgent alerts
@@ -175,16 +175,16 @@ The component supports four built-in themes:
 
 Each banner is configured using a JavaScript object with the following properties:
 
-| Property      | Type    | Required | Default   | Description                                        |
-| ------------- | ------- | -------- | --------- | -------------------------------------------------- |
-| `id`          | string  | Yes      | -         | Unique identifier for the banner                   |
-| `message`     | string  | Yes      | -         | The text content to display (min 5 characters)     |
-| `theme`       | string  | No       | `default` | Visual theme (default, success, warning, critical) |
-| `dismissable` | boolean | No       | `false`   | Whether the banner can be dismissed                |
-| `dismissType` | string  | No       | `page`    | Dismiss behavior (permanent, session, page)        |
-| `role`        | string  | No       | `status`  | ARIA role (status, alert)                          |
-| `action`      | object  | No       | -         | Interactive action (button or link)                |
-| `dateRange`   | object  | No       | -         | Date range for when banner should be displayed     |
+| Property      | Type    | Required | Default  | Description                                     |
+| ------------- | ------- | -------- | -------- | ----------------------------------------------- |
+| `id`          | string  | Yes      | -        | Unique identifier for the banner                |
+| `message`     | string  | Yes      | -        | The text content to display (min 5 characters)  |
+| `theme`       | string  | No       | `info`   | Visual theme (info, success, warning, critical) |
+| `dismissable` | boolean | No       | `false`  | Whether the banner can be dismissed             |
+| `dismissType` | string  | No       | `page`   | Dismiss behavior (permanent, session, page)     |
+| `role`        | string  | No       | `status` | ARIA role (status, alert)                       |
+| `action`      | object  | No       | -        | Interactive action (button or link)             |
+| `dateRange`   | object  | No       | -        | Date range for when banner should be displayed  |
 
 ### Action Configuration
 
@@ -201,10 +201,12 @@ The `action` property allows you to add interactive elements to banners:
 
 The `dateRange` property allows you to control when banners are displayed:
 
-| Property | Type   | Required | Description                     |
-| -------- | ------ | -------- | ------------------------------- |
-| `start`  | string | Yes      | Start date in YYYY-MM-DD format |
-| `end`    | string | Yes      | End date in YYYY-MM-DD format   |
+| Property | Type   | Required | Description                                |
+| -------- | ------ | -------- | ------------------------------------------ |
+| `start`  | string | Yes      | Start date in YYYY-MM-DD format (ISO date) |
+| `end`    | string | Yes      | End date in YYYY-MM-DD format (ISO date)   |
+
+**Note:** The start date must be before the end date. Invalid date ranges will cause validation errors.
 
 ### Example Configurations
 
@@ -256,7 +258,7 @@ The `dateRange` property allows you to control when banners are displayed:
 {
   "id": "link-1",
   "message": "Visit our documentation",
-  "theme": "default",
+  "theme": "info",
   "action": {
     "type": "link",
     "label": "Open Docs",
@@ -270,7 +272,7 @@ The `dateRange` property allows you to control when banners are displayed:
 {
   "id": "permanent-1",
   "message": "This banner will be permanently dismissed",
-  "theme": "default",
+  "theme": "info",
   "dismissable": true,
   "dismissType": "permanent"
 }
@@ -304,9 +306,9 @@ The component uses CSS custom properties for easy theming and customization:
   --banner-padding-block: 0.5rem;
   --banner-padding-inline: 1rem;
 
-  /* Default theme */
-  --banner-color-default-background: #e0e7f2;
-  --banner-color-default-color: #0f1928;
+  /* Info theme */
+  --banner-color-info-background: #e0e7f2;
+  --banner-color-info-color: #0f1928;
 
   /* Success theme */
   --banner-color-success-background: #cae9cb;
@@ -409,6 +411,8 @@ Additional properties for specific event types:
 - **dismissed**: `dismissType` - The type of dismissal (permanent, session, page)
 - **actioned**: `actionType` - The type of action (button, link)
 - **error**: `error` - The error object or validation issues
+
+**Note:** Error events may not include `bannerConfig` and `bannerId` if the error occurs before banner creation.
 
 ### Event Handling Example
 

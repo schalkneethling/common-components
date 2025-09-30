@@ -25,7 +25,7 @@ export const BannerSchema = z.object({
   ),
   id: z.string("Banner ID is required"),
   message: z.string().min(5, "Banner message is required"),
-  theme: z.optional(z.enum(["default", "success", "warning", "critical"])),
+  theme: z.optional(z.enum(["info", "success", "warning", "critical"])),
   role: z.optional(z.enum(["status", "alert"])),
 });
 

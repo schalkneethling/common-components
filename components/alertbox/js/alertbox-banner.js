@@ -65,9 +65,9 @@ export class AlertBoxBanner extends HTMLElement {
       banner;
     const bannerContent = document.createElement("div");
     const bannerActions = document.createElement("div");
-    const bannerIcon = this.#getIcon(theme || "default");
+    const bannerIcon = this.#getIcon(theme || "info");
     const bannerMessage = document.createElement("p");
-    const bannerTheme = theme || "default";
+    const bannerTheme = theme || "info";
 
     this.setAttribute("id", id);
     this.setAttribute("role", role || "status");

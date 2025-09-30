@@ -102,12 +102,13 @@ The component comes with the following built-in icons:
 
 - `close` - Close/X icon
 - `critical` - Critical alert icon
-- `default` - Default alert icon
 - `info` - Information icon
 - `person-raised-hand` - Person with raised hand icon
 - `rocket` - Rocket icon
 - `success` - Success checkmark icon
 - `warning` - Warning alert icon
+
+**Note:** Icons are loaded from the `sprite.svg` file. To add new icons, see the [Adding New Icons](#adding-new-icons) section.
 
 ### Attributes
 
@@ -383,6 +384,8 @@ If an icon is not found, the component will throw an error:
 // This will throw: "Icon not found: nonexistent"
 <svg-icon name="nonexistent"></svg-icon>
 ```
+
+**Note:** The component will also throw an error if the sprite file cannot be loaded or parsed.
 
 ## License
 

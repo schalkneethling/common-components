@@ -1,8 +1,8 @@
 :root {
   --border-radius-base: 0.5rem;
 
-  --banner-color-default-background: #e0e7f2;
-  --banner-color-default-color: #0f1928;
+  --banner-color-info-background: #e0e7f2;
+  --banner-color-info-color: #0f1928;
 
   --banner-color-success-background: #cae9cb;
   --banner-color-success-color: #10280f;
@@ -56,10 +56,10 @@
   padding-block: var(--banner-padding-block);
   padding-inline: var(--banner-padding-inline);
 
-  &.alertbox-banner-default {
-    background-color: var(--banner-color-default-background);
+  &.alertbox-banner-info {
+    background-color: var(--banner-color-info-background);
     border: var(--banner-border);
-    color: var(--banner-color-default-color);
+    color: var(--banner-color-info-color);
   }
 
   &.alertbox-banner-success {
