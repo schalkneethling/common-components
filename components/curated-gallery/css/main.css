@@ -1,0 +1,166 @@
+image-grid {
+  display: block;
+}
+
+.image-grid-list {
+  display: grid;
+  gap: 1.5rem;
+  inline-size: 100%;
+  margin-block-end: var(--shared-spacing-sections-xl);
+
+  img {
+    inline-size: 100%;
+    object-fit: cover;
+  }
+
+  /*
+		==================
+		aspect ratio rules
+		==================
+	*/
+  li:only-child {
+    img {
+      aspect-ratio: 16 / 10;
+    }
+  }
+
+  &:has(li:first-child:nth-last-child(2)) {
+    li {
+      img {
+        aspect-ratio: 5 / 4;
+      }
+    }
+  }
+
+  &:has(li:first-child:nth-last-child(3)),
+  &:has(li:first-child:nth-last-child(4)),
+  &:has(li:first-child:nth-last-child(7)) {
+    li:first-child {
+      img {
+        aspect-ratio: 16 / 10;
+      }
+    }
+  }
+
+  &:has(li:first-child:nth-last-child(3)) {
+    li:nth-child(n + 2) {
+      img {
+        aspect-ratio: 5 / 4;
+      }
+    }
+  }
+
+  &:has(li:first-child:nth-last-child(4)),
+  &:has(li:first-child:nth-last-child(7)) {
+    li:nth-child(n + 2) {
+      img {
+        aspect-ratio: 1 / 1;
+      }
+    }
+  }
+
+  &:has(li:first-child:nth-last-child(5)) {
+    li:nth-child(n + 1) {
+      img {
+        aspect-ratio: 5 / 4;
+      }
+    }
+
+    li:nth-child(n + 3) {
+      img {
+        aspect-ratio: 1 / 1;
+      }
+    }
+  }
+
+  &:has(li:first-child:nth-last-child(6)) {
+    li:nth-child(n + 1) {
+      img {
+        aspect-ratio: 1 / 1;
+      }
+    }
+  }
+}
+
+@media (width >= 48em) {
+  .image-grid-list {
+    grid-template-columns: repeat(6, 1fr);
+
+    /*
+		==================
+		column span rules
+		==================
+	*/
+    li:only-child {
+      grid-column: span 6;
+    }
+
+    &:has(li:first-child:nth-last-child(2)) {
+      li {
+        grid-column: span 3;
+      }
+    }
+
+    &:has(li:first-child:nth-last-child(3)),
+    &:has(li:first-child:nth-last-child(4)),
+    &:has(li:first-child:nth-last-child(7)) {
+      li:first-child {
+        grid-column: span 6;
+      }
+    }
+
+    &:has(li:first-child:nth-last-child(3)) {
+      li:nth-child(n + 2) {
+        grid-column: span 3;
+      }
+    }
+
+    &:has(li:first-child:nth-last-child(4)),
+    &:has(li:first-child:nth-last-child(7)) {
+      li:nth-child(n + 2) {
+        grid-column: span 2;
+      }
+    }
+
+    &:has(li:first-child:nth-last-child(5)) {
+      li:nth-child(n + 1) {
+        grid-column: span 3;
+      }
+
+      li:nth-child(n + 3) {
+        grid-column: span 2;
+      }
+    }
+
+    &:has(li:first-child:nth-last-child(6)) {
+      li:nth-child(n + 1) {
+        grid-column: span 2;
+      }
+    }
+  }
+}
+
+.reset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.inert {
+  max-block-size: 100dvb;
+  overflow: clip;
+}
+
+.lightbox {
+  block-size: 100dvb;
+  border: 0;
+  inline-size: 100dvi;
+  margin: 0;
+  max-block-size: 100dvb;
+  max-inline-size: 100dvi;
+
+  img {
+    inline-size: 100%;
+    object-fit: contain;
+  }
+}

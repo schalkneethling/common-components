@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Image Test</title>
+  <link rel="stylesheet" type="text/css" href="../shared/css/reset.css" media="screen" />
+</head>
+
+<body>
+  <picture>
+    <source srcset="./assets/gallery001/gallery001@4x.avif" media="(width >= 100rem)" type="image/avif">
+    <source srcset="./assets/gallery001/gallery001@3x.avif" media="(width >= 64rem)" type="image/avif">
+    <source srcset="./assets/gallery001/gallery001@2x.avif" media="(width >= 48rem)" type="image/avif">
+    <source srcset="./assets/gallery001/gallery001.avif" type="image/avif">
+
+    <source srcset="./assets/gallery001/gallery001@4x.webp" media="(width >= 100rem)" type="image/webp">
+    <source srcset="./assets/gallery001/gallery001@3x.webp" media="(width >= 64rem)" type="image/webp">
+    <source srcset="./assets/gallery001/gallery001@2x.webp" media="(width >= 48rem)" type="image/webp">
+    <source srcset="./assets/gallery001/gallery001.webp" type="image/webp">
+
+    <img src="./assets/gallery001/gallery001.jpg" width="640" height="320" alt="">
+  </picture>
+</body>
+
+</html>
