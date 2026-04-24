@@ -1,0 +1,86 @@
+[
+  {
+    "primary_menu_label": "Plants",
+    "submenu_quicklinks": {
+      "label": "Shop by Category",
+      "links": [
+        {
+          "img_url": "/images/icons/all-plants.png",
+          "label": "All Plants",
+          "url": "/collections/plants"
+        },
+        {
+          "img_url": "/images/icons/succulents-cacti.png",
+          "label": "Succulents & Cacti",
+          "url": "/collections/succulents-cacti"
+        },
+        {
+          "img_url": "/images/icons/houseplants.png",
+          "label": "Houseplants",
+          "url": "/collections/houseplants"
+        },
+        {
+          "img_url": "/images/icons/air-plants.png",
+          "label": "Air Plants",
+          "url": "/collections/air-plants"
+        },
+        {
+          "img_url": "/images/icons/terrariums.png",
+          "label": "Terrariums",
+          "url": "/collections/terrariums"
+        },
+        {
+          "img_url": "/images/icons/pet-friendly.png",
+          "label": "Pet-Friendly Plants",
+          "url": "/collections/pet-friendly-plants"
+        }
+      ]
+    },
+    "submenu_links_primary": {
+      "label": "Shop by Type",
+      "links": [
+        {
+          "label": "New Arrivals",
+          "url": "/collections/new-arrivals"
+        },
+        {
+          "label": "Best Sellers",
+          "url": "/collections/best-sellers"
+        },
+        {
+          "label": "Low Light Plants",
+          "url": "/collections/low-light-plants"
+        },
+        {
+          "label": "Flowering Plants",
+          "url": "/collections/flowering-plants"
+        },
+        {
+          "label": "Outdoor Plants",
+          "url": "/collections/outdoor-plants"
+        },
+        {
+          "label": "Hanging Plants",
+          "url": "/collections/hanging-plants"
+        }
+      ]
+    },
+    "submenu_links_secondary": {
+      "label": "Shop by Size",
+      "links": [
+        {
+          "label": "Small Plants",
+          "url": "/collections/small-plants"
+        },
+        {
+          "label": "Medium Plants",
+          "url": "/collections/medium-plants"
+        },
+        {
+          "label": "Large Plants",
+          "url": "/collections/large-plants"
+        }
+      ]
+    }
+  }
+]
