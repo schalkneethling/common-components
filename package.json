@@ -28,8 +28,8 @@
     "stylelint-config-standard": "^37.0.0",
     "stylelint-order": "^6.0.4",
     "svg-symbol-sprite": "^1.5.2",
-    "vite": "^7.3.2",
-    "vitest": "^3.2.6"
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8"
   },
   "dependencies": {
     "zod": "^4.1.8"
