@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - uses: pnpm/setup@9d7bc02973c0dd098fef6550b676299d84319358 # v0
       with:
         cache: true
