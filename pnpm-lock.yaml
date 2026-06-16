@@ -13,8 +13,8 @@ importers:
         version: 4.4.3
     devDependencies:
       '@eslint/js':
-        specifier: ^9.23.0
-        version: 9.39.4
+        specifier: ^10.0.1
+        version: 10.0.1(eslint@9.39.4)
       '@playwright/test':
         specifier: ^1.56.1
         version: 1.61.0
@@ -32,7 +32,7 @@ importers:
         version: 16.5.0
       happy-dom:
         specifier: ^20.8.9
-        version: 20.10.4
+        version: 20.10.3
       node:
         specifier: runtime:^24.0.0
         version: runtime:24.16.0
@@ -56,7 +56,7 @@ importers:
         version: 8.0.16(@types/node@24.13.2)
       vitest:
         specifier: ^4.1.8
-        version: 4.1.9(@types/node@24.13.2)(happy-dom@20.10.4)(vite@8.0.16(@types/node@24.13.2))
+        version: 4.1.9(@types/node@24.13.2)(happy-dom@20.10.3)(vite@8.0.16(@types/node@24.13.2))
 
 packages:
 
@@ -142,6 +142,15 @@ packages:
   '@eslint/eslintrc@3.3.5':
     resolution: {integrity: sha512-4IlJx0X0qftVsN5E+/vGujTRIFtwuLbNsVUe7TO6zYPDR1O6nFwvwhIKEKSrl6dZchmYBITazxKoUYOjdtjlRg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/js@10.0.1':
+    resolution: {integrity: sha512-zeR9k5pd4gxjZ0abRoIaxdc7I3nDktoXZk2qOv9gCNWx3mVwEn32VRhyLaRsDiJjTs0xq/T8mfPtyuXu7GWBcA==}
+    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+    peerDependencies:
+      eslint: ^10.0.0
+    peerDependenciesMeta:
+      eslint:
+        optional: true
 
   '@eslint/js@9.39.4':
     resolution: {integrity: sha512-nE7DEIchvtiFTwBw4Lfbu59PG+kCofhjsKaCWzxTpt4lfRjRMqG6uMBzKXuEcyXhOHoUp9riAm7/aWYGhXZ9cw==}
@@ -735,8 +744,8 @@ packages:
   globjoin@0.1.4:
     resolution: {integrity: sha512-xYfnw62CKG8nLkZBfWbhWwDw02CHty86jfPcc2cr3ZfeuK9ysoVPPEUxf21bAD/rWAgk52SuBrLJlefNy8mvFg==}
 
-  happy-dom@20.10.4:
-    resolution: {integrity: sha512-bKrsQnFNpcjZG0UPsH7UMN7Oyp3AB42LXk2GuiQmu7l4QFxH7lsw5T1eWEtE2+vbIFrTC45sbNSB2pkB8MTfKA==}
+  happy-dom@20.10.3:
+    resolution: {integrity: sha512-Hjdiy8RziuCcn5z04QI/rlsNuQoG8P0xxjgvsSMpi89cvIXIOcucQtiHS1yHSShxoBcSCeYqAskINmTiy/mlfw==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -1618,6 +1627,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@eslint/js@10.0.1(eslint@9.39.4)':
+    optionalDependencies:
+      eslint: 9.39.4
+
   '@eslint/js@9.39.4': {}
 
   '@eslint/object-schema@2.1.7': {}
@@ -2177,7 +2190,7 @@ snapshots:
 
   globjoin@0.1.4: {}
 
-  happy-dom@20.10.4:
+  happy-dom@20.10.3:
     dependencies:
       '@types/node': 24.13.2
       '@types/whatwg-mimetype': 3.0.2
@@ -2684,7 +2697,7 @@ snapshots:
       '@types/node': 24.13.2
       fsevents: 2.3.3
 
-  vitest@4.1.9(@types/node@24.13.2)(happy-dom@20.10.4)(vite@8.0.16(@types/node@24.13.2)):
+  vitest@4.1.9(@types/node@24.13.2)(happy-dom@20.10.3)(vite@8.0.16(@types/node@24.13.2)):
     dependencies:
       '@vitest/expect': 4.1.9
       '@vitest/mocker': 4.1.9(vite@8.0.16(@types/node@24.13.2))
@@ -2708,7 +2721,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 24.13.2
-      happy-dom: 20.10.4
+      happy-dom: 20.10.3
     transitivePeerDependencies:
       - msw
 

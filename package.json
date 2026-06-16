@@ -24,7 +24,7 @@
     "test:playwright:chromium": "playwright test --project=chromium"
   },
   "devDependencies": {
-    "@eslint/js": "^9.23.0",
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.4.0",
     "eslint": "^9.23.0",
