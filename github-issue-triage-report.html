@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GitHub Issue Triage Report - Fiori</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f7f4;
+        --fg: #1f2528;
+        --muted: #5c676d;
+        --panel: #ffffff;
+        --border: #d9dddf;
+        --p1: #c23434;
+        --p2: #c2bd34;
+        --link: #005ea8;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font: 16px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        margin: 0;
+      }
+
+      main {
+        inline-size: min(1200px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 2rem 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+      }
+
+      a {
+        color: var(--link);
+      }
+
+      .summary,
+      details {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 0.375rem;
+        margin-block: 1rem;
+        padding: 1rem;
+      }
+
+      dl {
+        display: grid;
+        gap: 0.25rem 1rem;
+        grid-template-columns: max-content 1fr;
+      }
+
+      dt {
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      dd {
+        margin: 0;
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      table {
+        border-collapse: collapse;
+        inline-size: 100%;
+        margin-block-start: 1rem;
+      }
+
+      th,
+      td {
+        border-block-start: 1px solid var(--border);
+        padding: 0.75rem;
+        text-align: start;
+        vertical-align: top;
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      .priority {
+        border-radius: 999px;
+        color: #fff;
+        display: inline-block;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        min-inline-size: 2.5rem;
+        padding: 0.125rem 0.5rem;
+        text-align: center;
+      }
+
+      .p1 {
+        background: var(--p1);
+      }
+
+      .p2 {
+        background: var(--p2);
+      }
+
+      .labels {
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>GitHub Issue Triage Report - Fiori</h1>
+
+      <!-- Summarizes when the report was generated, what was triaged, and the next recommended issue. -->
+      <section class="summary" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Summary</h2>
+        <dl>
+          <dt>Generated</dt>
+          <dd>2026-06-16T20:22:01Z</dd>
+          <dt>Input repositories</dt>
+          <dd>schalkneethling/common-components</dd>
+          <dt>Status</dt>
+          <dd>Triaged using the local GOAL.md created in this working tree.</dd>
+          <dt>Open issues</dt>
+          <dd>19 total: p0 0, p1 9, p2 10, p3 0</dd>
+          <dt>Next issue</dt>
+          <dd>
+            <a href="https://github.com/schalkneethling/common-components/issues/42">#42 Rewrite README around Fiori purpose, readiness model, and integrations</a>
+          </dd>
+        </dl>
+      </section>
+
+      <details open>
+        <summary>schalkneethling/common-components - 19 open issues - next: #42 Rewrite README around Fiori purpose, readiness model, and integrations</summary>
+
+        <!-- Captures the project goal used to evaluate and prioritize issues. -->
+        <section aria-labelledby="goal-heading">
+          <h2 id="goal-heading">Project Goal Summary</h2>
+          <p>
+            Fiori should become a practical, accessible web-component library that pushes the web platform while documenting production readiness, browser support, Baseline feature availability, polyfills, dependencies, and integration paths. It should also act as a real-world proving ground for Miyagi, Project Calavera, CSS validation, axe reporting, React usage, and agent tooling.
+          </p>
+        </section>
+
+        <!-- Documents priority label state after the triage pass. -->
+        <section aria-labelledby="label-heading">
+          <h2 id="label-heading">Label Update Status</h2>
+          <p>
+            Priority labels p0, p1, p2, and p3 already existed. Newly filed issues were created with exactly one priority label. Existing issue #17 already had exactly one priority label, p2.
+          </p>
+        </section>
+
+        <!-- Names the highest-leverage issue to work on next. -->
+        <section aria-labelledby="nominee-heading">
+          <h2 id="nominee-heading">Next Issue Nomination</h2>
+          <p>
+            Work next on <a href="https://github.com/schalkneethling/common-components/issues/42">#42</a>. The README/readiness rewrite makes the Fiori goal visible to users and gives the component inventory, catalog, and integration issues a stable public frame. Issue #41 is also high priority, but much of it is already represented in the current working tree.
+          </p>
+        </section>
+
+        <!-- Lists every open issue with priority, rationale, labels, and triage notes. -->
+        <table>
+          <thead>
+            <tr>
+              <th>Priority</th>
+              <th>Issue</th>
+              <th>Rationale tied to GOAL.md</th>
+              <th>Impact</th>
+              <th>Current labels</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="priority p1">p1</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/41">#41 Complete pnpm migration across local development, CI, and docs</a></td>
+              <td>GOAL.md requires the repo to be easy to inspect and run, with lockfile, scripts, CI, docs, and commands aligned.</td>
+              <td>Unblocks reliable local setup and CI trust.</td>
+              <td class="labels">enhancement, p1</td>
+              <td>Partially reflected in the current working tree.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p1">p1</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/42">#42 Rewrite README around Fiori purpose, readiness model, and integrations</a></td>
+              <td>Directly exposes the north star, readiness model, and integration surface to users.</td>
+              <td>High adoption and orientation value; nominated next.</td>
+              <td class="labels">enhancement, p1</td>
+              <td>Should reference GOAL.md and ROADMAP.md.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p1">p1</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/43">#43 Create component inventory and readiness status model</a></td>
+              <td>GOAL.md requires every component to have support status and next action.</td>
+              <td>Unblocks catalog, README, and component graduation work.</td>
+              <td class="labels">enhancement, p1</td>
+              <td>Should define production-ready and experimental labels.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p1">p1</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/44">#44 Redesign the root catalog into a usable Fiori component library</a></td>
+              <td>GOAL.md says users should inspect components, understand accessibility, and reuse code with confidence.</td>
+              <td>Turns the repo from a folder index into a product surface.</td>
+              <td class="labels">enhancement, p1</td>
+              <td>Depends on the readiness model for best results.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p1">p1</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/45">#45 Promote alertbox to the reference-quality Fiori component</a></td>
+              <td>GOAL.md calls for a reference component quality bar.</td>
+              <td>Creates the pattern for docs, tests, accessibility, and readiness.</td>
+              <td class="labels">enhancement, p1</td>
+              <td>Coordinates with #46, #47, and #48.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p1">p1</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/46">#46 Make alertbox date-range handling timezone-safe</a></td>
+              <td>Reference components must have trustworthy behavior and tests.</td>
+              <td>Fixes a correctness risk in a likely reference component.</td>
+              <td class="labels">bug, p1</td>
+              <td>Concrete, well-scoped bug.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p1">p1</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/48">#48 Add automated axe accessibility reporting for Fiori demos</a></td>
+              <td>Accessibility is part of the component contract, and axe reporting is a key tooling integration.</td>
+              <td>Improves trust and proves axe aggregate reporter integration.</td>
+              <td class="labels">enhancement, p1</td>
+              <td>Start with alertbox pages.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p1">p1</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/49">#49 Integrate the latest Miyagi with the Fiori component catalog</a></td>
+              <td>GOAL.md explicitly says the latest Miyagi should be integrated.</td>
+              <td>Major proving-ground integration and documentation surface.</td>
+              <td class="labels">enhancement, p1</td>
+              <td>May influence component folder conventions.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p1">p1</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/52">#52 Build the fiori-react React 19 interoperability lab</a></td>
+              <td>GOAL.md makes fiori-react the source of truth for React usage.</td>
+              <td>Important adoption layer for React users.</td>
+              <td class="labels">enhancement, p1</td>
+              <td>React Compiler should be evaluated, not assumed.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p2">p2</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/47">#47 Define runtime validation guidelines and review alertbox validation choice</a></td>
+              <td>GOAL.md requires dependencies to be deliberate and documented.</td>
+              <td>Improves bundle and maintenance decisions across components.</td>
+              <td class="labels">enhancement, p2</td>
+              <td>Zod, Valibot, custom validation, or no library are all possible outcomes.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p2">p2</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/50">#50 Add Project Calavera recipe or audit path for Fiori tooling</a></td>
+              <td>Fiori should prove Project Calavera against a real project.</td>
+              <td>Useful tooling integration after the core project shape stabilizes.</td>
+              <td class="labels">enhancement, p2</td>
+              <td>May produce issues in the Calavera repo too.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p2">p2</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/51">#51 Add CSS custom-property and @property validation examples</a></td>
+              <td>Supports the web-platform and CSS validation goals.</td>
+              <td>Creates real data for CSS validator and VS Code tools.</td>
+              <td class="labels">enhancement, p2</td>
+              <td>Best after component API/readiness conventions exist.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p2">p2</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/53">#53 Graduate skip-links-nav toward production-ready status</a></td>
+              <td>Advances the accessible common-components library goal.</td>
+              <td>Small, likely quick production-ready candidate.</td>
+              <td class="labels">enhancement, p2</td>
+              <td>Good follow-up after the reference pattern lands.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p2">p2</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/54">#54 Graduate svg-icon and clarify its packaging role</a></td>
+              <td>Shared primitives need clear packaging before broader reuse.</td>
+              <td>Unblocks dependent components and docs consistency.</td>
+              <td class="labels">enhancement, p2</td>
+              <td>Important because alertbox already depends on it.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p2">p2</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/55">#55 Graduate fiori-disclosure as an interactive primitive</a></td>
+              <td>Disclosure is a useful common component with accessibility-sensitive behavior.</td>
+              <td>Expands the reusable component set after the reference bar exists.</td>
+              <td class="labels">enhancement, p2</td>
+              <td>Needs careful keyboard and state testing.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p2">p2</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/56">#56 Triage experiments and archive duplicate or stale component variants</a></td>
+              <td>GOAL.md allows experiments but requires clear labels and maturity.</td>
+              <td>Reduces user confusion and catalog noise.</td>
+              <td class="labels">enhancement, p2</td>
+              <td>Should preserve useful work before archiving anything.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p2">p2</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/57">#57 Graduate session-end-alert and resolve session storage model</a></td>
+              <td>Turns a useful session component into a tested, documented candidate.</td>
+              <td>Meaningful component graduation work, linked to #17.</td>
+              <td class="labels">enhancement, p2</td>
+              <td>Should resolve or close #17 when implemented.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p2">p2</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/58">#58 Add contributor guide and issue workflow for Fiori</a></td>
+              <td>Supports the small, credible contribution surface goal.</td>
+              <td>Improves contributor and agent consistency.</td>
+              <td class="labels">enhancement, p2</td>
+              <td>Can follow README/readiness work.</td>
+            </tr>
+            <tr>
+              <td><span class="priority p2">p2</span></td>
+              <td><a href="https://github.com/schalkneethling/common-components/issues/17">#17 session-end-alert: would session storage be a better option?</a></td>
+              <td>Focused design question for session-end-alert storage behavior.</td>
+              <td>Useful and goal-aligned, but narrower than #57.</td>
+              <td class="labels">enhancement, p2</td>
+              <td>Keep open until #57 resolves the storage model.</td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+    </main>
+  </body>
+</html>
