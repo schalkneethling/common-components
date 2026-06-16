@@ -104,7 +104,7 @@
       }
 
       .p2 {
-        background: #6f6b00;
+        background: var(--p2);
       }
 
       .labels {
@@ -117,6 +117,7 @@
     <main>
       <h1>GitHub Issue Triage Report - Fiori</h1>
 
+      <!-- Summarizes when the report was generated, what was triaged, and the next recommended issue. -->
       <section class="summary" aria-labelledby="summary-heading">
         <h2 id="summary-heading">Summary</h2>
         <dl>
@@ -138,6 +139,7 @@
       <details open>
         <summary>schalkneethling/common-components - 19 open issues - next: #42 Rewrite README around Fiori purpose, readiness model, and integrations</summary>
 
+        <!-- Captures the project goal used to evaluate and prioritize issues. -->
         <section aria-labelledby="goal-heading">
           <h2 id="goal-heading">Project Goal Summary</h2>
           <p>
@@ -145,6 +147,7 @@
           </p>
         </section>
 
+        <!-- Documents priority label state after the triage pass. -->
         <section aria-labelledby="label-heading">
           <h2 id="label-heading">Label Update Status</h2>
           <p>
@@ -152,6 +155,7 @@
           </p>
         </section>
 
+        <!-- Names the highest-leverage issue to work on next. -->
         <section aria-labelledby="nominee-heading">
           <h2 id="nominee-heading">Next Issue Nomination</h2>
           <p>
@@ -159,6 +163,7 @@
           </p>
         </section>
 
+        <!-- Lists every open issue with priority, rationale, labels, and triage notes. -->
         <table>
           <thead>
             <tr>

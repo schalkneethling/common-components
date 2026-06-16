@@ -23,7 +23,7 @@ It is also for the maintainer and contributors who want a practical project labo
    At least one component should demonstrate the complete standard: README, demo page, API notes, accessible markup, unit tests where useful, Playwright coverage, visual or accessibility checks, support status, feature availability, dependency and polyfill notes, and clear maintenance boundaries.
 
 3. Separate production-ready components from experiments.
-   The repo can use modern and emerging platform features, but every component must clearly state whether it is production ready, production ready with documented polyfills or dependencies, experimental, or archived. This prevents the catalog from implying maturity or browser support that the code does not yet have.
+   The repo can use modern and emerging platform features, but every component must clearly state whether it is production-ready, production-ready with documented polyfills or dependencies, experimental, or archived. This prevents the catalog from implying maturity or browser support that the code does not yet have.
 
 4. Use the repo as an integration playground for sibling projects.
    Fiori should intentionally exercise Miyagi component docs and mock data, Project Calavera tooling recipes, CSS property validation, Playwright accessibility aggregation, agent-skill workflows, and VS Code custom-property tools.

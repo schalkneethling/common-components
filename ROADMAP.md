@@ -34,7 +34,7 @@ This should become the reference component before broadening the project, but it
 - The root README is too thin and partly stale. It says the project has no external dependencies, but `zod` is currently a runtime dependency.
 - CI still uses `npm ci`, while the branch appears to be moving to pnpm.
 - Component maturity is unclear. Some folders look like reusable components, some are experiments, and some are demos with no docs.
-- Modern platform feature support is not surfaced consistently. Developers need to know up front whether a component is production ready, experimental, requires polyfills, or depends on Baseline Newly available or Limited availability features.
+- Modern platform feature support is not surfaced consistently. Developers need to know up front whether a component is production-ready, experimental, requires polyfills, or depends on Baseline Newly available or Limited availability features.
 - Runtime validation choices are not yet governed by component-level criteria. Some components may need a schema library, while others may be better served by lighter validation or no library at all.
 - The root catalog links only a subset of components.
 - Accessibility is an obvious theme, but there is no automated axe reporting yet.
@@ -60,7 +60,7 @@ Goal: a contributor or agent can understand the repo in five minutes.
 - Complete pnpm migration in scripts, CI, README, and local setup.
 - Update the README with purpose, install/run/test commands, component inventory, readiness labels, feature-support labels, dependency/polyfill notes, and contribution notes.
 - Add or update `CONTRIBUTING.md`.
-- Add a component status table that distinguishes production ready, production ready with documented polyfills or dependencies, experimental, and archived.
+- Add a component status table that distinguishes production-ready, production-ready with documented polyfills or dependencies, experimental, and archived.
 - Reframe `fiori-react` as an active React interoperability lab.
 - Ensure the root catalog links every active demo or clearly links only supported demos.
 
