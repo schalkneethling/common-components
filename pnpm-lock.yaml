@@ -46,8 +46,8 @@ importers:
         specifier: ^37.0.0
         version: 37.0.0(stylelint@17.13.0)
       stylelint-order:
-        specifier: ^6.0.4
-        version: 6.0.4(stylelint@17.13.0)
+        specifier: ^8.1.1
+        version: 8.1.1(stylelint@17.13.0)
       svg-symbol-sprite:
         specifier: ^1.5.2
         version: 1.5.2(cheerio@1.2.0)(commander@12.1.0)(svgo@3.3.3)
@@ -1203,8 +1203,8 @@ packages:
     resolution: {integrity: sha512-HeP7D2wyhkR+XaK6v4W8oRF62Dsz4flyuczALJp61GckGm42u1saSSJ/0auvcBqxs3jMRFEcPK34At/0JBKdOg==}
     engines: {node: '>=4'}
 
-  postcss-sorting@8.0.2:
-    resolution: {integrity: sha512-M9dkSrmU00t/jK7rF6BZSZauA5MAaBW4i5EnJXspMwt4iqTh/L9j6fgMnbElEOfyRyfLfVbIHj/R52zHzAPe1Q==}
+  postcss-sorting@10.0.0:
+    resolution: {integrity: sha512-TXbU+h6vVRW+86c/+ewhWq9k7pr7ijASTnepVhCQiC87zAOTkvB1v2dHyWP+ggstSTX/PNvjzS+IOqzejndz9w==}
     peerDependencies:
       postcss: ^8.4.20
 
@@ -1327,10 +1327,11 @@ packages:
     peerDependencies:
       stylelint: ^16.13.0
 
-  stylelint-order@6.0.4:
-    resolution: {integrity: sha512-0UuKo4+s1hgQ/uAxlYU4h0o0HS4NiQDud0NAUNI0aa8FJdmYHA5ZZTFHiV5FpmE3071e9pZx5j0QpVJW5zOCUA==}
+  stylelint-order@8.1.1:
+    resolution: {integrity: sha512-LqsEB6VggJuu5v10RtkrQsBObcdwBE7GuAOlwfc/LR3VL/w8UqKX2BOLIjhyGt0Gne/njo7gRNGiJAKhfmPMNw==}
+    engines: {node: '>=20.19.0'}
     peerDependencies:
-      stylelint: ^14.0.0 || ^15.0.0 || ^16.0.1
+      stylelint: ^16.18.0 || ^17.0.0
 
   stylelint@17.13.0:
     resolution: {integrity: sha512-G1WYzMerp7ihOaIe9VJCHLt12MoAD2QLf1AFerYP37+BCRBUK5UCpq8e/mN+zCIaJPKQcaxhE4WlPmqdiOx/gw==}
@@ -2485,7 +2486,7 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss-sorting@8.0.2(postcss@8.5.15):
+  postcss-sorting@10.0.0(postcss@8.5.15):
     dependencies:
       postcss: 8.5.15
 
@@ -2598,10 +2599,10 @@ snapshots:
       stylelint: 17.13.0
       stylelint-config-recommended: 15.0.0(stylelint@17.13.0)
 
-  stylelint-order@6.0.4(stylelint@17.13.0):
+  stylelint-order@8.1.1(stylelint@17.13.0):
     dependencies:
       postcss: 8.5.15
-      postcss-sorting: 8.0.2(postcss@8.5.15)
+      postcss-sorting: 10.0.0(postcss@8.5.15)
       stylelint: 17.13.0
 
   stylelint@17.13.0:
