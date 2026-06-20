@@ -44,13 +44,6 @@ export class AlertBoxManager extends HTMLElement {
     }
   }
 
-  #containsBannerIdInStorage(bannerId) {
-    return (
-      this.#containsBannerIdForStorageType(bannerId, "session") ||
-      this.#containsBannerIdForStorageType(bannerId, "local")
-    );
-  }
-
   #containsBannerIdForStorageType(bannerId, storageType) {
     const storage = storageType === "session" ? sessionStorage : localStorage;
 
@@ -112,7 +105,7 @@ export class AlertBoxManager extends HTMLElement {
 
         if (
           this.isConnected &&
-          !this.#containsBannerIdInStorage(bannerId) &&
+          !this.#containsDismissedBanner(banner) &&
           this.#isWithinDateRange(banner)
         ) {
           const alertboxBanner = new AlertBoxBanner().getBanner(banner);
@@ -128,6 +121,18 @@ export class AlertBoxManager extends HTMLElement {
         throw error;
       }
     });
+  }
+
+  #containsDismissedBanner(banner) {
+    if (banner.dismissType === "session") {
+      return this.#containsBannerIdForStorageType(banner.id, "session");
+    }
+
+    if (banner.dismissType === "permanent") {
+      return this.#containsBannerIdForStorageType(banner.id, "permanent");
+    }
+
+    return false;
   }
 
   addBanner(banner) {
@@ -149,12 +154,12 @@ export class AlertBoxManager extends HTMLElement {
 
   #handleClick(event) {
     const target = event.target;
-    const dismissButton = target.closest(ALERTBOX_BANNER_DISMISS);
+    const dismissButton = target.closest(`.${ALERTBOX_BANNER_DISMISS}`);
     const actionButton = target.classList.contains(
       ALERTBOX_BANNER_ACTION_BUTTON,
     )
       ? target
-      : target.closest(ALERTBOX_BANNER_ACTION_BUTTON);
+      : target.closest(`.${ALERTBOX_BANNER_ACTION_BUTTON}`);
 
     if (actionButton) {
       emitBannerActionEvent(
@@ -176,7 +181,7 @@ export class AlertBoxManager extends HTMLElement {
       banner.remove();
 
       if (
-        dismissType &&
+        (dismissType === "session" || dismissType === "permanent") &&
         !this.#containsBannerIdForStorageType(bannerId, dismissType)
       ) {
         this.#storeBannerId(bannerId, dismissType);

@@ -73,8 +73,10 @@ test("page dismissable banner can be dismissed, but is shown again after reload"
   const pageDismissableBanner = banners.filter({
     hasText: "is page dismissable",
   });
-  const pageDismissableBannerCloseButton =
-    pageDismissableBanner.getByRole("button");
+  const pageDismissableBannerCloseButton = pageDismissableBanner.getByRole(
+    "button",
+    { name: "Close" },
+  );
 
   await pageDismissableBannerCloseButton.click();
   await expect(pageDismissableBanner).not.toBeVisible();
@@ -111,12 +113,15 @@ test("session dismissable banner can be dismissed, but is shown again in new con
 
   await expect(sessionDismissableBanner).not.toBeVisible();
 
-  page.close();
+  await page.close();
 
   const context = await browser.newContext();
   const newPage = await context.newPage();
+  await newPage.clock.setFixedTime("2025-09-19");
   await newPage.goto("/components/alertbox/date-range.html");
 
   const newBanners = newPage.getByRole("status");
   await expect(newBanners).toHaveCount(2);
+
+  await context.close();
 });
