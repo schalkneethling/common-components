@@ -22,7 +22,7 @@ test("permanent success banner has dismissible close button", async ({
   const successBannerCloseButton = page
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" })
-    .getByRole("button");
+    .getByRole("button", { name: "Close" });
 
   await expect(successBanner).toBeAttached();
   await expect(successBannerCloseButton).toBeAttached();
@@ -39,7 +39,7 @@ test("dismissed permanent success banner is not shown again after reload", async
   const successBannerCloseButton = page
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" })
-    .getByRole("button");
+    .getByRole("button", { name: "Close" });
 
   await expect(successBanner).toBeAttached();
   await expect(successBannerCloseButton).toBeAttached();
@@ -72,7 +72,7 @@ test("dismissed permanent success banner is not shown in new page", async ({
   await successBannerCloseButton.click();
   await expect(successBanner).not.toBeAttached();
 
-  page.close();
+  await page.close();
 
   const context = await browser.newContext();
   const newPage = await context.newPage();
@@ -84,7 +84,7 @@ test("dismissed permanent success banner is not shown in new page", async ({
   const newSuccessBannerCloseButton = newPage
     .getByRole("status")
     .filter({ hasText: "This is a permanent success alertbox" })
-    .getByRole("button");
+    .getByRole("button", { name: "Close" });
 
   await expect(newSuccessBanner).toBeAttached();
 
