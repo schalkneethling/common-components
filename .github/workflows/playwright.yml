@@ -34,7 +34,9 @@ jobs:
     timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          persist-credentials: false
       - uses: pnpm/setup@9d7bc02973c0dd098fef6550b676299d84319358 # v0
         with:
           cache: true
@@ -44,7 +46,7 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
       - name: Run chromium Playwright tests
         run: pnpm exec playwright test --project=chromium
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: ${{ !cancelled() }}
         with:
           name: playwright-report-chromium
@@ -62,7 +64,9 @@ jobs:
     timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          persist-credentials: false
       - uses: pnpm/setup@9d7bc02973c0dd098fef6550b676299d84319358 # v0
         with:
           cache: true
@@ -72,7 +76,7 @@ jobs:
         run: pnpm exec playwright install --with-deps firefox
       - name: Run firefox Playwright tests
         run: pnpm exec playwright test --project=firefox
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: ${{ !cancelled() }}
         with:
           name: playwright-report-firefox
@@ -90,7 +94,9 @@ jobs:
     timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          persist-credentials: false
       - uses: pnpm/setup@9d7bc02973c0dd098fef6550b676299d84319358 # v0
         with:
           cache: true
@@ -100,7 +106,7 @@ jobs:
         run: pnpm exec playwright install --with-deps webkit
       - name: Run webkit Playwright tests
         run: pnpm exec playwright test --project=webkit
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: ${{ !cancelled() }}
         with:
           name: playwright-report-webkit

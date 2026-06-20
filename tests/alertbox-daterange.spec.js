@@ -122,4 +122,6 @@ test("session dismissable banner can be dismissed, but is shown again in new con
 
   const newBanners = newPage.getByRole("status");
   await expect(newBanners).toHaveCount(2);
+
+  await context.close();
 });
