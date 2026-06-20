@@ -16,11 +16,11 @@ test("default banner has dismissible close button", async ({ page }) => {
 
   const defaultBanner = page
     .getByRole("status")
-    .filter({ hasText: "This is a basic alertbox" });
+    .filter({ hasText: "This is an info alertbox" });
   const defaultBannerCloseButton = page
     .getByRole("status")
-    .filter({ hasText: "This is a basic alertbox" })
-    .getByRole("button");
+    .filter({ hasText: "This is an info alertbox" })
+    .getByRole("button", { name: "Close" });
 
   await expect(defaultBanner).toBeAttached();
   await expect(defaultBannerCloseButton).toBeAttached();
@@ -46,11 +46,11 @@ test("clicking close button removes banner", async ({ page }) => {
 
   const defaultBanner = page
     .getByRole("status")
-    .filter({ hasText: "This is a basic alertbox" });
+    .filter({ hasText: "This is an info alertbox" });
   const defaultBannerCloseButton = page
     .getByRole("status")
-    .filter({ hasText: "This is a basic alertbox" })
-    .getByRole("button");
+    .filter({ hasText: "This is an info alertbox" })
+    .getByRole("button", { name: "Close" });
 
   await expect(defaultBanner).toBeAttached();
   await expect(defaultBannerCloseButton).toBeAttached();
@@ -64,11 +64,11 @@ test("banner is shown again after page reload", async ({ page }) => {
 
   const defaultBanner = page
     .getByRole("status")
-    .filter({ hasText: "This is a basic alertbox" });
+    .filter({ hasText: "This is an info alertbox" });
   const defaultBannerCloseButton = page
     .getByRole("status")
-    .filter({ hasText: "This is a basic alertbox" })
-    .getByRole("button");
+    .filter({ hasText: "This is an info alertbox" })
+    .getByRole("button", { name: "Close" });
 
   await expect(defaultBanner).toBeAttached();
   await expect(defaultBannerCloseButton).toBeAttached();
