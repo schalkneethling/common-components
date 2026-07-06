@@ -47,6 +47,8 @@ Build the repo first as a practical component library, then use that real projec
 
 The component library gives the project intrinsic value. The proving ground gives the wider ecosystem a realistic test target and public demonstration surface. Those two purposes reinforce each other as long as component maturity is explicit and the tooling integrations improve the component quality bar instead of distracting from it.
 
+The intended product shape is an accessible, unstyled primitives library for the web platform: composable base components with strong behavior, clear accessibility contracts, and styling hooks that let teams bring their own visual language. Unlike React-first libraries, Fiori should make that base layer available to people building without a framework, with a framework, or across frameworks through custom elements and Web Components.
+
 Fiori should also push the web platform. Components may use Baseline Newly available and Limited availability features when they are the right tool, but the catalog, README, and component docs must make support status, polyfills, dependencies, and production suitability impossible to miss.
 
 React interoperability is part of that proof surface, but it has a special role: `fiori-react` should become the canonical source for using the components from React without moving the canonical component implementation into React.
@@ -59,6 +61,7 @@ Goal: a contributor or agent can understand the repo in five minutes.
 
 - Complete pnpm migration in scripts, CI, README, and local setup.
 - Update the README with purpose, install/run/test commands, component inventory, readiness labels, feature-support labels, dependency/polyfill notes, and contribution notes.
+- Explain Fiori as a framework-neutral accessible primitives library, not a styled component kit or React component library.
 - Add or update `CONTRIBUTING.md`.
 - Add a component status table that distinguishes production-ready, production-ready with documented polyfills or dependencies, experimental, and archived.
 - Reframe `fiori-react` as an active React interoperability lab.
@@ -75,7 +78,7 @@ Done when:
 Goal: the first screen and component pages feel like a small, usable component library rather than a folder index.
 
 - Redesign the root catalog around component discovery, status, and usage.
-- Give each active component a consistent page shape: demo, usage, accessibility notes, API/configuration, browser support, Baseline/feature availability, dependencies, polyfills, and known limitations.
+- Give each active component a consistent page shape: demo, usage, accessibility notes, API/configuration, styling hooks, browser support, Baseline/feature availability, dependencies, polyfills, and known limitations.
 - Keep copy-and-adapt usage paths obvious for dependency-light components.
 - Clearly separate supported components from experiments.
 - Make project naming consistently Fiori, with repository/package naming explained where needed.
