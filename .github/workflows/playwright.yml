@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
-      - uses: pnpm/setup@9d7bc02973c0dd098fef6550b676299d84319358 # v0
+      - uses: pnpm/setup@7b64e3377bf32cdb756228d95539b1ba2b22aacc # v0
         with:
           cache: true
       - name: Install dependencies
@@ -67,7 +67,7 @@ jobs:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
-      - uses: pnpm/setup@9d7bc02973c0dd098fef6550b676299d84319358 # v0
+      - uses: pnpm/setup@7b64e3377bf32cdb756228d95539b1ba2b22aacc # v0
         with:
           cache: true
       - name: Install dependencies
@@ -97,7 +97,7 @@ jobs:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
-      - uses: pnpm/setup@9d7bc02973c0dd098fef6550b676299d84319358 # v0
+      - uses: pnpm/setup@7b64e3377bf32cdb756228d95539b1ba2b22aacc # v0
         with:
           cache: true
       - name: Install dependencies
