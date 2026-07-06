@@ -4,20 +4,22 @@
 
 Make Fiori a practical library of real, usable, accessible web platform components that people can copy, study, adapt, and use in their projects.
 
+The product shape should be close to an unstyled accessible primitives library: highly composable, behaviorally solid, styling-system agnostic, and suitable as the base layer for design systems and application interfaces. The important difference is that Fiori should serve people building without a framework, with a framework, or across frameworks by using custom elements and Web Components as the primary delivery model rather than React components.
+
 The library should push the boundaries of the web platform, including Baseline Newly available and Limited availability features when they make a component better. That ambition must be paired with clear component-level documentation: production readiness, browser support, feature availability, required polyfills, and dependencies should be visible before a developer invests time adopting a component.
 
 The supporting purpose is to make Fiori a realistic test bed and proving ground for the tooling ecosystem around it. The latest Miyagi should be integrated with the project, and projects such as Project Calavera, the CSS property type validator, axe aggregate reporter, claude-toolkit, autoresearch, and VS Code extensions should be able to demonstrate their value here against a real-world component library rather than contrived fixtures. The repo should also explore how standards-based Web Components can work inside a React context, where `fiori-react` becomes the source of truth for using these components from React without replacing their platform foundation.
 
 ## Who This Is For
 
-This project is primarily for developers and maintainers who need common web components with clear HTML, CSS, JavaScript, accessibility behavior, documentation, tests, support status, and integration notes.
+This project is primarily for developers and maintainers who need common web components with clear HTML, CSS, JavaScript, accessibility behavior, documentation, tests, support status, and integration notes. It should especially help people who want accessible base primitives that do not require a specific framework or visual design system, while still fitting naturally into framework applications when that is the right choice.
 
 It is also for the maintainer and contributors who want a practical project laboratory, React developers who want to use Web Components without losing React ergonomics, and users of the wider toolchain who need believable proof points: component folders for Miyagi, repeatable tooling recipes for Project Calavera, typed CSS and custom-property examples for CSS tools, Playwright pages for accessibility reporting, and real project context for agent skills and VS Code extensions.
 
 ## Core Goals
 
 1. Ship useful, accessible, platform-first components.
-   Components should solve recognizable interface needs such as alerts, skip links, disclosure, icons, session warnings, cards, menus, forms, galleries, and sliders. They should prefer native HTML, CSS, and Web Components before framework code. Lit is encouraged when it improves developer experience, code clarity, and maintainability.
+   Components should solve recognizable interface needs such as alerts, skip links, disclosure, icons, session warnings, cards, menus, forms, galleries, and sliders. They should prefer native HTML, CSS, and Web Components before framework code, and expose styling hooks rather than imposing a visual system. Lit is encouraged when it improves developer experience, code clarity, and maintainability.
 
 2. Establish a reference component quality bar.
    At least one component should demonstrate the complete standard: README, demo page, API notes, accessible markup, unit tests where useful, Playwright coverage, visual or accessibility checks, support status, feature availability, dependency and polyfill notes, and clear maintenance boundaries.
@@ -41,6 +43,7 @@ It is also for the maintainer and contributors who want a practical project labo
 
 - The root README clearly explains what Fiori is, how to run it, which components exist, and how production-ready or experimental each one is.
 - A user can open the catalog, inspect a component, understand its accessibility model, and reuse the code with confidence.
+- A user can treat Fiori as a framework-neutral base layer for their own design system or application UI.
 - One component, likely `alertbox`, becomes the reference implementation for documentation, tests, accessibility behavior, events, configuration, and release readiness.
 - Every component has a support status, owner intent, and next action.
 - Every component that uses Baseline Newly available or Limited availability features documents browser support, fallbacks, polyfills, dependencies, and production suitability.
